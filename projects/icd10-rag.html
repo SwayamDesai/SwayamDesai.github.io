@@ -70,8 +70,30 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">03</span> How a query flows through the system</h2>
-      <p class="intro">Seven stages, from raw SOAP note to a code with a confidence score. Each stage exists to fix a specific failure mode of the stage before it.</p>
+      <h2><span class="idx">03</span> Architecture</h2>
+      <p class="intro">The request path at a glance — then each stage in detail below. Every step exists to fix a specific failure mode of the one before it.</p>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Input</div><div class="n">Clinical note</div><div class="sub">SOAP text</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Preprocess</div><div class="n">Diagnosis extractor</div><div class="sub">regex</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Encode</div><div class="n">MedCPT encoder</div><div class="sub">768-d vector</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Cache</div><div class="n">Redis semantic cache</div><div class="sub">hit → &lt;50ms</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Retrieve</div><div class="n">Milvus hybrid</div><div class="sub">BM25 + dense</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Rerank</div><div class="n">Cross-encoder</div><div class="sub">top-50 → 5</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Generate</div><div class="n">Llama-3.2-3B</div><div class="sub">QLoRA · vLLM</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Output</div><div class="n">ICD-10 + confidence</div></div></div>
+          </div>
+        </div>
+        <div class="arch-infra"><span class="lbl">Backing services</span><div class="items"><span>Zilliz Cloud — 72,750 codes</span><span>Redis Stack (HNSW)</span><span>AWS EC2 g4dn (T4)</span><span>FastAPI</span></div></div>
+      </div>
       <div class="flow reveal">
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Diagnosis extraction</h3><p>Clinical notes are 1,000+ words of SOAP boilerplate; ICD descriptions are 5–10 word phrases. Pulling only the Assessment/Diagnosis block before encoding lifts recall@5 from 50% to 64%.</p><div class="chips"><span>regex</span><span>SOAP parsing</span></div></div></div>
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Query encoding</h3><p>The extracted text is embedded with MedCPT's Query Encoder into a 768-d vector — a bi-encoder trained on biomedical literature, so clinical language lands in the right neighbourhood.</p><div class="chips"><span>MedCPT Query Encoder</span><span>768-d</span></div></div></div>
@@ -86,8 +108,8 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">04</span> Decisions worth defending</h2>
-      <p class="intro">The choices that separate a demo from something you'd actually deploy — each one I can explain the trade-off behind.</p>
+      <h2><span class="idx">04</span> Key design decisions</h2>
+      <p class="intro">A few choices that made this reliable rather than just a demo, and the trade-offs behind each one.</p>
       <div class="highlights reveal">
         <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg></div><h3>Extract before you encode</h3><p>The single biggest accuracy win came from parsing, not modelling: isolating the diagnosis block before the encoder moved recall@5 up 14 points with zero model changes.</p></div>
         <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Hybrid over pure dense</h3><p>BM25 catches rare clinical terms ("dysthymic", "nephrotic") that dense models blur; dense catches paraphrases. Weighted fusion (α=0.5) beats either alone.</p></div>

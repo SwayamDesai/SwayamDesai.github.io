@@ -95,8 +95,28 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">03</span> Pipeline</h2>
-      <p class="intro">From 30,490 raw daily series to a shippable ordering policy — each step chosen to keep the whole thing on a laptop and the conclusion honest.</p>
+      <h2><span class="idx">03</span> Architecture</h2>
+      <p class="intro">From 30,490 raw daily series to a shippable ordering policy — the analysis pipeline at a glance, then each step in detail below. Chosen to keep the whole thing on a laptop and the conclusion honest.</p>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Data</div><div class="n">Walmart M5</div><div class="sub">30,490 series</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">ETL</div><div class="n">Chunked → weekly</div><div class="sub">4.5 GB peak</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Features</div><div class="n">Lags · calendar · SNAP</div><div class="sub">leakage-tested</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Models</div><div class="n">LightGBM</div></div><div class="arch-node"><div class="t">Models</div><div class="n">AutoETS</div></div><div class="arch-node"><div class="t">Models</div><div class="n">Ensemble</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Cost sim</div><div class="n">Newsvendor</div><div class="sub">5:1 penalty</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Experiment</div><div class="n">Pre-registered A/B</div><div class="sub">paired · n≈30K</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Decision</div><div class="n">SHIP</div><div class="sub">−14.1% cost</div></div></div>
+          </div>
+        </div>
+        <div class="arch-infra"><span class="lbl">Tooling</span><div class="items"><span>pandas / numpy</span><span>LightGBM · statsmodels</span><span>checkpointed ETL</span><span>pytest — 18 tests in CI</span></div></div>
+      </div>
       <div class="flow reveal">
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Chunked ETL to weekly grain</h3><p>Melting all series at once needs 20–30&nbsp;GB. Instead, per-store chunks (10 × ~3,049 series) build weekly features without ever materialising the 59M-row daily frame — 68s, 3.7&nbsp;GB peak, sums reconcile exactly. Daily is 62% zero-sales noise; weekly cuts that to ~12% volume-weighted.</p><div class="chips"><span>per-store chunking</span><span>checkpointed</span><span>int16 / float32</span></div></div></div>
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Decision-driving EDA</h3><p>Ten views that each justify a modelling choice: the Syntetos-Boylan intermittency map (smooth / lumpy / erratic), SNAP as a dose-response (FOODS +22% in full-SNAP weeks), and two honest non-findings on price cuts and holidays.</p><div class="chips"><span>intermittency classification</span></div></div></div>

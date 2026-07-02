@@ -69,8 +69,27 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">03</span> The streaming pipeline</h2>
-      <p class="intro">Three Azure Container Instances and a feature store, from a live trade tick to an anomaly score with attribution.</p>
+      <h2><span class="idx">03</span> Architecture</h2>
+      <p class="intro">Three Azure Container Instances and a feature store, from a live trade tick to an anomaly score with attribution. The runtime path at a glance, then each stage below.</p>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Stream</div><div class="n">Coinbase WebSocket</div><div class="sub">BTC · ETH · SOL</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Broker</div><div class="n">Event Hubs</div><div class="sub">Kafka protocol</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Features</div><div class="n">Stateful engine</div><div class="sub">1m / 5m / 30m</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Store</div><div class="n">Redis feature store</div><div class="sub">&lt;5ms · TTL 300s</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Score</div><div class="n">IsoForest + autoencoder</div><div class="sub">50/50 ensemble</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Output</div><div class="n">Anomaly score</div><div class="sub">+ top features</div></div></div>
+          </div>
+        </div>
+        <p class="arch-caption">Weekly: an Azure ML pipeline (validate → train → evaluate → register) retrains the model, and the scoring service redeploys automatically.</p>
+        <div class="arch-infra"><span class="lbl">Platform</span><div class="items"><span>Azure Container Instances</span><span>Azure ML — model registry</span><span>GitHub Actions CI/CD</span><span>App Insights</span></div></div>
+      </div>
       <div class="flow reveal">
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Producer</h3><p>An async Coinbase Advanced-Trade WebSocket client streams live trade ticks for BTC/ETH/SOL and publishes to Azure Event Hubs (Kafka protocol) — with dead-letter handling, structured logging, and graceful shutdown.</p><div class="chips"><span>Coinbase WS</span><span>Event Hubs (Kafka)</span></div></div></div>
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Stateful feature engine</h3><p>A per-symbol engine keeps sliding 1m/5m/30m windows as time-evicted deques and computes RSI(14), VWAP, Bollinger-band position, and rolling price z-scores — the same code used to build training features.</p><div class="chips"><span>RSI · VWAP</span><span>Bollinger · z-score</span></div></div></div>

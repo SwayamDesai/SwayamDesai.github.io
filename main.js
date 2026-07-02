@@ -39,21 +39,12 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* Count-up on hero metrics */
+  /* Render hero metrics (static — no gimmicky count-up) */
   function animateCount(el) {
     var target = parseFloat(el.getAttribute("data-count"));
     var dec = parseInt(el.getAttribute("data-dec") || "0", 10);
     var sep = el.getAttribute("data-sep") === "1";
-    if (reduceMotion) { el.textContent = format(target, dec, sep); return; }
-    var start = performance.now(), dur = 1300;
-    function tick(now) {
-      var p = Math.min((now - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = format(target * eased, dec, sep);
-      if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = format(target, dec, sep);
-    }
-    requestAnimationFrame(tick);
+    el.textContent = format(target, dec, sep);
   }
   function format(n, dec, sep) {
     var s = dec > 0 ? n.toFixed(dec) : Math.round(n).toString();

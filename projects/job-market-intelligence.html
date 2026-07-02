@@ -73,8 +73,30 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">03</span> The pipeline</h2>
-      <p class="intro">Raw postings in, a queryable knowledge graph out — with a fine-tuned model trained on labels the pipeline generates itself.</p>
+      <h2><span class="idx">03</span> Architecture</h2>
+      <p class="intro">Raw postings in, a queryable knowledge graph out — with a fine-tuned model trained on labels the pipeline generates itself. The data flow at a glance, then each step below.</p>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Sources</div><div class="n">ATS · API · SERP</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Scrape</div><div class="n">Selenium</div><div class="sub">checkpointed</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Label</div><div class="n">spaCy + regex</div><div class="sub">silver labels</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Fine-tune</div><div class="n">QLoRA Gemma-2B</div><div class="sub">10k examples</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Enrich</div><div class="n">vLLM extractor</div><div class="sub">rule fallback</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Normalize</div><div class="n">4-stage pipeline</div><div class="sub">FAISS dedup</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary store"><div class="t">Store</div><div class="n">DuckDB + Postgres KG</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Serve</div><div class="n">Marimo dashboard</div><div class="sub">Cloud Run</div></div></div>
+          </div>
+        </div>
+        <div class="arch-infra"><span class="lbl">Supporting</span><div class="items"><span>FAISS · sentence-transformers</span><span>rapidfuzz</span><span>SkyPilot — spot GPUs</span><span>GCP Cloud Run · Docker</span></div></div>
+      </div>
       <div class="flow reveal">
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Scrape</h3><p>A Selenium-based ATS scraper plus public-API and SERP sources pull job postings from company career pages — checkpointed so an interrupted run resumes instead of restarting.</p><div class="chips"><span>Selenium</span><span>undetected-chromedriver</span><span>SERP API</span></div></div></div>
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Rule-based labeling</h3><p>spaCy + regex (patterns compiled once at load) extract seniority, tech stack, and remote type as zero-cost "silver labels" — the training data for the LLM, bootstrapped without any manual annotation.</p><div class="chips"><span>spaCy</span><span>regex</span></div></div></div>

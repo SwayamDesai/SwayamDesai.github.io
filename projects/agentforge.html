@@ -69,8 +69,28 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">03</span> The orchestration graph</h2>
-      <p class="intro">A LangGraph StateGraph drives the run. The parallel review fan-out and the retry loop are where the quality gain comes from.</p>
+      <h2><span class="idx">03</span> Architecture</h2>
+      <p class="intro">A LangGraph StateGraph drives the run. The parallel review fan-out and the retry loop are where the quality gain comes from — shown at a glance here, with the step detail below.</p>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Entry</div><div class="n">Interface</div><div class="sub">REST · WS · CLI</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Orchestrate</div><div class="n">LangGraph StateGraph</div><div class="sub">saga retry loop</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Plan</div><div class="n">Planner</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Code</div><div class="n">Coding agent</div><div class="sub">Ollama · local</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Review · parallel</div><div class="n">Reviewer</div></div><div class="arch-node"><div class="t">Review · parallel</div><div class="n">Security scan</div></div><div class="arch-node"><div class="t">Review · parallel</div><div class="n">Test runner</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Document</div><div class="n">Doc agent</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Output</div><div class="n">Finalize</div><div class="sub">event log</div></div></div>
+          </div>
+        </div>
+        <div class="arch-infra"><span class="lbl">Backing services</span><div class="items"><span>PostgreSQL — event store</span><span>Qdrant — episodic memory</span><span>Redis</span><span>Celery</span><span>MCP — GitHub · Playwright</span></div></div>
+      </div>
       <div class="flow reveal">
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Planning</h3><p>The orchestrator decomposes the task into a structured plan and initialises the shared graph state that every downstream agent reads and writes.</p><div class="chips"><span>LangGraph StateGraph</span></div></div></div>
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Coding</h3><p>The coding agent runs on a local Ollama model (<code>qwen2.5-coder:14b</code>) — free, private, and fast enough for iteration. Similar past tasks are retrieved from episodic memory and injected as context.</p><div class="chips"><span>Ollama qwen2.5-coder:14b</span><span>episodic memory</span></div></div></div>

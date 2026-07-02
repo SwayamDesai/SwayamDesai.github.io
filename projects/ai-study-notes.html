@@ -69,8 +69,24 @@
 
   <section class="cs-section">
     <div class="wrap">
-      <h2><span class="idx">03</span> How it works</h2>
-      <p class="intro">A PDF goes in; four kinds of study material and an evaluation report come out.</p>
+      <h2><span class="idx">03</span> Architecture</h2>
+      <p class="intro">A PDF goes in; four kinds of study material and an evaluation report come out. The processing flow at a glance, then each step below.</p>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Input</div><div class="n">PDF chapter</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Chunk</div><div class="n">~800-char splits</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Embed</div><div class="n">MiniLM + FAISS</div><div class="sub">local</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Generate</div><div class="n">Summaries</div><div class="sub">gpt-4o-mini</div></div><div class="arch-node"><div class="t">Extract</div><div class="n">Glossary + cards</div><div class="sub">KeyBERT · spaCy</div></div><div class="arch-node"><div class="t">Cluster</div><div class="n">Topics</div><div class="sub">UMAP · HDBSCAN</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Evaluate</div><div class="n">ROUGE + glossary acc.</div></div></div>
+          </div>
+        </div>
+        <div class="arch-infra"><span class="lbl">App</span><div class="items"><span>Streamlit</span><span>LangChain</span><span>sentence-transformers</span><span>rouge-score</span></div></div>
+      </div>
       <div class="flow reveal">
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Ingest &amp; chunk</h3><p>The PDF is read and split into ~800-character chunks, then embedded with a sentence-transformer (<code>all-MiniLM-L6-v2</code>) and indexed in FAISS for semantic lookup.</p><div class="chips"><span>PDF parsing</span><span>FAISS</span><span>all-MiniLM-L6-v2</span></div></div></div>
         <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Summarize</h3><p>gpt-4o-mini (via LangChain, low temperature) generates a summary at the requested depth — short, medium, or detailed — grounded in the chunked text.</p><div class="chips"><span>gpt-4o-mini</span><span>LangChain</span></div></div></div>
