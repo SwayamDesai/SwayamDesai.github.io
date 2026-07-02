@@ -1,0 +1,162 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Demand Forecasting with Cost-Aware A/B Testing — Swayam Desai</title>
+<meta name="description" content="Retail demand forecasting on the full Walmart M5 panel (30,490 series), carried past accuracy to a pre-registered, cost-aware A/B test: SHIP at −14.1% inventory cost." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Forecasting</span>
+        <span class="card-tag">A/B Testing</span>
+        <span class="card-tag">Causal / Experimentation</span>
+        <span class="card-tag">LightGBM</span>
+      </div>
+      <h1>Demand Forecasting with Cost-Aware A/B Testing</h1>
+      <p class="lede">The full Walmart <strong>M5 panel — all 30,490 store-SKU series</strong> — carried past the leaderboard to the question a real team has to answer: <strong>does the better model actually save money, and should it ship?</strong> A pre-registered A/B test on a newsvendor cost simulation says yes — <strong>SHIP at −14.1%</strong>. The whole pipeline runs on a 16&nbsp;GB laptop in ~20 minutes.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/demand-forecasting-ab-testing" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Data</div><div class="v">Walmart M5 · 30,490 series</div></div>
+        <div class="meta-cell"><div class="k">Compute</div><div class="v">16 GB laptop · ~20 min</div></div>
+        <div class="meta-cell"><div class="k">Verdict</div><div class="v">SHIP (−14.1% cost)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>M5 is usually a Kaggle accuracy contest. This project treats accuracy as the <em>start</em>, not the finish: a lower error metric doesn't matter unless it changes an ordering decision and saves money. So every forecast is turned into an <strong>order quantity</strong>, every ordering mistake is <strong>priced</strong> (understock costs 5× overstock), and the two systems are compared as a <span class="accent-text">pre-registered A/B test</span>.</p>
+        <p>What makes it credible is the discipline: the decision rule is written down before results, model selection and confirmation happen on separate time windows, and the honest failures — including two earlier <strong>HOLD</strong> verdicts — are preserved in the git history rather than edited out.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal" style="margin-bottom:28px">
+        <div class="result-cell"><div class="big">−<span class="u">14.1%</span></div><div class="cap">mean inventory cost reduction (95% CI [−15.3%, −12.9%])</div></div>
+        <div class="result-cell"><div class="big">10/10</div><div class="cap">stores save money — supports a staged rollout</div></div>
+        <div class="result-cell"><div class="big">30,474</div><div class="cap">paired series in the A/B test</div></div>
+        <div class="result-cell"><div class="big">4.5<span class="u">GB</span></div><div class="cap">peak RAM across the full-M5 pipeline</div></div>
+      </div>
+
+      <p class="intro" style="margin-top:8px">Accuracy — 30,490 series, rolling-origin backtest (3 folds × 4-week horizon), volume-weighted WMAPE:</p>
+      <div class="table-scroll reveal">
+        <table class="results">
+          <thead><tr><th>Model</th><th>WMAPE</th><th>Bias</th><th>MASE (med)</th></tr></thead>
+          <tbody>
+            <tr class="win"><td>ensemble (0.5·lgbm + 0.5·ets)</td><td class="mono">0.3649</td><td class="mono">−2.0%</td><td class="mono">0.624</td></tr>
+            <tr><td>lightgbm (one per store)</td><td class="mono">0.3706</td><td class="mono">−1.2%</td><td class="mono">0.635</td></tr>
+            <tr><td>ets (AutoETS, season=52)</td><td class="mono">0.3757</td><td class="mono">−2.8%</td><td class="mono">0.636</td></tr>
+            <tr><td>ma4 (best simple baseline)</td><td class="mono">0.3875</td><td class="mono">−1.3%</td><td class="mono">0.650</td></tr>
+            <tr><td>naive_last</td><td class="mono">0.4283</td><td class="mono">−5.3%</td><td class="mono">0.733</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="intro" style="margin-top:32px">The A/B test — control = the ordering system a retailer actually runs (ma4 + Gaussian safety stock); treatment = LightGBM trained with pinball loss to predict the cost-optimal order quantile directly:</p>
+      <div class="table-scroll reveal">
+        <table class="results">
+          <thead><tr><th>Pre-registered gate</th><th>Result</th><th>Pass</th></tr></thead>
+          <tbody>
+            <tr><td>Mean cost reduction ≥ 5%</td><td class="mono">−14.1% (p ≈ 10⁻¹¹⁰)</td><td class="pass">✓</td></tr>
+            <tr><td>Stockout increase ≤ +2pp</td><td class="mono">+1.57pp</td><td class="pass">✓</td></tr>
+            <tr class="win"><td>Verdict</td><td class="mono">SHIP</td><td class="pass">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> Pipeline</h2>
+      <p class="intro">From 30,490 raw daily series to a shippable ordering policy — each step chosen to keep the whole thing on a laptop and the conclusion honest.</p>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Chunked ETL to weekly grain</h3><p>Melting all series at once needs 20–30&nbsp;GB. Instead, per-store chunks (10 × ~3,049 series) build weekly features without ever materialising the 59M-row daily frame — 68s, 3.7&nbsp;GB peak, sums reconcile exactly. Daily is 62% zero-sales noise; weekly cuts that to ~12% volume-weighted.</p><div class="chips"><span>per-store chunking</span><span>checkpointed</span><span>int16 / float32</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Decision-driving EDA</h3><p>Ten views that each justify a modelling choice: the Syntetos-Boylan intermittency map (smooth / lumpy / erratic), SNAP as a dose-response (FOODS +22% in full-SNAP weeks), and two honest non-findings on price cuts and holidays.</p><div class="chips"><span>intermittency classification</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>LightGBM + classical challenger</h3><p>One LightGBM per store (Tweedie objective for zero-inflated demand, recursive multi-step) vs AutoETS (season 52) as the classical challenger it must beat — and does. A 50/50 blend of the two is the accuracy champion; each family fixes the other's errors.</p><div class="chips"><span>LightGBM (Tweedie)</span><span>AutoETS</span><span>ensemble</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Newsvendor cost simulation</h3><p>Every forecast becomes an order; the newsvendor-optimal order is the τ* ≈ 0.833 demand quantile (5:1 understock:overstock). The treatment model <em>learns</em> that quantile per SKU with pinball loss instead of "mean + z·σ" — same target, better estimator.</p><div class="chips"><span>newsvendor</span><span>pinball loss</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Pre-registered A/B test</h3><p>The decision rule is fixed before results. τ is selected on folds 1–2 and judged once on fold 3 (chosen τ = 0.866). A paired design over ~30K series, with the ≥5% practical-significance gate — not the p-value — carrying the decision.</p><div class="chips"><span>pre-registration</span><span>paired design</span><span>guardrails</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">6</div></div><div class="flow-body"><h3>Verdict &amp; sensitivity</h3><p>SHIP at −14.1%, holding at 3:1 economics; against the same safety-stock policy on LightGBM-mean, quantile ordering still saves −9.4% — proving the ordering policy, not just the model, drives the gain.</p><div class="chips"><span>sensitivity analysis</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> What makes it rigorous</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Money, not error</h3><p>Every forecast becomes a priced order (understock 5:1 overstock), so the metric that decides shipping is dollars saved — not a WMAPE nobody can act on.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div><h3>Pre-registered &amp; separated</h3><p>The decision rule was stated before results; τ selection (folds 1–2) and confirmation (fold 3) are kept apart, so the effect size — not a hackable p-value — carries the call.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><h3>No leakage, tested</h3><p>Time-only splits; every lag/rolling feature is <code>.shift()</code>-ed. A unit test perturbs the current week and fails if any feature moves — 18 tests run in CI.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg></div><h3>Full M5 on 16 GB</h3><p>Per-store chunked ETL, aggressive dtypes, and per-store checkpointing keep peak RSS at 4.5&nbsp;GB — any crash resumes instead of restarting.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div><h3>Learn the quantile, not the mean</h3><p>Rather than post-hoc safety stock, the treatment predicts the cost-optimal demand quantile as the order quantity — a better estimator of the exact thing that's being decided.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><path d="m9 15 6-6"/></svg></div><h3>Honest development trail</h3><p>The first version of this test was a HOLD — the accurate model <em>lost</em> money by under-ordering. That arc, including both earlier HOLDs, is preserved in git rather than hidden.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Modeling</div><div class="items"><span>LightGBM (Tweedie · pinball)</span><span>AutoETS</span><span>ensemble</span></div></div>
+        <div class="stack-row"><div class="layer">Evaluation</div><div class="items"><span>rolling-origin backtest</span><span>newsvendor sim</span><span>paired statistics</span></div></div>
+        <div class="stack-row"><div class="layer">Engineering</div><div class="items"><span>pandas / numpy</span><span>chunked ETL</span><span>checkpointing</span></div></div>
+        <div class="stack-row"><div class="layer">Testing</div><div class="items"><span>pytest (18 tests)</span><span>CI</span><span>leakage guard</span></div></div>
+        <div class="stack-row"><div class="layer">Data</div><div class="items"><span>Walmart M5 (2011–2016)</span><span>CA / TX / WI</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>The full write-up is in the repo</h2>
+        <p>Including the EDA gallery, the two earlier HOLD verdicts, and the complete A/B methodology.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/demand-forecasting-ab-testing" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="agentforge.html"><div class="dir">← Previous</div><div class="name">AgentForge</div></a>
+        <a class="next" href="job-market-intelligence.html"><div class="dir">Next →</div><div class="name">Job Market Intelligence</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

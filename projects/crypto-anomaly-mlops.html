@@ -1,0 +1,135 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Real-Time Crypto Anomaly Detection (MLOps) — Swayam Desai</title>
+<meta name="description" content="Streaming ML on Azure: Coinbase WebSocket → Event Hubs → stateful feature engine → Redis feature store → Isolation-Forest + autoencoder scoring endpoint, with weekly auto-retrain and full observability." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Real-Time MLOps</span>
+        <span class="card-tag">Streaming</span>
+        <span class="card-tag">Anomaly Detection</span>
+        <span class="card-tag">Azure</span>
+      </div>
+      <h1>Real-Time Crypto Anomaly Detection</h1>
+      <p class="lede">Live anomaly scoring for <strong>BTC, ETH, and SOL</strong> on a streaming ML pipeline. Coinbase WebSocket → Azure Event Hubs → a <strong>stateful feature engine</strong> → a Redis feature store → an <strong>Isolation-Forest + autoencoder ensemble</strong> — with weekly automated retraining and end-to-end observability, all deployed by CI/CD.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Assets</div><div class="v">BTC · ETH · SOL</div></div>
+        <div class="meta-cell"><div class="k">Model</div><div class="v">IsoForest + autoencoder</div></div>
+        <div class="meta-cell"><div class="k">Platform</div><div class="v">Azure · ACI · Azure ML</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>Anomaly detection on live market data is a genuine <strong>streaming ML</strong> problem: features have to be computed on the fly, served with millisecond latency, and stay consistent between training and serving. This project builds that full loop on Azure and wires it so <span class="accent-text">every git push deploys the right piece automatically</span>.</p>
+        <p>The detail I'm most proud of is the <strong>single source of truth for features</strong>: the same definitions drive the online streaming path and the offline training path, so there's no train/serve skew — the classic way production ML silently breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">&lt;5<span class="u">ms</span></div><div class="cap">Redis feature-store reads on each score request</div></div>
+        <div class="result-cell"><div class="big">Weekly</div><div class="cap">automated retrain → register → redeploy (Mon 06:00 UTC)</div></div>
+        <div class="result-cell"><div class="big">3</div><div class="cap">timeframes (1m / 5m / 30m) in the stateful feature engine</div></div>
+        <div class="result-cell"><div class="big">0</div><div class="cap">train/serve skew — one feature definition, both paths</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> The streaming pipeline</h2>
+      <p class="intro">Three Azure Container Instances and a feature store, from a live trade tick to an anomaly score with attribution.</p>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Producer</h3><p>An async Coinbase Advanced-Trade WebSocket client streams live trade ticks for BTC/ETH/SOL and publishes to Azure Event Hubs (Kafka protocol) — with dead-letter handling, structured logging, and graceful shutdown.</p><div class="chips"><span>Coinbase WS</span><span>Event Hubs (Kafka)</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Stateful feature engine</h3><p>A per-symbol engine keeps sliding 1m/5m/30m windows as time-evicted deques and computes RSI(14), VWAP, Bollinger-band position, and rolling price z-scores — the same code used to build training features.</p><div class="chips"><span>RSI · VWAP</span><span>Bollinger · z-score</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Feature store</h3><p>The latest feature vector per symbol is written to Azure Cache for Redis (<code>features:v1:{SYMBOL}</code>, TTL 300s) so the scoring endpoint reads fresh features in under 5&nbsp;ms.</p><div class="chips"><span>Azure Cache for Redis</span><span>TTL 300s</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Scoring endpoint</h3><p>On each request the endpoint reads features from Redis and scores them with an ensemble — Isolation Forest for hard outliers plus a Keras autoencoder (latent dim 6) for subtle distributional drift, blended 50/50 — returning score, top features, and latency.</p><div class="chips"><span>Isolation Forest</span><span>Autoencoder</span><span>ACI</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div></div><div class="flow-body"><h3>Weekly retrain</h3><p>An Azure ML component pipeline (validate → feature-engineer → train → evaluate → register) runs every Monday 06:00 UTC; a new model is registered and the scoring endpoint redeploys — no manual steps.</p><div class="chips"><span>Azure ML pipeline</span><span>model registry</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> MLOps decisions</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div><h3>One feature definition, both paths</h3><p>The online streaming processor and the offline training job import the same feature module — a single source of truth that eliminates train/serve skew by construction.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V7a2 2 0 0 1 2-2h2M20 7v10a2 2 0 0 1-2 2h-2M9 3l3 3-3 3M15 21l-3-3 3-3"/></svg></div><h3>Path-filtered CI/CD</h3><p>Five GitHub Actions workflows deploy only what changed — edit <code>features/</code> and the stream pipeline rebuilds; edit <code>serving/</code> and just the endpoint redeploys. No manual, no local Docker.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Two detectors, two failure modes</h3><p>Isolation Forest isolates hard outliers; the autoencoder's reconstruction error catches subtle distributional deviations. The 50/50 ensemble covers what either misses alone.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><h3>Observability that alerts</h3><p>A live Azure Workbook tracks freshness, throughput, pipeline lag, and p50/p95/p99 latency; three alert rules fire on a stalled pipeline, slow scoring, or high feature lag.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>Hands-off retraining</h3><p>A scheduled Azure ML pipeline retrains, evaluates, and registers weekly, then triggers redeploy — the model stays current with the market without anyone touching it.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 12 3 4 7v10l8 4 8-4Z"/><path d="M12 12v9"/></svg></div><h3>Graceful failure</h3><p>Dead-letter handling on the producer and a "no features found" counter on the endpoint mean gaps are observable and recoverable rather than silent.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Streaming</div><div class="items"><span>Coinbase WebSocket</span><span>Azure Event Hubs (Kafka)</span><span>confluent-kafka</span></div></div>
+        <div class="stack-row"><div class="layer">Features</div><div class="items"><span>stateful engine</span><span>RSI · VWAP · Bollinger · z-score</span><span>Azure Cache for Redis</span></div></div>
+        <div class="stack-row"><div class="layer">Models</div><div class="items"><span>Isolation Forest</span><span>Keras autoencoder</span><span>50/50 ensemble</span></div></div>
+        <div class="stack-row"><div class="layer">Platform</div><div class="items"><span>Azure Container Instances</span><span>Azure ML pipelines</span><span>model registry</span></div></div>
+        <div class="stack-row"><div class="layer">Ops</div><div class="items"><span>GitHub Actions CI/CD</span><span>Azure Workbook</span><span>OpenTelemetry · App Insights</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>The full pipeline is on GitHub</h2>
+        <p>Including the Azure ML component definitions, the CI/CD workflows, and the monitoring workbook.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="job-market-intelligence.html"><div class="dir">← Previous</div><div class="name">Job Market Intelligence</div></a>
+        <a class="next" href="ai-study-notes.html"><div class="dir">Next →</div><div class="name">AI Study Notes Generator</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

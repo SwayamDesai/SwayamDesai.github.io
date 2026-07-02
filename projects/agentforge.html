@@ -1,0 +1,136 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AgentForge — Multi-Agent Code Generation — Swayam Desai</title>
+<meta name="description" content="AgentForge: five specialized agents write, review, secure, test, and document code on a LangGraph state machine with a saga retry loop, MCP tools, hybrid local/cloud routing, and event sourcing." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Agentic AI</span>
+        <span class="card-tag">LangGraph</span>
+        <span class="card-tag">MCP</span>
+        <span class="card-tag">Distributed Systems</span>
+      </div>
+      <h1>AgentForge</h1>
+      <p class="lede">A multi-agent code-generation system where <strong>five specialized agents</strong> collaborate to write, review, secure, test, and document code. Built on a LangGraph state machine with a <strong>saga retry loop</strong>, MCP-based tool integrations, hybrid local/cloud model routing, and a production-grade infrastructure layer — <strong>~20% over a single-model baseline</strong> on HumanEval.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Orchestration</div><div class="v">LangGraph StateGraph</div></div>
+        <div class="meta-cell"><div class="k">Routing</div><div class="v">Hybrid local / cloud</div></div>
+        <div class="meta-cell"><div class="k">Interface</div><div class="v">REST · WebSocket · CLI</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>A single LLM asked to "write, test, and document this" does all three mediocrely. AgentForge splits the job into <strong>specialists</strong> — a coder, a reviewer, a security scanner, a tester, and a doc writer — coordinated by a LangGraph state machine that decides what runs, when, and what happens when something fails.</p>
+        <p>The point isn't just more agents; it's <span class="accent-text">making a multi-agent system reliable</span>. Reviews run in parallel, a saga loop feeds critique back into targeted fixes, a circuit breaker fails over between local and cloud models, and every action is an immutable event so any run can be replayed end-to-end.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">~<span class="u">20%</span></div><div class="cap">improvement over a single-model baseline on HumanEval</div></div>
+        <div class="result-cell"><div class="big">5</div><div class="cap">specialized agents; review/security/test run concurrently</div></div>
+        <div class="result-cell"><div class="big">100%</div><div class="cap">of agent actions event-sourced — full task replay supported</div></div>
+        <div class="result-cell"><div class="big">~$0.001</div><div class="cap">per review task via hybrid routing (local coder, cloud review)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> The orchestration graph</h2>
+      <p class="intro">A LangGraph StateGraph drives the run. The parallel review fan-out and the retry loop are where the quality gain comes from.</p>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Planning</h3><p>The orchestrator decomposes the task into a structured plan and initialises the shared graph state that every downstream agent reads and writes.</p><div class="chips"><span>LangGraph StateGraph</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Coding</h3><p>The coding agent runs on a local Ollama model (<code>qwen2.5-coder:14b</code>) — free, private, and fast enough for iteration. Similar past tasks are retrieved from episodic memory and injected as context.</p><div class="chips"><span>Ollama qwen2.5-coder:14b</span><span>episodic memory</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Parallel review</h3><p>Three agents run concurrently on Claude Haiku: a code reviewer, a security scanner, and a test executor. Fanning them out cuts wall-clock time and surfaces independent classes of defect.</p><div class="chips"><span>Claude Haiku</span><span>concurrent</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Saga retry loop</h3><p>If reviewers flag blockers, their feedback is routed back to the coding agent for targeted fixes rather than a full regeneration — the loop that drives most of the HumanEval gain.</p><div class="chips"><span>feedback routing</span><span>bounded retries</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Docs &amp; finalize</h3><p>Once reviews pass, a documentation agent writes usage docs and the orchestrator finalizes — persisting every step as an immutable event and returning the result over REST, WebSocket, or CLI.</p><div class="chips"><span>event sourcing</span><span>FastAPI</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Reliability engineering</h2>
+      <p class="intro">The infrastructure layer is what makes it a system rather than a prompt chain.</p>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/><circle cx="12" cy="12" r="10"/></svg></div><h3>Circuit breaker &amp; fallback</h3><p>Per-provider failure tracking automatically fails over between Ollama and Claude, so a flaky endpoint degrades gracefully instead of killing the run.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>Event sourcing</h3><p>Every agent action is an immutable event in PostgreSQL. Any task can be replayed step-by-step — invaluable for debugging non-deterministic agent behaviour.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0 0 8v1a4 4 0 0 0 8 0v-1a4 4 0 0 0 0-8V6a4 4 0 0 0-4-4Z"/></svg></div><h3>Episodic memory</h3><p>A vector store of past task outcomes; at runtime, similar prior experiences are retrieved and injected as context so the system improves with use.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg></div><h3>MCP tool integrations</h3><p>Sandboxed filesystem tools, GitHub repo creation and push, and Playwright browser automation — the security-scanned agents actually build, commit, and UI-test real apps.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6"/></svg></div><h3>Two-layer caching</h3><p>A Qdrant-backed semantic cache plus Anthropic prompt caching cut redundant LLM calls — cheaper runs without changing behaviour.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div><h3>Durable task queue</h3><p>Celery with a Redis broker runs tasks asynchronously and survives server restarts, so long-running agent jobs aren't lost on a redeploy.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Orchestration</div><div class="items"><span>LangGraph</span><span>StateGraph</span><span>saga pattern</span></div></div>
+        <div class="stack-row"><div class="layer">Models</div><div class="items"><span>Ollama (qwen2.5-coder:14b)</span><span>Claude Haiku</span><span>hybrid routing</span></div></div>
+        <div class="stack-row"><div class="layer">Memory &amp; RAG</div><div class="items"><span>Qdrant</span><span>episodic memory</span><span>semantic cache</span></div></div>
+        <div class="stack-row"><div class="layer">Tools</div><div class="items"><span>MCP filesystem</span><span>GitHub</span><span>Playwright</span></div></div>
+        <div class="stack-row"><div class="layer">Infra</div><div class="items"><span>PostgreSQL</span><span>Redis</span><span>Celery</span><span>FastAPI</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>See the graph in code</h2>
+        <p>The repo includes the full StateGraph, the HumanEval benchmark harness, and the Playwright UI-testing demo.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="icd10-rag.html"><div class="dir">← Previous</div><div class="name">ICD-10 Clinical Coding RAG</div></a>
+        <a class="next" href="demand-forecasting.html"><div class="dir">Next →</div><div class="name">Demand Forecasting + A/B</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

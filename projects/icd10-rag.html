@@ -1,0 +1,139 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ICD-10 Clinical Coding RAG — Swayam Desai</title>
+<meta name="description" content="Production-style clinical coding RAG: hybrid BM25+dense retrieval over 72,750 ICD-10 codes, cross-encoder reranking, QLoRA-fine-tuned Llama-3.2-3B on vLLM/AWS, with a Redis semantic cache." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Healthcare NLP</span>
+        <span class="card-tag">Hybrid RAG</span>
+        <span class="card-tag">LLM Fine-tuning</span>
+        <span class="card-tag">AWS</span>
+      </div>
+      <h1>ICD-10 Clinical Coding RAG</h1>
+      <p class="lede">A production-style system that maps free-text clinical notes to <strong>ICD-10-CM diagnosis codes</strong>. Hybrid sparse+dense retrieval over <strong>72,750 codes</strong>, cross-encoder reranking, and a <strong>QLoRA-fine-tuned Llama-3.2-3B</strong> served on vLLM — fronted by a Redis semantic cache that answers repeat queries in under 50&nbsp;ms.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/icd10-rag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Domain</div><div class="v">Clinical coding</div></div>
+        <div class="meta-cell"><div class="k">Serving</div><div class="v">vLLM · FastAPI</div></div>
+        <div class="meta-cell"><div class="k">Infra</div><div class="v">AWS EC2 · Zilliz</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>Medical coders read a clinical note and assign the diagnosis codes a hospital bills against — slow, and inconsistent between coders. This project treats it as a <strong>retrieval-augmented generation</strong> problem: find the handful of plausible ICD-10 codes for a note, then let a fine-tuned LLM make the final, exact call.</p>
+        <p>The interesting engineering isn't the LLM — it's everything around it. <span class="accent-text">Extracting the diagnosis block before encoding</span>, <span class="accent-text">fusing keyword and semantic search</span>, <span class="accent-text">reranking with a joint cross-encoder</span>, and <span class="accent-text">caching semantically</span> so the system is fast and cheap enough to actually run. The whole demo runs for under $5 of cloud time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <p class="intro">Measured on a held-out set of clinical notes with rolling evaluation of retrieval and end-to-end accuracy.</p>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">72,750</div><div class="cap">ICD-10-CM codes indexed with both dense &amp; sparse vectors</div></div>
+        <div class="result-cell"><div class="big">50→<span class="u">64%</span></div><div class="cap">recall@5 lift from diagnosis extraction alone — no model change</div></div>
+        <div class="result-cell"><div class="big">&lt;50<span class="u">ms</span></div><div class="cap">latency on a semantic cache hit (vs ~2.4s cold)</div></div>
+        <div class="result-cell"><div class="big">&lt;$5</div><div class="cap">total EC2 cost for a full build + tune + eval demo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> How a query flows through the system</h2>
+      <p class="intro">Seven stages, from raw SOAP note to a code with a confidence score. Each stage exists to fix a specific failure mode of the stage before it.</p>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Diagnosis extraction</h3><p>Clinical notes are 1,000+ words of SOAP boilerplate; ICD descriptions are 5–10 word phrases. Pulling only the Assessment/Diagnosis block before encoding lifts recall@5 from 50% to 64%.</p><div class="chips"><span>regex</span><span>SOAP parsing</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Query encoding</h3><p>The extracted text is embedded with MedCPT's Query Encoder into a 768-d vector — a bi-encoder trained on biomedical literature, so clinical language lands in the right neighbourhood.</p><div class="chips"><span>MedCPT Query Encoder</span><span>768-d</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Semantic cache check</h3><p>A Redis Stack HNSW index checks for a near-duplicate past query (cosine ≥ 0.92). On a hit, the cached code returns in under 50&nbsp;ms and the rest of the pipeline is skipped.</p><div class="chips"><span>Redis Stack HNSW</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Hybrid retrieval</h3><p>On a miss, Milvus (Zilliz Cloud) runs BM25 sparse + MedCPT dense search in one query (α=0.5) over all 72,750 codes → top-50 candidates. BM25 catches rare terms dense vectors miss.</p><div class="chips"><span>Milvus / Zilliz</span><span>BM25 + dense</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Cross-encoder rerank</h3><p>The MedCPT Cross-Encoder jointly scores each (note, candidate) pair — far sharper than a dot product — and narrows 50 candidates to the top 5.</p><div class="chips"><span>MedCPT Cross-Encoder</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">6</div><div class="flow-connector"></div></div><div class="flow-body"><h3>LLM selection</h3><p>Llama-3.2-3B, QLoRA-fine-tuned (r=16, NF4 4-bit) on synthetic clinical notes, picks the exact code from the 5 candidates — served via vLLM in Docker with the Alpaca prompt it was trained on.</p><div class="chips"><span>Llama-3.2-3B · QLoRA</span><span>vLLM 0.7.3</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">7</div></div><div class="flow-body"><h3>Return &amp; persist</h3><p>The final code, description, and confidence are returned via FastAPI and written back to the Redis cache so the next similar note is instant.</p><div class="chips"><span>FastAPI</span><span>cache write-back</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Decisions worth defending</h2>
+      <p class="intro">The choices that separate a demo from something you'd actually deploy — each one I can explain the trade-off behind.</p>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg></div><h3>Extract before you encode</h3><p>The single biggest accuracy win came from parsing, not modelling: isolating the diagnosis block before the encoder moved recall@5 up 14 points with zero model changes.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Hybrid over pure dense</h3><p>BM25 catches rare clinical terms ("dysthymic", "nephrotic") that dense models blur; dense catches paraphrases. Weighted fusion (α=0.5) beats either alone.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><path d="M7 14v3a2 2 0 0 0 2 2h8"/></svg></div><h3>Right encoder for each side</h3><p>MedCPT is a bi-encoder system — Article Encoder for documents, Query Encoder for queries. Using one for both (a common RAG bug) measurably degrades retrieval.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 12 3 4 7v10l8 4 8-4Z"/><path d="m4 7 8 4 8-4M12 21V11"/></svg></div><h3>vLLM in Docker, pinned</h3><p>Pinning vLLM 0.7.3 via the official image sidesteps the CUDA / PyTorch / transformers version hell on the AWS Deep Learning AMI — reproducible serving, every time.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/></svg></div><h3>Self-hosted Redis Stack</h3><p>Vector caching needs RediSearch, which plain ElastiCache lacks; the Enterprise tier is $90+/mo. A Redis Stack container on the same box is free and uses ~50&nbsp;MB.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></div><h3>Match the training prompt at inference</h3><p>The model was fine-tuned in Alpaca format, so inference uses the raw completions API with that exact template — not chat tokens the model never saw. Distribution stays aligned.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Retrieval</div><div class="items"><span>Milvus / Zilliz Cloud</span><span>BM25 (sparse)</span><span>MedCPT (dense)</span><span>Cross-encoder rerank</span></div></div>
+        <div class="stack-row"><div class="layer">Models</div><div class="items"><span>Llama-3.2-3B</span><span>QLoRA (NF4)</span><span>Unsloth</span><span>MedCPT encoders</span></div></div>
+        <div class="stack-row"><div class="layer">Serving</div><div class="items"><span>vLLM 0.7.3</span><span>FastAPI</span><span>Pydantic</span><span>Docker</span></div></div>
+        <div class="stack-row"><div class="layer">Cache</div><div class="items"><span>Redis Stack</span><span>HNSW vector index</span></div></div>
+        <div class="stack-row"><div class="layer">Infra</div><div class="items"><span>AWS EC2 g4dn.xlarge (T4)</span><span>Zilliz serverless</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>Want the technical detail?</h2>
+        <p>The repo has the full provisioning walkthrough, evaluation harness, and cost breakdown.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/icd10-rag" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="ai-study-notes.html"><div class="dir">← Previous</div><div class="name">AI Study Notes Generator</div></a>
+        <a class="next" href="agentforge.html"><div class="dir">Next →</div><div class="name">AgentForge</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

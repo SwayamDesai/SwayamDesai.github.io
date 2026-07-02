@@ -1,0 +1,140 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Job Market Intelligence Pipeline — Swayam Desai</title>
+<meta name="description" content="End-to-end ML data product: scrape → rule-based labeling → QLoRA-finetuned Gemma-2B extractor → 4-stage entity normalization → DuckDB warehouse + Postgres knowledge graph → live Marimo dashboard on GCP Cloud Run." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Data Product</span>
+        <span class="card-tag">LLM Fine-tuning</span>
+        <span class="card-tag">Data Engineering</span>
+        <span class="card-tag">GCP</span>
+      </div>
+      <h1>Job Market Intelligence Pipeline</h1>
+      <p class="lede">An end-to-end ML pipeline that turns raw job postings into structured <strong>company &amp; tech-stack signals</strong> — mirroring the go-to-market knowledge-graph products built by B2B data-intelligence companies. Scraping, a fine-tuned LLM extractor, a <strong>4-stage entity-normalization pipeline</strong>, a DuckDB warehouse, and a <strong>live dashboard</strong> on GCP Cloud Run.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://job-market-dashboard-382820901717.us-central1.run.app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          Live dashboard
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/SwayamDesai/job-market-intelligence" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Core product</div><div class="v">GTM knowledge graph</div></div>
+        <div class="meta-cell"><div class="k">Warehouse</div><div class="v">DuckDB + Postgres</div></div>
+        <div class="meta-cell"><div class="k">Deploy</div><div class="v">GCP Cloud Run</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>B2B go-to-market teams want to know which companies use which technologies, at what seniority they're hiring, and how their stack is changing. This pipeline builds exactly that signal from public job postings — the same shape of data product a company like Sumble sells, built end-to-end.</p>
+        <p>The hard part isn't the model, it's the <span class="accent-text">messiness of real web data</span>: "Google LLC" vs "Google", "React.js" vs "ReactJS", near-duplicate postings across boards. So the centre of gravity is a <strong>4-stage entity-normalization pipeline</strong> and a <strong>quality-scoring layer</strong> that makes the output trustworthy enough to query — plus a fine-tuned LLM extractor that degrades gracefully to rules if it's ever down.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">10,000</div><div class="cap">instruction-tuning examples generated for fine-tuning</div></div>
+        <div class="result-cell"><div class="big">4-stage</div><div class="cap">entity normalization: company → tech → dedup → quality</div></div>
+        <div class="result-cell"><div class="big">100-pt</div><div class="cap">quality score with a stored per-dimension breakdown</div></div>
+        <div class="result-cell"><div class="big"><span class="u">Live</span></div><div class="cap">interactive dashboard deployed on GCP Cloud Run</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> The pipeline</h2>
+      <p class="intro">Raw postings in, a queryable knowledge graph out — with a fine-tuned model trained on labels the pipeline generates itself.</p>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Scrape</h3><p>A Selenium-based ATS scraper plus public-API and SERP sources pull job postings from company career pages — checkpointed so an interrupted run resumes instead of restarting.</p><div class="chips"><span>Selenium</span><span>undetected-chromedriver</span><span>SERP API</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Rule-based labeling</h3><p>spaCy + regex (patterns compiled once at load) extract seniority, tech stack, and remote type as zero-cost "silver labels" — the training data for the LLM, bootstrapped without any manual annotation.</p><div class="chips"><span>spaCy</span><span>regex</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>QLoRA fine-tune Gemma-2B</h3><p>Silver labels + a HuggingFace dataset are formatted into 10,000 Alpaca instruction pairs and used to QLoRA-fine-tune Gemma-2B-it (4-bit NF4) — on a free Colab T4 or a GCP spot GPU via SkyPilot.</p><div class="chips"><span>QLoRA · Gemma-2B</span><span>PEFT · bitsandbytes</span><span>SkyPilot</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Enrich &amp; normalize</h3><p>A vLLM client (exponential backoff, batches of 10 for KV-cache sharing, rule-based fallback) extracts structured fields, then the 4-stage normalizer resolves company names (fuzzy), canonicalizes tech, de-dupes with FAISS, and scores quality.</p><div class="chips"><span>vLLM</span><span>rapidfuzz</span><span>FAISS dedup</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Warehouse &amp; knowledge graph</h3><p>Enriched records land in a DuckDB analytical warehouse (<code>enriched_jobs</code>, <code>tech_signals</code>, <code>company_signals</code>) and a Postgres knowledge graph modelling org structure, tech stack, and hiring signals.</p><div class="chips"><span>DuckDB</span><span>PostgreSQL</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">6</div></div><div class="flow-body"><h3>Serve</h3><p>A reactive Marimo dashboard is containerized and deployed to GCP Cloud Run; the fine-tuned model is exposed behind an OpenAI-compatible vLLM inference API.</p><div class="chips"><span>Marimo · Plotly</span><span>Cloud Run · Docker</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Engineering decisions</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2M9 21h6M12 3v18"/></svg></div><h3>4-stage normalization</h3><p>Strip legal suffixes → exact match → rapidfuzz token-sort for word-order variants → tech alias resolution → sentence-transformer + FAISS dedup. Messy web data becomes joinable entities.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V9M12 16v-5M17 16v-9"/></svg></div><h3>Explainable quality scores</h3><p>An additive 100-point score stores a per-dimension breakdown, not just a total — so a consumer asking "why is this record low quality?" gets a root-cause answer.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6 8v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8M12 12v4"/></svg></div><h3>Knowledge graph as the product</h3><p>The Postgres graph — org structure, tech stack, key projects per company — is the actual deliverable, modelled directly on how GTM-intelligence products are consumed.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Graceful degradation</h3><p>The LLM isn't a hard dependency — if the vLLM endpoint is down, enrichment falls back to the rule-based labeler and the pipeline keeps producing data.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/></svg></div><h3>DuckDB over BigQuery</h3><p>In-process, reads Parquet/JSONL directly, and can ATTACH to Postgres as a foreign-data wrapper — one query layer over operational and analytical data, zero cloud credentials to develop.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0 0-9h-1.3A7 7 0 1 0 4 15.3"/></svg></div><h3>Spot-GPU training</h3><p>SkyPilot launches QLoRA fine-tuning on GCP spot instances — the same job runs free on Colab or cheap on preemptible cloud GPUs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Scraping</div><div class="items"><span>Selenium</span><span>undetected-chromedriver</span><span>SERP API</span></div></div>
+        <div class="stack-row"><div class="layer">Labeling</div><div class="items"><span>spaCy</span><span>rapidfuzz</span><span>regex</span></div></div>
+        <div class="stack-row"><div class="layer">Fine-tuning</div><div class="items"><span>QLoRA</span><span>Gemma-2B-it</span><span>PEFT · bitsandbytes</span><span>vLLM</span></div></div>
+        <div class="stack-row"><div class="layer">Data</div><div class="items"><span>DuckDB</span><span>FAISS</span><span>PostgreSQL</span><span>sentence-transformers</span></div></div>
+        <div class="stack-row"><div class="layer">Serving</div><div class="items"><span>Marimo · Plotly</span><span>GCP Cloud Run</span><span>Docker · SkyPilot</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>Try the live dashboard</h2>
+        <p>The deployed Marimo app is public — explore the tech and company signals, then read how it's built.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://job-market-dashboard-382820901717.us-central1.run.app" target="_blank" rel="noopener">Open dashboard</a>
+          <a class="btn btn-ghost" href="https://github.com/SwayamDesai/job-market-intelligence" target="_blank" rel="noopener">Read the code</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="demand-forecasting.html"><div class="dir">← Previous</div><div class="name">Demand Forecasting + A/B</div></a>
+        <a class="next" href="crypto-anomaly-mlops.html"><div class="dir">Next →</div><div class="name">Crypto Anomaly MLOps</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>
