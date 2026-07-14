@@ -1,7 +1,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AgentForge — Multi-Agent Code Generation — Swayam Desai</title>
-<meta name="description" content="AgentForge: five specialized agents write, review, secure, test, and document code on a LangGraph state machine with a saga retry loop, MCP tools, hybrid local/cloud routing, and event sourcing." />
+<title>AgentForge — Verified Repository Coding Agent — Swayam Desai</title>
+<meta name="description" content="AgentForge is a repository-level coding agent with LangGraph orchestration, governed MCP tools, repository-scoped hybrid RAG, four-layer memory, Docker verification, durable recovery, and cost-aware Groq model routing." />
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +29,7 @@
         <span class="card-tag">Distributed Systems</span>
       </div>
       <h1>AgentForge</h1>
-      <p class="lede">A multi-agent code-generation system where <strong>five specialized agents</strong> collaborate to write, review, secure, test, and document code. Built on a LangGraph state machine with a <strong>saga retry loop</strong>, MCP-based tool integrations, hybrid local/cloud model routing, and a production-grade infrastructure layer — <strong>~20% over a single-model baseline</strong> on HumanEval.</p>
+      <p class="lede">A repository-level coding agent built around a strict <strong>plan → code → review → container test → repair</strong> lifecycle. A LangGraph supervisor coordinates specialized workers, governed MCP tools, repository-scoped retrieval, durable checkpoints, and deterministic evidence gates so completion means the patch was actually observed and verified.</p>
       <div class="cs-actions">
         <a class="btn btn-primary" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
@@ -39,8 +39,8 @@
       <div class="meta-row reveal">
         <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
         <div class="meta-cell"><div class="k">Orchestration</div><div class="v">LangGraph StateGraph</div></div>
-        <div class="meta-cell"><div class="k">Routing</div><div class="v">Hybrid local / cloud</div></div>
-        <div class="meta-cell"><div class="k">Interface</div><div class="v">REST · WebSocket · CLI</div></div>
+        <div class="meta-cell"><div class="k">Models</div><div class="v">Role-based Groq routing</div></div>
+        <div class="meta-cell"><div class="k">Interface</div><div class="v">REST · SSE · WebSocket · CLI</div></div>
       </div>
     </div>
   </section>
@@ -49,8 +49,8 @@
     <div class="wrap">
       <h2><span class="idx">01</span> Overview</h2>
       <div class="prose reveal">
-        <p>A single LLM asked to "write, test, and document this" does all three mediocrely. AgentForge splits the job into <strong>specialists</strong> — a coder, a reviewer, a security scanner, a tester, and a doc writer — coordinated by a LangGraph state machine that decides what runs, when, and what happens when something fails.</p>
-        <p>The point isn't just more agents; it's <span class="accent-text">making a multi-agent system reliable</span>. Reviews run in parallel, a saga loop feeds critique back into targeted fixes, a circuit breaker fails over between local and cloud models, and every action is an immutable event so any run can be replayed end-to-end.</p>
+        <p>AgentForge starts from a repository selected through an allowlisted project picker. It maps the codebase deterministically, creates an exact-revision Git worktree, retrieves only repository- and commit-scoped context, then gives each worker the minimum tool capability required for its role.</p>
+        <p>The point isn't agent count; it's <span class="accent-text">trustworthy autonomous execution</span>. The system refuses to complete without an observed workspace change, independent review and security approval, and a successful test run in a disposable Docker container. Failed gates feed a bounded repair loop; contradictions fail closed.</p>
       </div>
     </div>
   </section>
@@ -59,10 +59,10 @@
     <div class="wrap">
       <h2><span class="idx">02</span> Results</h2>
       <div class="result-grid reveal">
-        <div class="result-cell"><div class="big">~<span class="u">20%</span></div><div class="cap">improvement over a single-model baseline on HumanEval</div></div>
-        <div class="result-cell"><div class="big">5</div><div class="cap">specialized agents; review/security/test run concurrently</div></div>
-        <div class="result-cell"><div class="big">100%</div><div class="cap">of agent actions event-sourced — full task replay supported</div></div>
-        <div class="result-cell"><div class="big">~$0.001</div><div class="cap">per review task via hybrid routing (local coder, cloud review)</div></div>
+        <div class="result-cell"><div class="big"><span class="u">206</span></div><div class="cap">automated tests passing across orchestration, tools, RAG, memory, API, and recovery</div></div>
+        <div class="result-cell"><div class="big">10</div><div class="cap">pinned Python repository changes in the paired agent evaluation suite</div></div>
+        <div class="result-cell"><div class="big">4</div><div class="cap">scoped memory layers: working, episodic, semantic, and procedural</div></div>
+        <div class="result-cell"><div class="big">0</div><div class="cap">host-execution fallback paths when the Docker verifier is unavailable</div></div>
       </div>
     </div>
   </section>
@@ -70,33 +70,33 @@
   <section class="cs-section">
     <div class="wrap">
       <h2><span class="idx">03</span> Architecture</h2>
-      <p class="intro">A LangGraph StateGraph drives the run. The parallel review fan-out and the retry loop are where the quality gain comes from — shown at a glance here, with the step detail below.</p>
+      <p class="intro">A single supervisor owns lifecycle state, budgets, approvals, and termination. Workers operate on one isolated repository revision and can advance only when deterministic gates produce evidence.</p>
       <div class="arch reveal">
         <div class="arch-scroll">
           <div class="arch-track">
-            <div class="arch-col"><div class="arch-node"><div class="t">Entry</div><div class="n">Interface</div><div class="sub">REST · WS · CLI</div></div></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Scope</div><div class="n">Repository</div><div class="sub">allowlist · exact SHA</div></div></div>
             <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="arch-col"><div class="arch-node primary"><div class="t">Orchestrate</div><div class="n">LangGraph StateGraph</div><div class="sub">saga retry loop</div></div></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Supervisor</div><div class="n">LangGraph lifecycle</div><div class="sub">state · budget · policy</div></div></div>
             <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="arch-col"><div class="arch-node"><div class="t">Plan</div><div class="n">Planner</div></div></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Context</div><div class="n">Map + hybrid RAG</div><div class="sub">AST · dense · BM25</div></div></div>
             <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="arch-col"><div class="arch-node"><div class="t">Code</div><div class="n">Coding agent</div><div class="sub">Ollama · local</div></div></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Implement</div><div class="n">Coding worker</div><div class="sub">Groq · GPT-OSS 20B</div></div></div>
             <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="arch-col"><div class="arch-node"><div class="t">Review · parallel</div><div class="n">Reviewer</div></div><div class="arch-node"><div class="t">Review · parallel</div><div class="n">Security scan</div></div><div class="arch-node"><div class="t">Review · parallel</div><div class="n">Test runner</div></div></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Gate</div><div class="n">Review + security</div></div><div class="arch-node"><div class="t">Gate</div><div class="n">Docker tests</div><div class="sub">network off · limits</div></div></div>
             <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="arch-col"><div class="arch-node"><div class="t">Document</div><div class="n">Doc agent</div></div></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Decision</div><div class="n">Complete or repair</div><div class="sub">bounded loop</div></div></div>
             <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="arch-col"><div class="arch-node"><div class="t">Output</div><div class="n">Finalize</div><div class="sub">event log</div></div></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Output</div><div class="n">Auditable result</div><div class="sub">evidence · telemetry</div></div></div>
           </div>
         </div>
-        <div class="arch-infra"><span class="lbl">Backing services</span><div class="items"><span>PostgreSQL — event store</span><span>Qdrant — episodic memory</span><span>Redis</span><span>Celery</span><span>MCP — GitHub · Playwright</span></div></div>
+        <div class="arch-infra"><span class="lbl">Backing services</span><div class="items"><span>PostgreSQL — tasks + checkpoints</span><span>Qdrant — RAG + durable memory</span><span>Redis — cache + events</span><span>Optional Celery transport</span><span>MCP — filesystem · GitHub · browser</span></div></div>
       </div>
       <div class="flow reveal">
-        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Planning</h3><p>The orchestrator decomposes the task into a structured plan and initialises the shared graph state that every downstream agent reads and writes.</p><div class="chips"><span>LangGraph StateGraph</span></div></div></div>
-        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Coding</h3><p>The coding agent runs on a local Ollama model (<code>qwen2.5-coder:14b</code>) — free, private, and fast enough for iteration. Similar past tasks are retrieved from episodic memory and injected as context.</p><div class="chips"><span>Ollama qwen2.5-coder:14b</span><span>episodic memory</span></div></div></div>
-        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Parallel review</h3><p>Three agents run concurrently on Claude Haiku: a code reviewer, a security scanner, and a test executor. Fanning them out cuts wall-clock time and surfaces independent classes of defect.</p><div class="chips"><span>Claude Haiku</span><span>concurrent</span></div></div></div>
-        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Saga retry loop</h3><p>If reviewers flag blockers, their feedback is routed back to the coding agent for targeted fixes rather than a full regeneration — the loop that drives most of the HumanEval gain.</p><div class="chips"><span>feedback routing</span><span>bounded retries</span></div></div></div>
-        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Docs &amp; finalize</h3><p>Once reviews pass, a documentation agent writes usage docs and the orchestrator finalizes — persisting every step as an immutable event and returning the result over REST, WebSocket, or CLI.</p><div class="chips"><span>event sourcing</span><span>FastAPI</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Select and understand the repository</h3><p>The user selects an allowlisted Git repository. AgentForge records its exact commit, creates a detached worktree, detects languages, dependencies, entry points and tests, then builds a repository-scoped index.</p><div class="chips"><span>Git worktree</span><span>repository intelligence</span><span>content hashes</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Plan with bounded context</h3><p>Qwen produces a structured plan from the repository map and reranked AST-aware retrieval results. Token reservations and task budgets are applied before every provider call.</p><div class="chips"><span>Qwen on Groq</span><span>hybrid RAG</span><span>token ledger</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Implement through governed tools</h3><p>GPT-OSS 20B edits only the task worktree through a capability-limited MCP scope. Protected paths, secret detection, write and command budgets, and human approval tokens constrain risky actions.</p><div class="chips"><span>GPT-OSS 20B</span><span>MCP</span><span>least privilege</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Verify the observed artifact</h3><p>The supervisor hashes the real diff, sends that delivered change set through review and security gates, then runs the repository test command in a disposable container with network, CPU, memory, PID and timeout restrictions.</p><div class="chips"><span>observed diff</span><span>independent review</span><span>Docker evidence</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Repair or terminate truthfully</h3><p>Failed gates return structured feedback to a bounded repair pass. Completion is allowed only when every required criterion points to recorded evidence; cancellation, failure and recovery remain explicit terminal states.</p><div class="chips"><span>bounded repair</span><span>durable checkpoints</span><span>fail closed</span></div></div></div>
       </div>
     </div>
   </section>
@@ -104,14 +104,14 @@
   <section class="cs-section">
     <div class="wrap">
       <h2><span class="idx">04</span> Reliability engineering</h2>
-      <p class="intro">The infrastructure layer is what makes it a system rather than a prompt chain.</p>
+      <p class="intro">The engineering focus is controlled autonomy: useful agents, narrow permissions, reproducible context, and truthful outcomes.</p>
       <div class="highlights reveal">
-        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/><circle cx="12" cy="12" r="10"/></svg></div><h3>Circuit breaker &amp; fallback</h3><p>Per-provider failure tracking automatically fails over between Ollama and Claude, so a flaky endpoint degrades gracefully instead of killing the run.</p></div>
-        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>Event sourcing</h3><p>Every agent action is an immutable event in PostgreSQL. Any task can be replayed step-by-step — invaluable for debugging non-deterministic agent behaviour.</p></div>
-        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0 0 8v1a4 4 0 0 0 8 0v-1a4 4 0 0 0 0-8V6a4 4 0 0 0-4-4Z"/></svg></div><h3>Episodic memory</h3><p>A vector store of past task outcomes; at runtime, similar prior experiences are retrieved and injected as context so the system improves with use.</p></div>
-        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg></div><h3>MCP tool integrations</h3><p>Sandboxed filesystem tools, GitHub repo creation and push, and Playwright browser automation — the security-scanned agents actually build, commit, and UI-test real apps.</p></div>
-        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6"/></svg></div><h3>Two-layer caching</h3><p>A Qdrant-backed semantic cache plus Anthropic prompt caching cut redundant LLM calls — cheaper runs without changing behaviour.</p></div>
-        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div><h3>Durable task queue</h3><p>Celery with a Redis broker runs tasks asynchronously and survives server restarts, so long-running agent jobs aren't lost on a redeploy.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/><circle cx="12" cy="12" r="10"/></svg></div><h3>Disposable execution</h3><p>Generated commands run in short-lived Docker containers with no network, a read-only root filesystem, dropped capabilities, and explicit CPU, memory, PID, output and wall-time limits. Missing Docker fails closed.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>Durable execution control</h3><p>PostgreSQL queue records, worker leases, heartbeats and graph checkpoints support cancellation, resume, and startup recovery without treating a transport queue as the source of truth.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0 0 8v1a4 4 0 0 0 8 0v-1a4 4 0 0 0 0-8V6a4 4 0 0 0-4-4Z"/></svg></div><h3>Four-layer memory</h3><p>Working state, verified run episodes, reusable repository facts, and proven procedures have different scopes and retention policies. Only cross-validated completed runs create durable memories.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg></div><h3>Governed MCP tools</h3><p>Filesystem, terminal, GitHub and browser capabilities are task-scoped and actor-specific. Protected paths, secret redaction, call budgets, idempotency and signed one-use approvals constrain side effects.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6"/></svg></div><h3>Cost-aware inference</h3><p>Role-based model routes, conservative token reservations, bounded retries, exact caching for safe read-only work, batched embeddings, and cache-savings telemetry control free-tier usage.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div><h3>Repository-scoped retrieval</h3><p>Tree-sitter symbol chunks, dense retrieval, BM25, reciprocal-rank fusion and deterministic reranking are keyed by repository, commit and content hash to prevent cross-project contamination.</p></div>
       </div>
     </div>
   </section>
@@ -120,11 +120,11 @@
     <div class="wrap">
       <h2><span class="idx">05</span> Stack</h2>
       <div class="stack-block reveal">
-        <div class="stack-row"><div class="layer">Orchestration</div><div class="items"><span>LangGraph</span><span>StateGraph</span><span>saga pattern</span></div></div>
-        <div class="stack-row"><div class="layer">Models</div><div class="items"><span>Ollama (qwen2.5-coder:14b)</span><span>Claude Haiku</span><span>hybrid routing</span></div></div>
-        <div class="stack-row"><div class="layer">Memory &amp; RAG</div><div class="items"><span>Qdrant</span><span>episodic memory</span><span>semantic cache</span></div></div>
-        <div class="stack-row"><div class="layer">Tools</div><div class="items"><span>MCP filesystem</span><span>GitHub</span><span>Playwright</span></div></div>
-        <div class="stack-row"><div class="layer">Infra</div><div class="items"><span>PostgreSQL</span><span>Redis</span><span>Celery</span><span>FastAPI</span></div></div>
+        <div class="stack-row"><div class="layer">Orchestration</div><div class="items"><span>LangGraph</span><span>typed lifecycle state</span><span>bounded repair</span><span>evidence gates</span></div></div>
+        <div class="stack-row"><div class="layer">Models</div><div class="items"><span>Groq</span><span>Qwen planning / review</span><span>GPT-OSS 20B coding / repair</span><span>Nomic embeddings</span></div></div>
+        <div class="stack-row"><div class="layer">Memory &amp; RAG</div><div class="items"><span>Qdrant</span><span>Tree-sitter</span><span>dense + BM25</span><span>RRF reranking</span><span>four-layer memory</span></div></div>
+        <div class="stack-row"><div class="layer">Tools</div><div class="items"><span>MCP filesystem</span><span>Docker terminal</span><span>GitHub</span><span>Playwright</span><span>approval tokens</span></div></div>
+        <div class="stack-row"><div class="layer">Infra</div><div class="items"><span>PostgreSQL</span><span>Redis</span><span>optional Celery</span><span>FastAPI</span><span>Docker</span></div></div>
       </div>
     </div>
   </section>
@@ -133,7 +133,7 @@
     <div class="wrap">
       <div class="cs-cta reveal">
         <h2>See the graph in code</h2>
-        <p>The repo includes the full StateGraph, the HumanEval benchmark harness, and the Playwright UI-testing demo.</p>
+        <p>The repository includes the full orchestration graph, governed tool layer, Docker executor, retrieval and memory evaluations, dashboard, and 206-test regression suite.</p>
         <div class="cs-actions">
           <a class="btn btn-primary" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener">Read the code</a>
           <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
