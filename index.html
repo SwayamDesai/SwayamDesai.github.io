@@ -106,7 +106,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>01</span>
               </button>
-              <p class="wc-detail">Maps free-text clinical notes to ICD-10-CM diagnosis codes through a full production retrieval stack: hybrid sparse + dense search over 72,750 codes, cross-encoder reranking, and a QLoRA-tuned Llama-3.2 served on AWS behind a semantic cache.</p>
+              <p class="wc-detail">Hybrid BM25 + MedCPT retrieval over 72,750 codes, cross-encoder reranking, and a QLoRA-tuned Llama-3.2 served on vLLM behind a semantic cache. Scored on 1,000 held-out notes.</p>
               <div class="work-figs">
                 <span><b>74%</b> recall@5 over 1,000 notes</span>
                 <span><b>&lt;50 ms</b> cache-hit latency</span>
@@ -145,7 +145,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>02</span>
               </button>
-              <p class="wc-detail">A multi-hop research assistant built as a measurement study: three retrieval arms over one 30k-passage corpus, scored with bootstrap confidence intervals. Agentic retrieval nearly doubles recall@8 over a dense baseline — and the same table shows answer F1 barely moving, so the bottleneck was never retrieval.</p>
+              <p class="wc-detail">Baseline, graph-RAG and agentic arms scored on one corpus with bootstrap CIs. Agentic retrieval nearly doubles recall — and answer F1 barely moves, so retrieval was never the constraint.</p>
               <div class="work-figs">
                 <span><b>0.454 → 0.838</b> recall@8, dense → agentic</span>
                 <span><b>14% → 65%</b> all-support@8</span>
@@ -184,7 +184,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>03</span>
               </button>
-              <p class="wc-detail">Every month of US BTS flight data since 2015 — cleaned by Spark into partitioned Parquet, modeled in Snowflake with dbt, gated by 36 dbt tests and a Great Expectations checkpoint, and kept current by a monthly Airflow DAG that ingested a new month unattended.</p>
+              <p class="wc-detail">Spark cleans a decade of BTS flights into partitioned Parquet; dbt models it in Snowflake behind 36 tests and a Great Expectations gate. A monthly Airflow DAG ingested a new month unattended.</p>
               <div class="work-figs">
                 <span><b>72.9M</b> rows across 137 files</span>
                 <span><b>94%</b> smaller on disk after cleaning</span>
@@ -223,7 +223,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>04</span>
               </button>
-              <p class="wc-detail">The complete Walmart M5 panel carried past the leaderboard to the question a team actually has to answer: does the better model save money? Two iterations said HOLD. Ordering the cost-optimal quantile instead of the mean forecast is what earned the launch.</p>
+              <p class="wc-detail">A newsvendor cost simulation and a pre-registered A/B test over the full M5 panel. Two iterations returned HOLD; ordering the cost-optimal quantile instead of the mean is what shipped.</p>
               <div class="work-figs">
                 <span><b>−14.1%</b> inventory cost, CI [−15.3, −12.9]</span>
                 <span><b>30,474</b> paired series in the test</span>
@@ -262,7 +262,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>05</span>
               </button>
-              <p class="wc-detail">Six agents research live flights, real hotel rates, weather and attractions, then reconcile the plan against a budget. Every price is checked against the payload it came from, the arithmetic is Python, and uncertainty is labelled instead of smoothed over.</p>
+              <p class="wc-detail">Six agents with narrow tool sets each. Every price is checked against the payload it came from, all arithmetic is Python, and uncertainty is labelled — on free-tier APIs throughout.</p>
               <div class="work-figs">
                 <span><b>608</b> tests + a 12-case eval set</span>
                 <span><b>87.2s → 1.4s</b> cold run vs resumed</span>
@@ -301,7 +301,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>06</span>
               </button>
-              <p class="wc-detail">Segmentation with a lifecycle instead of a one-off notebook: rolling monthly windows over ~1.1M transactions, a six-algorithm bakeoff, drift thresholds calibrated on the data's own variation, and champion/challenger retraining behind a feature store.</p>
+              <p class="wc-detail">Windowed RFM features, a six-algorithm bakeoff, and drift thresholds calibrated on the data's own variation, with MLflow champion/challenger retraining behind a Feast store.</p>
               <div class="work-figs">
                 <span><b>21/22 → 4</b> drift alerts after calibration</span>
                 <span><b>47,170</b> customer-window rows</span>
@@ -340,7 +340,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>07</span>
               </button>
-              <p class="wc-detail">A repository-level coding agent that writes a failing acceptance test first, patches, then verifies with deterministic gates — digest-checked tests, static checks before any model review, bounded repair, and enforced wall-clock and model-call budgets.</p>
+              <p class="wc-detail">Writes a failing acceptance test first, patches, then verifies through deterministic gates: digest-checked tests, static checks before any model review, bounded repair, enforced budgets.</p>
               <div class="work-figs">
                 <span><b>206</b> automated tests passing</span>
               </div>
@@ -378,7 +378,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>08</span>
               </button>
-              <p class="wc-detail">Live anomaly scoring for BTC, ETH and SOL: Coinbase WebSocket into Event Hubs, a stateful feature engine, a Redis feature store, and an Isolation-Forest plus autoencoder ensemble — retrained, registered and redeployed weekly without anyone touching it.</p>
+              <p class="wc-detail">Coinbase WebSocket to Event Hubs, a stateful feature engine, a Redis feature store, and an Isolation-Forest plus autoencoder ensemble. One feature definition serves training and serving.</p>
               <div class="work-figs">
                 <span><b>&lt;5 ms</b> feature-store reads</span>
                 <span><b>Weekly</b> retrain, register, redeploy</span>
@@ -417,7 +417,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>09</span>
               </button>
-              <p class="wc-detail">Raw job postings turned into structured company and tech-stack signals, mirroring a B2B go-to-market data product: scraping, rule-based labeling, a QLoRA-tuned extractor served on vLLM, an analytical warehouse, and a live dashboard.</p>
+              <p class="wc-detail">Scraping, rule-based labeling, a QLoRA-tuned extractor served on vLLM, a DuckDB warehouse, and a Marimo dashboard on Cloud Run.</p>
               <div class="work-figs">
                 <span><b>10,000</b> instruction examples</span>
               </div>
@@ -455,7 +455,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
                 <span>10</span>
               </button>
-              <p class="wc-detail">Upload a PDF chapter, get summaries, flashcards, a glossary and topic clusters — an LLM pipeline combined with classical NLP, with ROUGE and glossary-accuracy evaluation built in rather than bolted on.</p>
+              <p class="wc-detail">gpt-4o-mini paired with classical NLP — KeyBERT and spaCy for terms, UMAP + HDBSCAN for clusters — and graded with ROUGE against ground truth.</p>
               <div class="wc-links">
                 <a class="wc-cta" href="projects/ai-study-notes.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 <a class="work-src" href="https://github.com/SwayamDesai/AI-Study-Notes-Generator" target="_blank" rel="noopener">
