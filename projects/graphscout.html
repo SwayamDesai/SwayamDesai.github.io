@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GraphScout — Agentic Multi-Hop Research Assistant — Swayam Desai</title>
-<meta name="description" content="Graph RAG and agentic retrieval over 30k Wikipedia passages, measured properly: three arms, bootstrap confidence intervals, a calibrated LLM judge, per-request cost tracing, and a CI gate that blocks quality regressions." />
+<meta name="description" content="Graph RAG and agentic retrieval over 30k Wikipedia passages, measured properly: three arms scored on one corpus, recall@8 0.454 to 0.838, bootstrap confidence intervals, per-request cost tracing, and a CI gate that blocks quality regressions." />
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,7 +34,7 @@
         <span class="card-tag">LLM Ops</span>
       </div>
       <h1>GraphScout</h1>
-      <p class="lede">An agentic multi-hop research assistant built as a <strong>measurement study</strong>: three retrieval arms over the same 30k-passage corpus, scored with bootstrap confidence intervals by a versioned eval harness and a calibrated LLM judge, traced per request, and gated in CI. Hybrid retrieval lifts recall@8 from <strong>0.454 to 0.506</strong> — and the more useful finding is <em>why that is a ranking win, not a coverage win</em>.</p>
+      <p class="lede">An agentic multi-hop research assistant built as a <strong>measurement study</strong>: three retrieval arms over the same 30k-passage corpus, scored with bootstrap confidence intervals by a versioned eval harness and a calibrated LLM judge, traced per request, and gated in CI. Agentic retrieval lifts recall@8 from <strong>0.454 to 0.838</strong> and all-support@8 from 14% to 65% — and the more useful finding is that <em>answer F1 barely moves</em>, so retrieval was never the binding constraint.</p>
       <div class="cs-actions">
         <a class="btn btn-primary" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
@@ -45,7 +45,7 @@
         <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
         <div class="meta-cell"><div class="k">Corpus</div><div class="v">~3.9k articles · 30k passages</div></div>
         <div class="meta-cell"><div class="k">Infra cost</div><div class="v">$0 — all local</div></div>
-        <div class="meta-cell"><div class="k">LLM spend</div><div class="v">~$30 total, traced</div></div>
+        <div class="meta-cell"><div class="k">Scored run</div><div class="v">n=150 · $0.06/question</div></div>
       </div>
     </div>
   </section>
@@ -64,24 +64,28 @@
     <div class="wrap">
       <h2><span class="idx">02</span> Results</h2>
       <div class="result-grid reveal">
-        <div class="result-cell"><div class="big">0.454 → 0.506</div><div class="cap">recall@8 — dense-only vs hybrid + rerank + graph expansion</div></div>
-        <div class="result-cell"><div class="big">0.68 → 0.77</div><div class="cap">MRR — the lift is a <em>ranking</em> win, not a coverage win</div></div>
-        <div class="result-cell"><div class="big">19<span class="u">%</span></div><div class="cap">of multi-hop questions get <em>all</em> gold chunks into the top-8</div></div>
-        <div class="result-cell"><div class="big">$0 / ~$30</div><div class="cap">infrastructure / total LLM spend, tracked per request</div></div>
+        <div class="result-cell"><div class="big">0.454 → 0.838</div><div class="cap">recall@8 — dense baseline vs the agentic arm</div></div>
+        <div class="result-cell"><div class="big">14 → 65<span class="u">%</span></div><div class="cap">all-support@8 — every gold chunk present, the metric multi-hop answering needs</div></div>
+        <div class="result-cell"><div class="big">0.149 → 0.231</div><div class="cap">answer F1 — barely moves, which is the more useful finding</div></div>
+        <div class="result-cell"><div class="big">11<span class="u">×</span></div><div class="cap">cost premium for that recall: $0.062 vs $0.0055 per question</div></div>
       </div>
-      <p class="intro" style="margin-top:8px">Retrieval, full-article corpus, dev set n=150, bootstrap 95% CIs — and no LLM spend at all, because retrieval can be scored without generation:</p>
+      <p class="intro" style="margin-top:8px">All three arms on the same corpus, split and commit — dev set, n=150, k=8, MuSiQue, bootstrap 95% CIs:</p>
       <div class="table-scroll reveal">
         <table class="results">
-          <thead><tr><th>arm</th><th>recall@8</th><th>all-support@8</th><th>MRR</th></tr></thead>
+          <thead><tr><th>arm</th><th>recall@8</th><th>all-support@8</th><th>answer EM</th><th>answer F1</th><th>$ / run</th></tr></thead>
           <tbody>
-            <tr><td>dense only</td><td class="mono">0.454 [.406,.505]</td><td class="mono">0.140 [.087,.200]</td><td class="mono">0.680 [.612,.742]</td></tr>
-            <tr class="win"><td>hybrid + rerank + graph-expand</td><td class="mono"><strong>0.506</strong> [.458,.558]</td><td class="mono"><strong>0.187</strong> [.127,.253]</td><td class="mono"><strong>0.767</strong> [.708,.828]</td></tr>
+            <tr><td>1 · baseline — dense, single-shot</td><td class="mono">0.454 [.406,.505]</td><td class="mono">0.140 [.087,.200]</td><td class="mono">0.080</td><td class="mono">0.149</td><td class="mono">$0.82</td></tr>
+            <tr><td>2 · graph RAG — hybrid → rerank → graph-expand</td><td class="mono">0.518 [.471,.570]</td><td class="mono">0.220 [.160,.287]</td><td class="mono"><strong>0.140</strong></td><td class="mono">0.219</td><td class="mono">$0.00*</td></tr>
+            <tr class="win"><td>3 · agentic — decompose → route → verify</td><td class="mono"><strong>0.838</strong> [.798,.875]</td><td class="mono"><strong>0.647</strong> [.573,.720]</td><td class="mono">0.127</td><td class="mono"><strong>0.231</strong></td><td class="mono">$9.28</td></tr>
           </tbody>
         </table>
       </div>
       <div class="prose reveal">
-        <p>Scored as <strong>chunk-level coverage</strong>: a gold paragraph counts as retrieved only if some chunk covering it lands in the top-8, over a 50-candidate pool. The numbers come from committed, provenance-stamped run records with a corpus fingerprint, so a claim can be traced to the run that produced it.</p>
-        <p>The finding underneath the lift matters more than the lift. <span class="accent-text">Both arms plateau at the same ~0.62 recall@50</span> — hybrid retrieval and reranking do not find evidence dense search missed, they pull known-good evidence higher (MRR 0.68 → 0.77). And single-shot retrieval gets <em>all</em> gold chunks into the top-8 for only <strong>19%</strong> of multi-hop questions. Later-hop evidence is unreachable from the surface question, which is exactly the bottleneck the agentic arm exists to close.</p>
+        <p><sub>*The graph arm's scored run hit a fully warm response cache. Every row traces to a committed, provenance-stamped run record — all three at the same git SHA, corpus and split.</sub></p>
+        <p>Scored as <strong>chunk-level coverage</strong>: a gold paragraph counts as retrieved only if some chunk covering it lands in the top-8, over a 50-candidate pool.</p>
+        <p><strong>Agentic retrieval is what closes the multi-hop gap.</strong> Recall@8 nearly doubles over the dense baseline, and <em>all-support@8</em> — every gold chunk for a question present in the top-8, which is what multi-hop answering actually requires — goes from <strong>14% to 65%</strong>. Neither single-shot arm could touch that, and it took decomposition and iteration (6.2 tool rounds per question on average) rather than a smarter single query.</p>
+        <p><strong>And retrieval was never the binding constraint on answers.</strong> Answer F1 moves 0.149 → 0.231 while recall moves 0.39 points, and exact match is actually <em>lower</em> than the graph arm (0.127 vs 0.140). Grounding sits at 0.613 and only 65.3% of agent runs finish cleanly. So the honest reading is that the agent now finds the evidence and still often fails to compose it into the gold answer — the next work is <span class="accent-text">answer synthesis and verification, not more retrieval</span>. That half is stated because a 2× recall headline sitting on top of a flat F1 is exactly the result a portfolio is tempted to crop.</p>
+        <p>Within single-shot retrieval, an earlier free ablation isolates why arm 2 helps at all: <span class="accent-text">both single-shot arms plateau at the same ~0.62 recall@50</span>, so hybrid retrieval and reranking don't find evidence dense search missed — they pull known-good evidence higher (MRR 0.68 → 0.77). Single-shot retrieval gets <em>all</em> gold chunks into the top-8 for only 19% of questions, which is what makes the agentic arm's 65% the interesting number.</p>
       </div>
     </div>
   </section>
