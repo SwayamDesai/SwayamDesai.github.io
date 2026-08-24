@@ -1,0 +1,166 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GraphScout — Agentic Multi-Hop Research Assistant — Swayam Desai</title>
+<meta name="description" content="Graph RAG and agentic retrieval over 30k Wikipedia passages, measured properly: three arms, bootstrap confidence intervals, a calibrated LLM judge, per-request cost tracing, and a CI gate that blocks quality regressions." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Graph RAG</span>
+        <span class="card-tag">Agentic Retrieval</span>
+        <span class="card-tag">Evaluation</span>
+        <span class="card-tag">LLM Ops</span>
+      </div>
+      <h1>GraphScout</h1>
+      <p class="lede">An agentic multi-hop research assistant built as a <strong>measurement study</strong>: three retrieval arms over the same 30k-passage corpus, scored with bootstrap confidence intervals by a versioned eval harness and a calibrated LLM judge, traced per request, and gated in CI. Hybrid retrieval lifts recall@8 from <strong>0.454 to 0.506</strong> — and the more useful finding is <em>why that is a ranking win, not a coverage win</em>.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Corpus</div><div class="v">~3.9k articles · 30k passages</div></div>
+        <div class="meta-cell"><div class="k">Infra cost</div><div class="v">$0 — all local</div></div>
+        <div class="meta-cell"><div class="k">LLM spend</div><div class="v">~$30 total, traced</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>Multi-hop questions — <em>"which university did the founder of the company that acquired DeepMind attend?"</em> — break naive RAG, because the second hop is invisible from the surface question. Plenty of projects assert that graph RAG or an agent fixes it. GraphScout <span class="accent-text">measures how much each fix actually buys, with confidence intervals</span>.</p>
+        <p>Three arms share one corpus, one eval harness, and one set of metrics: a dense-vector baseline, a graph-RAG arm (hybrid retrieval → rerank → knowledge graph expansion), and an agentic arm that decomposes the question and routes sub-questions across vector, graph, and community tools before verifying its answer.</p>
+        <p>The infrastructure is the point as much as the result: a versioned eval harness, a calibrated LLM-as-judge, per-request tracing in Langfuse, and a <strong>CI gate that blocks quality regressions</strong>. Total infrastructure cost: <strong>$0</strong>. Total LLM spend: <strong>~$30</strong>, kept there by model tiering, batch processing, prompt caching, and response caching.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">0.454 → 0.506</div><div class="cap">recall@8 — dense-only vs hybrid + rerank + graph expansion</div></div>
+        <div class="result-cell"><div class="big">0.68 → 0.77</div><div class="cap">MRR — the lift is a <em>ranking</em> win, not a coverage win</div></div>
+        <div class="result-cell"><div class="big">19<span class="u">%</span></div><div class="cap">of multi-hop questions get <em>all</em> gold chunks into the top-8</div></div>
+        <div class="result-cell"><div class="big">$0 / ~$30</div><div class="cap">infrastructure / total LLM spend, tracked per request</div></div>
+      </div>
+      <p class="intro" style="margin-top:8px">Retrieval, full-article corpus, dev set n=150, bootstrap 95% CIs — and no LLM spend at all, because retrieval can be scored without generation:</p>
+      <div class="table-scroll reveal">
+        <table class="results">
+          <thead><tr><th>arm</th><th>recall@8</th><th>all-support@8</th><th>MRR</th></tr></thead>
+          <tbody>
+            <tr><td>dense only</td><td class="mono">0.454 [.406,.505]</td><td class="mono">0.140 [.087,.200]</td><td class="mono">0.680 [.612,.742]</td></tr>
+            <tr class="win"><td>hybrid + rerank + graph-expand</td><td class="mono"><strong>0.506</strong> [.458,.558]</td><td class="mono"><strong>0.187</strong> [.127,.253]</td><td class="mono"><strong>0.767</strong> [.708,.828]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose reveal">
+        <p>Scored as <strong>chunk-level coverage</strong>: a gold paragraph counts as retrieved only if some chunk covering it lands in the top-8, over a 50-candidate pool. The numbers come from committed, provenance-stamped run records with a corpus fingerprint, so a claim can be traced to the run that produced it.</p>
+        <p>The finding underneath the lift matters more than the lift. <span class="accent-text">Both arms plateau at the same ~0.62 recall@50</span> — hybrid retrieval and reranking do not find evidence dense search missed, they pull known-good evidence higher (MRR 0.68 → 0.77). And single-shot retrieval gets <em>all</em> gold chunks into the top-8 for only <strong>19%</strong> of multi-hop questions. Later-hop evidence is unreachable from the surface question, which is exactly the bottleneck the agentic arm exists to close.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> Architecture</h2>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Corpus</div><div class="n">~3.9k Wikipedia articles</div><div class="sub">30k passages</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Index</div><div class="n">pgvector HNSW + BM25</div><div class="sub">local, $0</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Retrieve</div><div class="n">Hybrid + RRF</div><div class="sub">bge-small + reranker</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Expand</div><div class="n">Knowledge graph</div><div class="sub">Neo4j + Leiden</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Answer</div><div class="n">Agent loop</div><div class="sub">decompose → route → verify</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Judge</div><div class="n">Calibrated LLM judge</div><div class="sub">faithfulness</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Gate</div><div class="n">CI regression gate</div><div class="sub">blocks quality drops</div></div></div>
+          </div>
+        </div>
+        <p class="arch-caption">Every prompt is versioned and hash-tracked outside the code; each eval arm is one YAML file, so the config diff <em>is</em> the experiment.</p>
+        <div class="arch-infra"><span class="lbl">Free-tier estate</span><div class="items"><span>pgvector (local)</span><span>Neo4j (local)</span><span>bge embeddings + reranker (local)</span><span>Langfuse (self-hosted)</span><span>GitHub Actions</span></div></div>
+      </div>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Full-article corpus, chunked</h3><p>~3,900 Wikipedia articles chunked into 30k passages, indexed once with a corpus fingerprint so every later result names the corpus it was measured on.</p><div class="chips"><span>MuSiQue benchmark</span><span>content-hashed chunks</span><span>frozen test split</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Hybrid retrieval</h3><p>Dense pgvector HNSW search and BM25 fused with reciprocal-rank fusion, then reranked by a local bge cross-encoder — no hosted reranking API, no per-query cost.</p><div class="chips"><span>pgvector HNSW</span><span>BM25 + RRF</span><span>bge-reranker</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Closed-schema knowledge graph</h3><p>Entity and relation extraction against a <em>closed</em> schema (an ADR records why open-ended extraction was rejected), alias resolution, Neo4j loading, and Leiden community summaries. Retrieval gains a graph-expansion stage that reaches neighbouring passages.</p><div class="chips"><span>closed schema</span><span>entity resolution</span><span>Leiden communities</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Agentic arm</h3><p>The agent decomposes a multi-hop question, routes each sub-question across vector, graph, and community tools, then verifies the assembled answer. Bounded concurrency and response caching keep per-question spend measurable rather than open-ended.</p><div class="chips"><span>tool routing</span><span>bounded concurrency</span><span>response cache</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div></div><div class="flow-body"><h3>Measurement infrastructure</h3><p>A versioned eval harness, a calibrated LLM-as-judge, per-request cost and latency tracing in Langfuse, and a CI regression gate scored against committed baseline run records. 139 unit tests pass; 7 integration tests run with the containers up.</p><div class="chips"><span>Langfuse tracing</span><span>bootstrap CIs</span><span>CI eval gate</span></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Engineering decisions</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5A3 3 0 0 0 12 8h-.5a2.5 2.5 0 0 0 0 5h1a2.5 2.5 0 0 1 0 5H12a3 3 0 0 1-3-1.5M12 6v12"/></svg></div><h3>Tiered models, batched calls</h3><p>Haiku / Sonnet / Opus are used where each is worth its price, with the Batches API and prompt caching on top, and every request's cost recorded — which is how a three-arm study lands at ~$30 total.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div><h3>Prompts are artifacts, not strings</h3><p>Every prompt lives in <code>prompts/</code>, versioned and hash-tracked, never inline in code — so a result can be tied to the exact prompt that produced it.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-4 6 4 6M16 6l4 6-4 6"/></svg></div><h3>The config diff is the experiment</h3><p>One YAML per arm on a shared base. Comparing arms means reading a diff, not trusting that two code paths were otherwise identical.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 7l4 9M17 7l-4 9M7 6h10"/></svg></div><h3>Retracted findings stay visible</h3><p>The git history includes a reverted reranker conclusion and the defects behind it. A measurement pipeline is only worth something if it can overturn its own earlier claim.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg></div><h3>Confidence intervals on everything</h3><p>Bootstrap 95% CIs on every metric, because a 5-point recall difference on n=150 is not automatically a difference at all.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 12 3 4 7v6c0 4.5 3.4 7.4 8 8 4.6-.6 8-3.5 8-8V7Z"/></svg></div><h3>Regressions blocked in CI</h3><p>A quality gate runs the harness against baseline records on every change, so a refactor that quietly degrades retrieval fails the build instead of shipping.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Retrieval</div><div class="items"><span>pgvector (HNSW)</span><span>BM25</span><span>RRF fusion</span><span>bge-small embeddings</span><span>bge-reranker</span></div></div>
+        <div class="stack-row"><div class="layer">Graph</div><div class="items"><span>Neo4j</span><span>closed-schema extraction</span><span>entity resolution</span><span>Leiden communities</span></div></div>
+        <div class="stack-row"><div class="layer">LLM</div><div class="items"><span>Claude — Haiku / Sonnet / Opus tiering</span><span>Batches API</span><span>prompt caching</span><span>response cache</span></div></div>
+        <div class="stack-row"><div class="layer">Evaluation</div><div class="items"><span>versioned eval harness</span><span>calibrated LLM-as-judge</span><span>bootstrap CIs</span><span>MuSiQue</span></div></div>
+        <div class="stack-row"><div class="layer">Ops</div><div class="items"><span>Python 3.12</span><span>FastAPI</span><span>Langfuse</span><span>GitHub Actions eval gate</span><span>uv</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>The full source is on GitHub</h2>
+        <p>Every number on this page is reproducible from the repository.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="arbiter-dispute-triage.html"><div class="dir">← Previous</div><div class="name">Arbiter — Dispute Triage</div></a>
+        <a class="next" href="airline-otp-pipeline.html"><div class="dir">Next →</div><div class="name">Airline OTP Pipeline</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

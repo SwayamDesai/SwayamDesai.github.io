@@ -1,0 +1,156 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Airline On-Time Performance Pipeline — Swayam Desai — Swayam Desai</title>
+<meta name="description" content="End-to-end data engineering: 72.9M BTS flight records through Spark, S3, Snowflake, dbt, Great Expectations, Airflow and Terraform to an auto-refreshing Power BI dashboard." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Data Engineering</span>
+        <span class="card-tag">Spark</span>
+        <span class="card-tag">Snowflake + dbt</span>
+        <span class="card-tag">Airflow</span>
+      </div>
+      <h1>Airline On-Time Performance Pipeline</h1>
+      <p class="lede"><strong>72,961,836 flight records</strong> — every month of US BTS data since January 2015, ~30&nbsp;GB of raw CSV — cleaned by Spark into partitioned Parquet, modeled in Snowflake with dbt, gated by 36 dbt tests and a 16-expectation Great Expectations checkpoint, orchestrated by a monthly Airflow DAG that <strong>ingested a new month autonomously</strong>, with the estate in Terraform and delivery to Power BI over the REST API.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Scale</div><div class="v">72.9M rows · 137 months</div></div>
+        <div class="meta-cell"><div class="k">Warehouse</div><div class="v">Snowflake + dbt</div></div>
+        <div class="meta-cell"><div class="k">Refresh</div><div class="v">Monthly · autonomous</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>A data-engineering pipeline built at a size where the engineering decisions actually matter: <strong>72,961,836 US flight records</strong> — every month from January 2015 to the present, ~30&nbsp;GB of raw CSV from the Bureau of Transportation Statistics — cleaned, warehoused, tested, orchestrated, and delivered to a dashboard.</p>
+        <p>The distinguishing property is that it <span class="accent-text">stays current on its own</span>: a monthly Airflow DAG whose first scheduled run ingested a new month of data end to end with nobody watching. Everything below was measured over the full history, not a sample.</p>
+        <p>The layering is deliberate: Spark does <strong>structural</strong> cleaning only — types, dedup, null-key filtering. All business logic (KPI definitions, lookups) lives in dbt where it is SQL-reviewable, tested, and documented.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">72,961,836</div><div class="cap">rows cleaned across 137 monthly files</div></div>
+        <div class="result-cell"><div class="big">94<span class="u">%</span></div><div class="cap">smaller on disk — ~30 GB CSV → 1.8 GB partitioned Parquet</div></div>
+        <div class="result-cell"><div class="big">36/36 · 16</div><div class="cap">dbt tests passing · Great Expectations release checks</div></div>
+        <div class="result-cell"><div class="big">761,909</div><div class="cap">KPI rows pushed to Power BI via the REST API</div></div>
+      </div>
+      <div class="prose reveal">
+        <p>Loaded into Snowflake through an external stage with <strong>exact row-count reconciliation</strong> — the load either matches the source count or it fails. The Great Expectations checkpoint (row-count bands, distribution checks, freshness across four marts) has its exit-code contract verified <em>in both directions</em>: it passes clean data and fails dirty data, which is the only way to know a quality gate is wired up at all.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> Architecture</h2>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Source</div><div class="n">BTS monthly CSVs</div><div class="sub">~30 GB · 110 cols</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Ingest</div><div class="n">Idempotent downloader</div><div class="sub">atomic writes · retry</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Clean</div><div class="n">PySpark 4.x</div><div class="sub">explicit casts · dedup</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Lake</div><div class="n">Parquet</div><div class="sub">partitioned year/month</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Warehouse</div><div class="n">Snowflake + dbt</div><div class="sub">raw → staging → marts</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Quality</div><div class="n">dbt tests + GE</div><div class="sub">36 + 16 checks</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Deliver</div><div class="n">Power BI</div><div class="sub">REST push refresh</div></div></div>
+          </div>
+        </div>
+        <p class="arch-caption">Orchestrated by a monthly Airflow DAG; the AWS and Snowflake estate is imported into Terraform and plan-clean.</p>
+        <div class="arch-infra"><span class="lbl">Platform</span><div class="items"><span>Airflow (Docker Compose)</span><span>Terraform — AWS + Snowflake</span><span>GitHub Actions — dbt + GE on every PR</span><span>Power BI REST API</span></div></div>
+      </div>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Ingestion that a scheduler can trust</h3><p>An idempotent downloader with atomic writes (<code>.tmp</code> + rename) and retry with backoff. A re-running scheduler must never let Spark read a partially written CSV — so a partial file is never visible under its final name.</p><div class="chips"><span>idempotent</span><span>atomic writes</span><span>retry + backoff</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Spark cleaning, explicitly typed</h3><p>CSVs are read all-string and cast explicitly. Schema inference double-scans 26 GB and can guess differently across 120 monthly files; explicit casts fail loudly and survive year-over-year schema drift. Natural-key dedup, flag normalization, null-key filtering — structural work only.</p><div class="chips"><span>PySpark 4.x</span><span>local[*]</span><span>natural-key dedup</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Warehouse modeling in dbt</h3><p>raw → staging → marts in Snowflake, loaded from an external stage with exact row-count reconciliation. KPI definitions live here as reviewable, tested SQL rather than buried in a Spark job: on-time performance, delay-cause breakdown, route cancellation rate, airport congestion.</p><div class="chips"><span>Snowflake</span><span>dbt</span><span>36 tests</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>A release gate, verified both ways</h3><p>A 16-expectation Great Expectations checkpoint across four marts — row-count bands, distribution checks, freshness — with the exit-code contract tested in both directions so a failing gate actually fails the run.</p><div class="chips"><span>Great Expectations</span><span>freshness checks</span><span>exit-code contract</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div></div><div class="flow-body"><h3>Orchestration and delivery</h3><p>A monthly Airflow DAG keeps the warehouse current — its first scheduled run ingested a new month fully autonomously. CI runs dbt and Great Expectations on every PR, and 761,909 KPI rows are pushed to Power BI through the REST API with device-code auth.</p><div class="chips"><span>Airflow monthly DAG</span><span>GitHub Actions CI</span><span>Power BI push</span></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Decisions worth defending</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div><h3>Read all-string, cast explicitly</h3><p>Inference costs a second full scan of 26 GB and can disagree between monthly files. Explicit casts fail loudly at the boundary and survive schema drift across a decade of BTS releases.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-4 6 4 6M16 6l4 6-4 6"/></svg></div><h3>Spark cleans, dbt decides</h3><p>Types, dedup, and null keys in Spark. Every business definition in dbt, where it is SQL, reviewable, tested, and documented — instead of a transformation nobody can audit.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div><h3>Partitioned by year/month</h3><p>Matches BTS's own monthly grain, which is what makes incremental warehouse loads and predicate pushdown possible rather than reprocessing the decade.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>HHMM times left as strings</h3><p>Turning wall-clock times into timestamps needs timezone context. Deferred to dbt rather than done half-correctly in Spark and silently wrong at DST boundaries.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5A3 3 0 0 0 12 8h-.5a2.5 2.5 0 0 0 0 5h1a2.5 2.5 0 0 1 0 5H12a3 3 0 0 1-3-1.5M12 6v12"/></svg></div><h3>local[*] on purpose</h3><p>The dataset exceeds laptop RAM but not laptop disk. The identical job runs on Databricks or EMR by swapping the master — so the cluster is a deployment choice, not a prerequisite.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 12 3 4 7v6c0 4.5 3.4 7.4 8 8 4.6-.6 8-3.5 8-8V7Z"/></svg></div><h3>Booleans typed at the edge</h3><p>BTS ships "1.00"/"0.00" flags; empty flags become NULL (unknown), not false — because an unknown cancellation silently read as "not cancelled" corrupts every downstream rate.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Ingestion</div><div class="items"><span>Python</span><span>BTS TranStats</span><span>idempotent + atomic downloads</span></div></div>
+        <div class="stack-row"><div class="layer">Processing</div><div class="items"><span>PySpark 4.x</span><span>Parquet</span><span>partitioned year/month</span></div></div>
+        <div class="stack-row"><div class="layer">Warehouse</div><div class="items"><span>Snowflake</span><span>dbt (staging → marts)</span><span>external stage load</span></div></div>
+        <div class="stack-row"><div class="layer">Quality</div><div class="items"><span>36 dbt tests</span><span>Great Expectations (16 expectations)</span><span>row-count reconciliation</span></div></div>
+        <div class="stack-row"><div class="layer">Orchestration</div><div class="items"><span>Apache Airflow</span><span>Docker Compose</span><span>monthly DAG</span></div></div>
+        <div class="stack-row"><div class="layer">Infra & CI</div><div class="items"><span>Terraform (AWS + Snowflake)</span><span>GitHub Actions</span><span>Power BI REST API</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>The full source is on GitHub</h2>
+        <p>Every number on this page is reproducible from the repository.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="graphscout.html"><div class="dir">← Previous</div><div class="name">GraphScout</div></a>
+        <a class="next" href="demand-forecasting.html"><div class="dir">Next →</div><div class="name">Demand Forecasting + A/B</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

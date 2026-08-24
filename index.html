@@ -1,13 +1,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Swayam Desai — Data Scientist & AI Engineer</title>
-<meta name="description" content="Swayam Desai — Data Scientist and AI Engineer. Applied data science and production AI systems: forecasting and experimentation, hybrid RAG, LLM fine-tuning, multi-agent orchestration, and real-time MLOps across AWS, GCP, and Azure." />
+<meta name="description" content="Swayam Desai — Data Scientist and AI Engineer. Applied data science and production AI systems: forecasting and experimentation, graph and hybrid RAG, LLM fine-tuning, multi-agent orchestration, large-scale data pipelines, and real-time MLOps across AWS, GCP, and Azure." />
 <meta name="author" content="Swayam Desai" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Swayam Desai — Data Scientist & AI Engineer" />
-<meta property="og:description" content="Applied data science and production AI systems: forecasting, experimentation, hybrid RAG, LLM fine-tuning, multi-agent orchestration, and real-time MLOps." />
+<meta property="og:description" content="Applied data science and production AI systems: forecasting, experimentation, graph and hybrid RAG, LLM fine-tuning, multi-agent orchestration, data pipelines at 70M+ rows, and real-time MLOps." />
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,7 +75,7 @@
       <!-- Metric strip -->
       <div class="metrics reveal">
         <div class="metric">
-          <div class="num" data-count="6"><span class="sym"></span>6</div>
+          <div class="num" data-count="11"><span class="sym"></span>11</div>
           <div class="lbl">end&#8209;to&#8209;end data science &amp; AI projects</div>
         </div>
         <div class="metric">
@@ -83,8 +83,8 @@
           <div class="lbl">inventory cost, A/B&#8209;validated on 30K series</div>
         </div>
         <div class="metric">
-          <div class="num"><span data-count="72750" data-sep="1">72,750</span></div>
-          <div class="lbl">ICD&#8209;10 codes indexed for hybrid retrieval</div>
+          <div class="num"><span data-count="72.9" data-dec="1">72.9</span><span class="sym">M</span></div>
+          <div class="lbl">flight records through Spark → Snowflake → dbt</div>
         </div>
         <div class="metric">
           <div class="num">3<span class="sym">×</span></div>
@@ -100,11 +100,10 @@
       <div class="section-head reveal">
         <span class="eyebrow">Selected work</span>
         <h2>Recent projects.</h2>
-        <p>A mix of applied data science and ML engineering. Each one goes from raw data through modeling and honest evaluation to a deployed, monitored service — and the full source is on GitHub.</p>
+        <p>A mix of applied data science, ML engineering, and data engineering. Each one goes from raw data through modeling and honest evaluation to a deployed, monitored service — and the full source is on GitHub. Where a result didn't hold up, the project says so.</p>
       </div>
 
       <div class="projects-grid">
-
         <!-- FEATURED: ICD-10 RAG -->
         <article class="card featured reveal">
           <div class="card-top">
@@ -146,27 +145,66 @@ Clinical note
           </div>
         </article>
 
-        <!-- AgentForge -->
+        <!-- Arbiter — regulated dispute triage -->
         <article class="card reveal">
           <div class="card-top">
-            <span class="card-tag">Agentic AI · Verified Execution</span>
+            <span class="card-tag">RegTech · Grounded RAG</span>
             <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener" aria-label="AgentForge source code">
+              <a class="icon-link" href="https://github.com/SwayamDesai/arbiter-dispute-triage" target="_blank" rel="noopener" aria-label="Arbiter dispute triage source code">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
               </a>
             </div>
           </div>
-          <a class="card-cover" href="projects/agentforge.html" aria-label="Open the AgentForge case study"></a>
-          <h3>AgentForge</h3>
-          <p class="desc">A repository-level coding agent that plans changes, edits an isolated Git worktree, reviews the observed diff, runs tests in a locked-down Docker container, and repairs failures through a bounded LangGraph loop.</p>
+          <a class="card-cover" href="projects/arbiter-dispute-triage.html" aria-label="Open the Arbiter regulated dispute triage case study"></a>
+          <h3>Arbiter — Regulated Dispute Triage</h3>
+          <p class="desc">Reads a consumer complaint, finds the regulation that governs it, drafts a cited response, verifies its own claims against the cited text, and decides whether a person must look at it — on 8,240 real CFPB complaints and 3,827 chunks of CFR text.</p>
           <div class="stat-row">
-            <div class="stat"><div class="v"><span class="u">206</span></div><div class="k">automated tests passing</div></div>
-            <div class="stat"><div class="v">4</div><div class="k">scoped memory layers</div></div>
+            <div class="stat"><div class="v">61.5<span class="u">%</span></div><div class="k">measured automation ceiling</div></div><div class="stat"><div class="v">0.702</div><div class="k">product macro-F1 vs 0.659 TF-IDF</div></div><div class="stat"><div class="v">22</div><div class="k">escalation rules audited in CI</div></div>
           </div>
           <div class="tags">
-            <span class="tag">LangGraph</span><span class="tag">MCP (GitHub · Playwright)</span>
-            <span class="tag">Groq model routing</span><span class="tag">Qdrant hybrid RAG</span>
-            <span class="tag">Docker sandbox</span><span class="tag">Redis · PostgreSQL</span>
+            <span class="tag">Hybrid retrieval + rerank</span><span class="tag">Claim-level verification</span><span class="tag">Deterministic safety rules</span><span class="tag">Calibration (ECE)</span><span class="tag">Temporal split</span><span class="tag">FastAPI</span>
+          </div>
+        </article>
+
+        <!-- GraphScout -->
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="card-tag">Graph RAG · Evaluation</span>
+            <div class="card-links">
+              <a class="icon-link" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener" aria-label="GraphScout source code">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="card-cover" href="projects/graphscout.html" aria-label="Open the GraphScout case study"></a>
+          <h3>GraphScout</h3>
+          <p class="desc">Multi-hop research assistant built as a measurement study: three retrieval arms over one 30k-passage corpus, scored with bootstrap confidence intervals by a versioned eval harness, a calibrated LLM judge, and a CI gate that blocks quality regressions.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="v">0.454→<span class="u">0.506</span></div><div class="k">recall@8, dense vs hybrid+graph</div></div><div class="stat"><div class="v">0.68→<span class="u">0.77</span></div><div class="k">MRR — a ranking win, not coverage</div></div><div class="stat"><div class="v">$0 / ~$30</div><div class="k">infra / total LLM spend</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">pgvector + BM25 + RRF</span><span class="tag">Neo4j + Leiden</span><span class="tag">Agentic tool routing</span><span class="tag">LLM-as-judge</span><span class="tag">Langfuse tracing</span><span class="tag">CI eval gate</span>
+          </div>
+        </article>
+
+        <!-- Airline OTP pipeline -->
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="card-tag">Data Engineering · Spark · Snowflake</span>
+            <div class="card-links">
+              <a class="icon-link" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener" aria-label="Airline OTP pipeline source code">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="card-cover" href="projects/airline-otp-pipeline.html" aria-label="Open the Airline On-Time Performance Pipeline case study"></a>
+          <h3>Airline On-Time Performance Pipeline</h3>
+          <p class="desc">Every month of US BTS flight data since 2015 — cleaned by Spark into partitioned Parquet, modeled in Snowflake with dbt, gated by dbt tests and Great Expectations, and kept current by a monthly Airflow DAG that ingested a new month autonomously.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="v">72.9<span class="u">M</span></div><div class="k">rows across 137 monthly files</div></div><div class="stat"><div class="v">94<span class="u">%</span></div><div class="k">smaller: 30GB CSV → 1.8GB Parquet</div></div><div class="stat"><div class="v">36/36</div><div class="k">dbt tests + 16 GE expectations</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">PySpark 4.x</span><span class="tag">Snowflake + dbt</span><span class="tag">Great Expectations</span><span class="tag">Airflow</span><span class="tag">Terraform (AWS + Snowflake)</span><span class="tag">Power BI REST</span>
           </div>
         </article>
 
@@ -192,6 +230,96 @@ Clinical note
             <span class="tag">LightGBM (pinball)</span><span class="tag">AutoETS</span>
             <span class="tag">Newsvendor sim</span><span class="tag">Pre-registered A/B</span>
             <span class="tag">Rolling backtest</span>
+          </div>
+        </article>
+
+        <!-- Atlas — agentic trip planner -->
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="card-tag">Multi-Agent · Guardrails</span>
+            <div class="card-links">
+              <a class="icon-link" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener" aria-label="Atlas trip planner source code">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="card-cover" href="projects/agentic-trip-planner.html" aria-label="Open the Atlas agentic trip planner case study"></a>
+          <h3>Atlas — Agentic Trip Planner</h3>
+          <p class="desc">Six agents research live flights, real hotel rates, weather and attractions, then reconcile against a budget. Every number traces to a tool call, arithmetic is Python, and uncertainty is labelled — built entirely on free-tier APIs.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="v">608</div><div class="k">offline tests + a 12-case eval set</div></div><div class="stat"><div class="v">6</div><div class="k">agents — 4 in parallel</div></div><div class="stat"><div class="v">87.2s→<span class="u">1.4s</span></div><div class="k">cold vs resumed run</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Two-phase tool loop</span><span class="tag">Provenance checking</span><span class="tag">JSON Schema in / Pydantic out</span><span class="tag">Key rotation on 429</span><span class="tag">FastAPI + SSE</span><span class="tag">Deterministic scorers</span>
+          </div>
+        </article>
+
+        <!-- Customer segmentation as a monitored model -->
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="card-tag">MLOps · Drift · Feature Store</span>
+            <div class="card-links">
+              <a class="icon-link" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener" aria-label="Customer segmentation drift source code">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="card-cover" href="projects/customer-segmentation-drift.html" aria-label="Open the Customer Segmentation as a Monitored Model case study"></a>
+          <h3>Customer Segmentation, Monitored</h3>
+          <p class="desc">Segmentation with a lifecycle instead of a one-off notebook: rolling monthly windows over ~1.1M transactions, a six-algorithm bakeoff, calibrated drift detection, and champion/challenger retraining behind a feature store — all running locally.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="v">21/22→<span class="u">4</span></div><div class="k">drift alerts after calibration</div></div><div class="stat"><div class="v">47,170</div><div class="k">customer-window feature rows</div></div><div class="stat"><div class="v">6</div><div class="k">clustering algorithms benchmarked</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">MLflow registry</span><span class="tag">Feast (point-in-time)</span><span class="tag">Dagster assets</span><span class="tag">PSI · ARI · migration</span><span class="tag">Pandera contracts</span><span class="tag">FastAPI · Streamlit</span>
+          </div>
+        </article>
+
+        <!-- AgentForge -->
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="card-tag">Agentic AI · Verified Execution</span>
+            <div class="card-links">
+              <a class="icon-link" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener" aria-label="AgentForge source code">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="card-cover" href="projects/agentforge.html" aria-label="Open the AgentForge case study"></a>
+          <h3>AgentForge</h3>
+          <p class="desc">A repository-level coding agent that plans changes, edits an isolated Git worktree, reviews the observed diff, runs tests in a locked-down Docker container, and repairs failures through a bounded LangGraph loop.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="v"><span class="u">206</span></div><div class="k">automated tests passing</div></div>
+            <div class="stat"><div class="v">4</div><div class="k">scoped memory layers</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">LangGraph</span><span class="tag">MCP (GitHub · Playwright)</span>
+            <span class="tag">Groq model routing</span><span class="tag">Qdrant hybrid RAG</span>
+            <span class="tag">Docker sandbox</span><span class="tag">Redis · PostgreSQL</span>
+          </div>
+        </article>
+
+        <!-- Crypto anomaly MLOps -->
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="card-tag">Real-Time MLOps · Azure</span>
+            <div class="card-links">
+              <a class="icon-link" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener" aria-label="Crypto anomaly MLOps source code">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="card-cover" href="projects/crypto-anomaly-mlops.html" aria-label="Open the Real-Time Crypto Anomaly Detection case study"></a>
+          <h3>Real-Time Crypto Anomaly Detection</h3>
+          <p class="desc">Live anomaly scoring for BTC / ETH / SOL on a streaming pipeline — Coinbase WebSocket → Kafka → rolling features → Redis feature store → scoring endpoint, with weekly auto-retrain and full observability.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="v">&lt;5<span class="u">ms</span></div><div class="k">feature reads</div></div>
+            <div class="stat"><div class="v">Weekly</div><div class="k">auto-retrain on push</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Kafka / Event Hubs</span><span class="tag">Isolation Forest + AE</span>
+            <span class="tag">Redis feature store</span><span class="tag">Azure ML registry</span>
+            <span class="tag">ACI · CI/CD</span><span class="tag">App Insights alerts</span>
           </div>
         </article>
 
@@ -223,30 +351,6 @@ Clinical note
           </div>
         </article>
 
-        <!-- Crypto anomaly MLOps -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Real-Time MLOps · Azure</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener" aria-label="Crypto anomaly MLOps source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
-            </div>
-          </div>
-          <a class="card-cover" href="projects/crypto-anomaly-mlops.html" aria-label="Open the Real-Time Crypto Anomaly Detection case study"></a>
-          <h3>Real-Time Crypto Anomaly Detection</h3>
-          <p class="desc">Live anomaly scoring for BTC / ETH / SOL on a streaming pipeline — Coinbase WebSocket → Kafka → rolling features → Redis feature store → scoring endpoint, with weekly auto-retrain and full observability.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">&lt;5<span class="u">ms</span></div><div class="k">feature reads</div></div>
-            <div class="stat"><div class="v">Weekly</div><div class="k">auto-retrain on push</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">Kafka / Event Hubs</span><span class="tag">Isolation Forest + AE</span>
-            <span class="tag">Redis feature store</span><span class="tag">Azure ML registry</span>
-            <span class="tag">ACI · CI/CD</span><span class="tag">App Insights alerts</span>
-          </div>
-        </article>
-
         <!-- AI Study Notes -->
         <article class="card reveal">
           <div class="card-top">
@@ -270,7 +374,6 @@ Clinical note
             <span class="tag">Streamlit</span>
           </div>
         </article>
-
       </div>
     </div>
   </section>
@@ -313,8 +416,9 @@ Clinical note
           </h4>
           <div class="skill-list">
             <span>DuckDB</span><span>Milvus / Zilliz</span><span>Qdrant</span>
-            <span>FAISS</span><span>Redis</span><span>Kafka / Event Hubs</span>
-            <span>PostgreSQL</span><span>BM25</span>
+            <span>pgvector</span><span>Neo4j</span><span>Redis</span>
+            <span>Kafka / Event Hubs</span><span>PostgreSQL</span><span>Snowflake</span>
+            <span>BM25 + RRF</span>
           </div>
         </div>
         <div class="skill-cluster reveal">
@@ -324,8 +428,20 @@ Clinical note
           </h4>
           <div class="skill-list">
             <span>AWS EC2</span><span>GCP Cloud Run</span><span>Azure ML / ACI</span>
-            <span>Docker</span><span>CI/CD</span><span>SkyPilot</span>
+            <span>Docker</span><span>CI/CD</span><span>Terraform</span>
+            <span>MLflow</span><span>Feast</span><span>SkyPilot</span>
             <span>Celery</span><span>Monitoring / alerts</span>
+          </div>
+        </div>
+        <div class="skill-cluster reveal">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="8" cy="5" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="11" cy="19" r="1.6"/></svg>
+            Data Engineering
+          </h4>
+          <div class="skill-list">
+            <span>PySpark</span><span>dbt</span><span>Airflow</span>
+            <span>Dagster</span><span>Great Expectations</span><span>Parquet / medallion</span>
+            <span>Data contracts (Pandera)</span><span>DVC</span>
           </div>
         </div>
         <div class="skill-cluster reveal">
@@ -345,8 +461,9 @@ Clinical note
           </h4>
           <div class="skill-list">
             <span>Experiment design</span><span>A/B testing</span><span>Hypothesis testing</span>
-            <span>Causal inference</span><span>Exploratory analysis</span><span>Rolling-origin backtests</span>
-            <span>Cost-aware evaluation</span><span>Reproducible pipelines</span>
+            <span>Pre-registered gates</span><span>Bootstrap confidence intervals</span><span>Causal inference</span>
+            <span>Rolling-origin backtests</span><span>LLM-as-judge calibration</span><span>Cost-aware evaluation</span>
+            <span>Reproducible pipelines</span>
           </div>
         </div>
       </div>
@@ -365,7 +482,8 @@ Clinical note
           <div class="about-body">
             <p>A model that does well in validation is only the start. The questions I find most interesting come after: does it hold up on data it hasn't seen, does it change a real decision, and is it worth the cost of running?</p>
             <p>That thinking shows up across my projects — a <span class="accent-text">pre-registered A/B test</span> to decide whether a forecasting model is worth shipping, a <span class="accent-text">semantic cache and reranker</span> to make a clinical retrieval system fast and accurate enough to trust, and <span class="accent-text">evidence-backed completion gates</span> so an agent cannot claim success without an observed patch, independent review, and containerized tests.</p>
-            <p>I'm comfortable across the full workflow — framing the problem and running the analysis, building and tuning the model, wiring the serving layer, and setting up the monitoring that flags drift — on <strong>AWS, GCP, and Azure</strong>.</p>
+            <p>I'm comfortable across the full workflow — framing the problem and running the analysis, moving the data (Spark, dbt, Airflow), building and tuning the model, wiring the serving layer, and setting up the monitoring that flags drift — on <strong>AWS, GCP, and Azure</strong>.</p>
+            <p>I also try to report what didn't work. One of my projects concludes that a <span class="accent-text">TF-IDF baseline beats the language model</span> on the harder half of its classification task, and says so in the same table as the win; another spent two rounds on a forecasting model that was more accurate and still lost money before the third one earned a launch. Baselines you discard when they win aren't baselines.</p>
           </div>
         </div>
         <aside class="about-side reveal">

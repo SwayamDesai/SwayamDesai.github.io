@@ -1,0 +1,159 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Customer Segmentation as a Monitored Model — Swayam Desai</title>
+<meta name="description" content="Customer segmentation with a full lifecycle: windowed RFM features, a 6-algorithm bakeoff, calibrated drift detection, MLflow champion/challenger retraining, a Feast feature store, and Dagster + FastAPI serving — all local." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">MLOps</span>
+        <span class="card-tag">Clustering</span>
+        <span class="card-tag">Drift Detection</span>
+        <span class="card-tag">Feature Store</span>
+      </div>
+      <h1>Customer Segmentation as a Monitored Model</h1>
+      <p class="lede">Segmentation treated as a model with a lifecycle rather than a one-off clustering notebook: rolling monthly windows over <strong>~1.1M transactions</strong>, a six-algorithm bakeoff, drift detection <strong>calibrated on real data</strong> (21/22 false alarms cut to 4 genuine regime changes), and champion/challenger retraining behind a Feast store, a Dagster asset graph, and a FastAPI service — all running locally.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Data</div><div class="v">Online Retail II · dunnhumby</div></div>
+        <div class="meta-cell"><div class="k">Windows</div><div class="v">22 monthly · 47,170 rows</div></div>
+        <div class="meta-cell"><div class="k">Infra</div><div class="v">Fully local · Docker Compose</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>Most segmentation projects fit K-Means once and stop. But segments decay — seasonality, cohort aging, changing spend — so a segmentation that is never re-checked is quietly wrong within months.</p>
+        <p>This project treats segmentation as a <strong>model with a lifecycle</strong>: customers are segmented from transaction history over rolling monthly windows, drift is detected and <span class="accent-text">calibrated against the data's own variation</span>, the model is versioned and retrained on a champion/challenger basis, and the whole thing is served, orchestrated, and deployable — all locally, no cloud account required.</p>
+        <p>It is built with a clear data-engineering / data-science separation behind a frozen interface contract, and two public datasets sit behind one canonical schema, swappable by config with zero downstream changes.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">47,170</div><div class="cap">customer-window feature rows from ~1.1M transactions</div></div>
+        <div class="result-cell"><div class="big">21/22 → 4</div><div class="cap">drift alerts after calibration — false retrains cut to the genuine regime changes</div></div>
+        <div class="result-cell"><div class="big">6</div><div class="cap">clustering algorithms benchmarked before one was chosen</div></div>
+        <div class="result-cell"><div class="big">22</div><div class="cap">monthly windows, ~2,000 customers each</div></div>
+      </div>
+      <div class="prose reveal">
+        <p>K-Means with <strong>k=3</strong> was selected, at silhouette ≈ 0.27 — which is typical for real, overlapping RFM data and is reported as such rather than dressed up. The bakeoff scored K-Means, GMM, Ward, Bisecting K-Means, Birch, and Spectral on silhouette, Davies–Bouldin, <em>and cross-window stability</em>; DBSCAN and HDBSCAN were evaluated and shown unfit for this data.</p>
+        <p>The result that matters most is the calibration one. A naive fixed drift reference fired on <strong>21 of 22 months</strong> — an alarm that goes off every month is not a monitor. Thresholds tuned from the data's own month-to-month variation cut that to <strong>4</strong>: the December-holiday and January-unwind regime changes that are genuinely there.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> Architecture</h2>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Sources</div><div class="n">Online Retail II · dunnhumby</div><div class="sub">one canonical schema</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Contracts</div><div class="n">Pandera</div><div class="sub">bad rows quarantined</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Features</div><div class="n">RFM + behavioral</div><div class="sub">per customer per month</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Store</div><div class="n">Feast</div><div class="sub">point-in-time + online</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Segment</div><div class="n">K-Means (k=3)</div><div class="sub">6-algorithm bakeoff</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Monitor</div><div class="n">PSI · ARI · migration</div><div class="sub">calibrated thresholds</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Retrain</div><div class="n">MLflow champion/challenger</div><div class="sub">gate · cooldown · rollback</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Serve</div><div class="n">FastAPI /assign</div><div class="sub">live champion</div></div></div>
+          </div>
+        </div>
+        <p class="arch-caption">Orchestrated as a Dagster asset graph with monthly partitions, backfill, a schedule, and a file sensor; deployed by Docker Compose.</p>
+        <div class="arch-infra"><span class="lbl">Runs entirely locally</span><div class="items"><span>PostgreSQL / DuckDB (configurable)</span><span>Parquet medallion</span><span>MLflow</span><span>Feast</span><span>Dagster</span><span>Docker Compose</span></div></div>
+      </div>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Windowed feature engineering</h3><p>RFM plus behavioral features per customer per month over 22 rolling windows — 47,170 feature rows from ~1.1M transactions. Two public datasets are normalized to one canonical schema, so switching source is a config change and nothing downstream notices.</p><div class="chips"><span>rolling monthly windows</span><span>canonical schema</span><span>Parquet medallion</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Data contracts with quarantine</h3><p>Pandera validates every ingested frame and quarantines bad rows rather than dropping them silently — a rejected row is inspectable, which is the difference between a data-quality signal and a data-quality loss.</p><div class="chips"><span>Pandera</span><span>quarantine table</span><span>frozen interface contract</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Model selection, then a decision</h3><p>Six algorithms scored on silhouette, Davies–Bouldin, and cross-window stability. K-Means won on interpretability and scale at k=3; DBSCAN and HDBSCAN were tried and documented as unfit. The benchmark is committed, so the choice is auditable.</p><div class="chips"><span>6-algorithm bakeoff</span><span>cross-window stability</span><span>documented rejects</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Calibrated drift detection</h3><p>Five signals — PSI, ARI, centroid movement, segment-size shift, and customer migration — with thresholds tuned from the data's own variation instead of textbook constants. That is what took the alert rate from 21/22 windows down to the 4 real regime changes.</p><div class="chips"><span>PSI · ARI</span><span>centroid movement</span><span>customer migration</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Champion/challenger retraining</h3><p>An MLflow registry with Staging/Production stages, a sustained-breach retrain gate (one bad month is noise), a cooldown so retrains cannot thrash, and rollback. Drift does not trigger a retrain; <em>sustained</em> drift does.</p><div class="chips"><span>MLflow registry</span><span>sustained-breach gate</span><span>cooldown + rollback</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">6</div></div><div class="flow-body"><h3>Serving, orchestration, deployment</h3><p>A Feast feature store gives point-in-time-correct training retrieval and online serving; a FastAPI service exposes <code>/assign</code> with health and readiness; a Streamlit dashboard shows segments and drift; a Dagster asset graph runs it on monthly partitions with backfill and a file sensor. Verified end to end: containers healthy, <code>/assign</code> served the live champion, then torn down.</p><div class="chips"><span>Feast</span><span>FastAPI</span><span>Streamlit</span><span>Dagster</span></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Decisions worth defending</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg></div><h3>Calibrate the monitor, not just the model</h3><p>A drift detector that fires every month has no information in it. Tuning thresholds against observed month-to-month variation is what turned the signal from noise into four explainable events.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>Sustained breach, then retrain</h3><p>A single month over threshold is seasonality. The gate requires a sustained breach and enforces a cooldown, so the champion is not replaced on a holiday spike.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div><h3>Point-in-time correctness</h3><p>Feast retrieval is point-in-time, so training features cannot include information from after the label window — the leakage that makes an offline segmentation look better than it is.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-4 6 4 6M16 6l4 6-4 6"/></svg></div><h3>Two datasets, one schema</h3><p>Online Retail II and dunnhumby sit behind the same canonical schema. Swapping source is config, which is also the cheapest possible test that the pipeline is not overfit to one file format.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div><h3>Honest cluster quality</h3><p>Silhouette ≈ 0.27 is reported plainly. Real RFM data overlaps; a project claiming 0.7 on customer segmentation is usually measuring something other than customers.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5A3 3 0 0 0 12 8h-.5a2.5 2.5 0 0 0 0 5h1a2.5 2.5 0 0 1 0 5H12a3 3 0 0 1-3-1.5M12 6v12"/></svg></div><h3>Local by design</h3><p>PostgreSQL or DuckDB, MLflow, Feast, Dagster, Docker Compose — the whole lifecycle runs on a laptop, so the architecture can be reviewed without a cloud bill.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Data</div><div class="items"><span>Python</span><span>pandas / NumPy</span><span>PostgreSQL + DuckDB (configurable)</span><span>Parquet medallion</span><span>Pandera</span></div></div>
+        <div class="stack-row"><div class="layer">Modeling</div><div class="items"><span>scikit-learn</span><span>K-Means / GMM / Ward / Birch / Spectral</span><span>silhouette · Davies–Bouldin · stability</span></div></div>
+        <div class="stack-row"><div class="layer">Lifecycle</div><div class="items"><span>MLflow registry (Staging/Production)</span><span>Feast feature store</span><span>champion/challenger gate</span></div></div>
+        <div class="stack-row"><div class="layer">Monitoring</div><div class="items"><span>PSI</span><span>ARI</span><span>centroid movement</span><span>customer migration</span></div></div>
+        <div class="stack-row"><div class="layer">Serving & ops</div><div class="items"><span>FastAPI</span><span>Streamlit + Plotly</span><span>Dagster</span><span>Docker Compose</span><span>pytest · ruff · mypy · GitHub Actions</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>The full source is on GitHub</h2>
+        <p>Every number on this page is reproducible from the repository.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="agentic-trip-planner.html"><div class="dir">← Previous</div><div class="name">Atlas — Trip Planner</div></a>
+        <a class="next" href="agentforge.html"><div class="dir">Next →</div><div class="name">AgentForge</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>

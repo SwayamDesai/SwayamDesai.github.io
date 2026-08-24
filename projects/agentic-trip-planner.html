@@ -1,0 +1,155 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atlas — Agentic Trip Planner — Swayam Desai</title>
+<meta name="description" content="Six agents research live flights, hotel rates, weather and attractions on free-tier APIs, then reconcile against a budget — with provenance checks, Python arithmetic, and honest uncertainty labelling so the model is never trusted with a fact." />
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../projects.css" />
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html#top"><span class="mark">SD</span><span>Swayam Desai<span class="dot">.</span></span></a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> All work</a>
+      <a class="nav-cta" href="../index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cs-hero section" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cs-tags">
+        <span class="card-tag">Multi-Agent</span>
+        <span class="card-tag">Guardrails</span>
+        <span class="card-tag">Evaluation</span>
+        <span class="card-tag">FastAPI + SSE</span>
+      </div>
+      <h1>Atlas — agentic trip planner</h1>
+      <p class="lede">Six specialist agents research <strong>live</strong> flights, real hotel rates, weather, and things to do, then reconcile the plan against a budget. Every number traces back to a tool call, arithmetic is Python, and uncertainty is labelled rather than smoothed over. Built entirely on <strong>free-tier APIs</strong> — a constraint that shaped the whole design.</p>
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          View source
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Solo · end-to-end</div></div>
+        <div class="meta-cell"><div class="k">Agents</div><div class="v">6 · 4 in parallel</div></div>
+        <div class="meta-cell"><div class="k">Tests</div><div class="v">608 offline + 12 evals</div></div>
+        <div class="meta-cell"><div class="k">Budget</div><div class="v">Free tier only</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section" style="padding-top:clamp(48px,7vw,72px)">
+    <div class="wrap">
+      <h2><span class="idx">01</span> Overview</h2>
+      <div class="prose reveal">
+        <p>Six specialist agents research live flights, real hotel rates, weather, and things to do, then reconcile the result against a budget — <span class="accent-text">and the model is never trusted with a fact or a sum</span>.</p>
+        <p>Most LLM travel demos ask a model what it remembers about Lisbon. This one asks tools, then checks the answer against the payload it came from. Prices are verified against the tool response that produced them. Attractions come from OpenStreetMap, and the itinerary agent cannot schedule anything outside the candidate list it was given. Cost arithmetic is Python — a budget agent that mis-adds is worse than no budget agent at all.</p>
+        <p>It runs entirely on <strong>free-tier APIs</strong>, which is not a footnote: the daily token ceiling shaped the architecture, from key rotation to cache TTLs to what gets recomputed on a retry.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">02</span> Results</h2>
+      <div class="result-grid reveal">
+        <div class="result-cell"><div class="big">6</div><div class="cap">agents — 4 in parallel, 2 downstream, plus deterministic synthesis</div></div>
+        <div class="result-cell"><div class="big">608</div><div class="cap">tests, ~6s, fully offline</div></div>
+        <div class="result-cell"><div class="big">87.2s → 1.4s</div><div class="cap">cold run vs resumed run — successful agents are never re-paid for</div></div>
+        <div class="result-cell"><div class="big">12</div><div class="cap">deterministic eval scorers, 3 of them marked critical</div></div>
+      </div>
+      <div class="prose reveal">
+        <p>A run takes 60–150s on free-tier models, so the browser <strong>watches the agents work</strong> over SSE rather than showing a spinner — and <code>REQUIRED</code>/<code>OPTIONAL</code> badges make it visible <em>while running</em> whether a failure will degrade the plan or end it.</p>
+        <p>The budget verdict is arithmetic over the agents' own figures, so it cannot be flattering. When a trip genuinely does not fit the budget, the plan says so first.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">03</span> Architecture</h2>
+      <div class="arch reveal">
+        <div class="arch-scroll">
+          <div class="arch-track">
+            <div class="arch-col"><div class="arch-node"><div class="t">Request</div><div class="n">TripRequest</div><div class="sub">dates · travellers · budget</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node primary"><div class="t">Fan out</div><div class="n">flight · hotels · weather · places</div><div class="sub">4 agents in parallel</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Compose</div><div class="n">itinerary</div><div class="sub">candidates only</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node store"><div class="t">Price</div><div class="n">budget</div><div class="sub">Python arithmetic</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Render</div><div class="n">synthesize</div><div class="sub">no LLM at all</div></div></div>
+            <div class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="arch-col"><div class="arch-node"><div class="t">Stream</div><div class="n">SSE to browser</div><div class="sub">live agent status</div></div></div>
+          </div>
+        </div>
+        <p class="arch-caption"><code>synthesize</code> is deliberately not an agent: it formats data the agents already produced, so it cannot invent a price.</p>
+        <div class="arch-infra"><span class="lbl">Free-tier data sources</span><div class="items"><span>Google Flights / Hotels via SerpApi</span><span>Travelpayouts</span><span>Nominatim + Open-Meteo</span><span>Overpass (OSM) + Wikivoyage</span><span>Groq models</span></div></div>
+      </div>
+      <div class="flow reveal">
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">1</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Narrow tools per agent</h3><p>The flight agent has <code>find_airports</code> and <code>search_flights</code> and nothing else — it has no way to look up a hotel, so it cannot wander outside its job. Tool input is validated by JSON Schema; tool output by Pydantic, because an unchecked read turns upstream API drift into silently wrong numbers.</p><div class="chips"><span>JSON Schema in</span><span>Pydantic out</span><span>least-privilege tools</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">2</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Two-phase agent loop</h3><p>Phase one binds tools and lets the model call them until it stops asking. Phase two unbinds them and forces a schema against a minimal prompt plus a tool-result digest. Split because doing both at once makes the model choose between a tool call and an answer — on free-tier models that reliably produces neither.</p><div class="chips"><span>tool phase</span><span>forced-schema phase</span><span>token-budget aware</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">3</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Provenance checking</h3><p>Every scheduled activity is matched against the candidate list that produced it; every fare and rate against the tool payload. Findings are reported as warnings and never silently corrected — a wrong auto-fix is worse than a visible caveat. Money is parsed in Python, because letting a model convert <code>"$148"</code> fed straight into the budget.</p><div class="chips"><span>price fidelity</span><span>candidate matching</span><span>warnings not fixes</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">4</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Honest labelling, checked</h3><p>A trip 40 days out has no forecast, so the plan says "climate normals, not a forecast". Round-trip fares say so. Estimated entry fees say "estimated". Wrong-airport detection looks IATA codes up rather than recalling them — a wrong-but-real code returns valid fares for the wrong city, and nothing downstream can catch that. Closed-day detection parses OSM <code>opening_hours</code> narrowly and returns <em>unknown</em> rather than guessing.</p><div class="chips"><span>climate normals labelled</span><span>IATA validated</span><span>opening_hours parsed</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">5</div><div class="flow-connector"></div></div><div class="flow-body"><h3>Failure containment</h3><p>Three loop limits, because they fail differently: never stops asking, never converges, re-asks the same question. Per-node timeouts with backoff that refuses to sleep past a deadline. Criticality tiers: <code>weather</code> failing degrades the plan and says what was lost; <code>flight</code> failing fails the run with a non-zero exit code, so a script cannot mistake it for success.</p><div class="chips"><span>MAX_ROUNDS / CALLS / REPEATS</span><span>per-node timeouts</span><span>REQUIRED vs OPTIONAL</span></div></div></div>
+        <div class="flow-step"><div class="flow-rail"><div class="flow-node">6</div></div><div class="flow-body"><h3>Living inside a free tier</h3><p>Groq's free tier enforces a tokens-per-day ceiling that appears in no response header — only in the 429 body. So agents map to an ordered chain of keys and rotate on a 429 rather than sleeping, concurrent agents never share a primary key, and cache TTLs follow the <em>cost of refreshing</em> (hotels 12h, metered; flights 4h, keyless) rather than volatility alone.</p><div class="chips"><span>key rotation on 429</span><span>single-flight locking</span><span>tiered TTLs</span></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">04</span> Evaluation</h2>
+      <div class="highlights reveal">
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18A2 2 0 0 0 6.3 21h11.4a2 2 0 0 0 1.8-3L14 9V3"/><path d="M7 15h10"/></svg></div><h3>Evals, not just unit tests</h3><p>608 unit tests check whether the code is correct. A 12-case golden set with 12 deterministic scorers checks whether the <em>output</em> is good — groundedness, price fidelity, honest labelling, day coverage, budget adherence, geographic coherence.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 12 3 4 7v6c0 4.5 3.4 7.4 8 8 4.6-.6 8-3.5 8-8V7Z"/></svg></div><h3>Three critical scorers</h3><p>Some failures invalidate a plan rather than degrade it. Those scorers are marked critical, so a run that fails them is not reported as a partial success.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>Reliability across repeats</h3><p><code>--repeat 3</code> runs the golden set multiple times, because a non-deterministic system that passes once has not been shown to pass.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5A3 3 0 0 0 12 8h-.5a2.5 2.5 0 0 0 0 5h1a2.5 2.5 0 0 1 0 5H12a3 3 0 0 1-3-1.5M12 6v12"/></svg></div><h3>Cost tier in the eval</h3><p>LLM calls, tokens, tool calls, retries, latency, and cache hit rate are scored alongside quality — a plan that is correct and unaffordable is not a passing result.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Checkpointed resume</h3><p>Results are checkpointed per trip, so a rerun skips agents that already succeeded: 87.2s cold, 1.4s warm, identical plan. Only failures cost tokens twice.</p></div>
+        <div class="hl-card"><div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div><h3>Deterministic where possible</h3><p>Trip length in nights, the free/paid distinction for places, cost arithmetic, and plan rendering are all Python. Models are used for judgement, never for facts or sums.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="cs-section">
+    <div class="wrap">
+      <h2><span class="idx">05</span> Stack</h2>
+      <div class="stack-block reveal">
+        <div class="stack-row"><div class="layer">Agents</div><div class="items"><span>6 specialist agents</span><span>two-phase tool loop</span><span>narrow per-agent tool sets</span></div></div>
+        <div class="stack-row"><div class="layer">Serving</div><div class="items"><span>FastAPI</span><span>Server-Sent Events</span><span>CLI entry point</span></div></div>
+        <div class="stack-row"><div class="layer">Data</div><div class="items"><span>SerpApi (Google Flights / Hotels)</span><span>Travelpayouts</span><span>Open-Meteo</span><span>Nominatim</span><span>Overpass (OSM)</span><span>Wikivoyage</span></div></div>
+        <div class="stack-row"><div class="layer">Reliability</div><div class="items"><span>ordered key chain + 429 rotation</span><span>single-flight cache locking</span><span>tiered TTLs</span><span>per-trip checkpoints</span></div></div>
+        <div class="stack-row"><div class="layer">Quality</div><div class="items"><span>608 offline tests</span><span>12-case golden eval set</span><span>deterministic scorers</span><span>Pydantic contracts</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cs-cta reveal">
+        <h2>The full source is on GitHub</h2>
+        <p>Every number on this page is reproducible from the repository.</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener">Read the code</a>
+          <a class="btn btn-ghost" href="../index.html#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="pager">
+        <a class="prev" href="demand-forecasting.html"><div class="dir">← Previous</div><div class="name">Demand Forecasting + A/B</div></a>
+        <a class="next" href="customer-segmentation-drift.html"><div class="dir">Next →</div><div class="name">Customer Segmentation Drift</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="muted">© <span id="year">2026</span> Swayam Desai</span>
+    <a class="back-link" href="../index.html#work">← Back to all work</a>
+  </div>
+</footer>
+<script src="../main.js"></script>
