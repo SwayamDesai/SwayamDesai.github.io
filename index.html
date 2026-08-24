@@ -79,390 +79,410 @@
       <div class="section-head reveal">
         <span class="eyebrow">Selected work</span>
         <h2>Ten projects, each carried to a decision.</h2>
-        <p>Applied data science, ML engineering, and data engineering. Every one runs on real data, states what was measured and what wasn't, and links to its full source. <span class="muted">Tap a card for the detail.</span></p>
+        <p>Applied data science, ML engineering, and data engineering. Every one runs on real data, states what was measured and what wasn't, and links to its full source. <span class="muted">Every card flips — the front is the claim, the back is the evidence.</span></p>
       </div>
 
-      <div class="work-grid">
+      <div class="fc-grid">
 
         <!-- 01 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">01</span>
-                <span class="work-kind">Healthcare · RAG · LLM serving</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">01</span>
+                <span class="fc-kind">Healthcare · RAG · LLM serving</span>
+              </header>
+              <div class="fc-body">
+                <h3>ICD-10 Clinical Coding RAG</h3>
+                <p class="fc-short">Clinical notes to ICD-10-CM codes, retrieved and reranked at production scale.</p>
               </div>
-              <h3>ICD-10 Clinical Coding RAG</h3>
-              <p class="wc-short">Clinical notes to ICD-10-CM codes, retrieved and reranked at production scale.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-01">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-01">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">01</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-01" aria-label="ICD-10 Clinical Coding RAG — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>01</span>
-              </button>
-              <p class="wc-detail">Hybrid BM25 + MedCPT retrieval over 72,750 codes, cross-encoder reranking, and a QLoRA-tuned Llama-3.2 served on vLLM behind a semantic cache. Scored on 1,000 held-out notes.</p>
-              <div class="work-figs">
-                <span><b>74%</b> recall@5 over 1,000 notes</span>
-                <span><b>&lt;50 ms</b> cache-hit latency</span>
+            <div class="fc-face fc-back" id="fc-back-01" aria-label="ICD-10 Clinical Coding RAG — details and results">
+              <header class="fc-head">
+                <span class="fc-index">01</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Hybrid BM25 + MedCPT retrieval over 72,750 codes, cross-encoder reranking, and a QLoRA-tuned Llama-3.2 served on vLLM behind a semantic cache. Scored on 1,000 held-out notes.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>recall@5 over 1,000 notes</dt><dd>74%</dd></div>
+                <div class="fig"><dt>cache-hit latency</dt><dd>&lt;50 ms</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/icd10-rag.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/icd10-rag" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/icd10-rag.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/icd10-rag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 02 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">02</span>
-                <span class="work-kind">Graph RAG · evaluation</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">02</span>
+                <span class="fc-kind">Graph RAG · evaluation</span>
+              </header>
+              <div class="fc-body">
+                <h3>GraphScout</h3>
+                <p class="fc-short">Three retrieval arms over one corpus, measured with confidence intervals.</p>
               </div>
-              <h3>GraphScout</h3>
-              <p class="wc-short">Three retrieval arms over one corpus, measured with confidence intervals.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-02">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-02">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">02</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-02" aria-label="GraphScout — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>02</span>
-              </button>
-              <p class="wc-detail">Baseline, graph-RAG and agentic arms scored on one corpus with bootstrap CIs. Agentic retrieval nearly doubles recall — and answer F1 barely moves, so retrieval was never the constraint.</p>
-              <div class="work-figs">
-                <span><b>0.454 → 0.838</b> recall@8, dense → agentic</span>
-                <span><b>14% → 65%</b> all-support@8</span>
+            <div class="fc-face fc-back" id="fc-back-02" aria-label="GraphScout — details and results">
+              <header class="fc-head">
+                <span class="fc-index">02</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Baseline, graph-RAG and agentic arms scored on one corpus with bootstrap CIs. Agentic retrieval nearly doubles recall — and answer F1 barely moves, so retrieval was never the constraint.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>recall@8, dense → agentic</dt><dd>0.454 → 0.838</dd></div>
+                <div class="fig"><dt>all-support@8</dt><dd>14% → 65%</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/graphscout.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/graphscout.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 03 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">03</span>
-                <span class="work-kind">Data engineering · Spark · Snowflake</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">03</span>
+                <span class="fc-kind">Data engineering · Spark · Snowflake</span>
+              </header>
+              <div class="fc-body">
+                <h3>Airline On-Time Performance Pipeline</h3>
+                <p class="fc-short">A decade of US flight data, cleaned, warehoused, and kept current on its own.</p>
               </div>
-              <h3>Airline On-Time Performance Pipeline</h3>
-              <p class="wc-short">A decade of US flight data, cleaned, warehoused, and kept current on its own.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-03">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-03">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">03</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-03" aria-label="Airline On-Time Performance Pipeline — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>03</span>
-              </button>
-              <p class="wc-detail">Spark cleans a decade of BTS flights into partitioned Parquet; dbt models it in Snowflake behind 36 tests and a Great Expectations gate. A monthly Airflow DAG ingested a new month unattended.</p>
-              <div class="work-figs">
-                <span><b>72.9M</b> rows across 137 files</span>
-                <span><b>94%</b> smaller on disk after cleaning</span>
+            <div class="fc-face fc-back" id="fc-back-03" aria-label="Airline On-Time Performance Pipeline — details and results">
+              <header class="fc-head">
+                <span class="fc-index">03</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Spark cleans a decade of BTS flights into partitioned Parquet; dbt models it in Snowflake behind 36 tests and a Great Expectations gate. A monthly Airflow DAG ingested a new month unattended.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>rows across 137 files</dt><dd>72.9M</dd></div>
+                <div class="fig"><dt>smaller on disk after cleaning</dt><dd>94%</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/airline-otp-pipeline.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/airline-otp-pipeline.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 04 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">04</span>
-                <span class="work-kind">Forecasting · experimentation</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">04</span>
+                <span class="fc-kind">Forecasting · experimentation</span>
+              </header>
+              <div class="fc-body">
+                <h3>Demand Forecasting, Cost-Aware A/B Tested</h3>
+                <p class="fc-short">Does the better forecast actually save money? Tested — and twice refused.</p>
               </div>
-              <h3>Demand Forecasting, Cost-Aware A/B Tested</h3>
-              <p class="wc-short">Does the better forecast actually save money? Tested — and twice refused.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-04">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-04">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">04</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-04" aria-label="Demand Forecasting, Cost-Aware A/B Tested — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>04</span>
-              </button>
-              <p class="wc-detail">A newsvendor cost simulation and a pre-registered A/B test over the full M5 panel. Two iterations returned HOLD; ordering the cost-optimal quantile instead of the mean is what shipped.</p>
-              <div class="work-figs">
-                <span><b>−14.1%</b> inventory cost, CI [−15.3, −12.9]</span>
-                <span><b>30,474</b> paired series in the test</span>
+            <div class="fc-face fc-back" id="fc-back-04" aria-label="Demand Forecasting, Cost-Aware A/B Tested — details and results">
+              <header class="fc-head">
+                <span class="fc-index">04</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">A newsvendor cost simulation and a pre-registered A/B test over the full M5 panel. Two iterations returned HOLD; ordering the cost-optimal quantile instead of the mean is what shipped.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>inventory cost, CI [−15.3, −12.9]</dt><dd>−14.1%</dd></div>
+                <div class="fig"><dt>paired series in the test</dt><dd>30,474</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/demand-forecasting.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/demand-forecasting-ab-testing" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/demand-forecasting.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/demand-forecasting-ab-testing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 05 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">05</span>
-                <span class="work-kind">Multi-agent · guardrails</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">05</span>
+                <span class="fc-kind">Multi-agent · guardrails</span>
+              </header>
+              <div class="fc-body">
+                <h3>Atlas — Agentic Trip Planner</h3>
+                <p class="fc-short">Six agents plan a real trip without ever being trusted with a fact.</p>
               </div>
-              <h3>Atlas — Agentic Trip Planner</h3>
-              <p class="wc-short">Six agents plan a real trip without ever being trusted with a fact.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-05">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-05">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">05</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-05" aria-label="Atlas — Agentic Trip Planner — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>05</span>
-              </button>
-              <p class="wc-detail">Six agents with narrow tool sets each. Every price is checked against the payload it came from, all arithmetic is Python, and uncertainty is labelled — on free-tier APIs throughout.</p>
-              <div class="work-figs">
-                <span><b>608</b> tests + a 12-case eval set</span>
-                <span><b>87.2s → 1.4s</b> cold run vs resumed</span>
+            <div class="fc-face fc-back" id="fc-back-05" aria-label="Atlas — Agentic Trip Planner — details and results">
+              <header class="fc-head">
+                <span class="fc-index">05</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Six agents with narrow tool sets each. Every price is checked against the payload it came from, all arithmetic is Python, and uncertainty is labelled — on free-tier APIs throughout.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>tests + a 12-case eval set</dt><dd>608</dd></div>
+                <div class="fig"><dt>cold run vs resumed</dt><dd>87.2s → 1.4s</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/agentic-trip-planner.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/agentic-trip-planner.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 06 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">06</span>
-                <span class="work-kind">MLOps · drift · feature store</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">06</span>
+                <span class="fc-kind">MLOps · drift · feature store</span>
+              </header>
+              <div class="fc-body">
+                <h3>Customer Segmentation, Monitored</h3>
+                <p class="fc-short">Segmentation treated as a model with a lifecycle, not a one-off notebook.</p>
               </div>
-              <h3>Customer Segmentation, Monitored</h3>
-              <p class="wc-short">Segmentation treated as a model with a lifecycle, not a one-off notebook.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-06">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-06">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">06</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-06" aria-label="Customer Segmentation, Monitored — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>06</span>
-              </button>
-              <p class="wc-detail">Windowed RFM features, a six-algorithm bakeoff, and drift thresholds calibrated on the data's own variation, with MLflow champion/challenger retraining behind a Feast store.</p>
-              <div class="work-figs">
-                <span><b>21/22 → 4</b> drift alerts after calibration</span>
-                <span><b>47,170</b> customer-window rows</span>
+            <div class="fc-face fc-back" id="fc-back-06" aria-label="Customer Segmentation, Monitored — details and results">
+              <header class="fc-head">
+                <span class="fc-index">06</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Windowed RFM features, a six-algorithm bakeoff, and drift thresholds calibrated on the data's own variation, with MLflow champion/challenger retraining behind a Feast store.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>drift alerts after calibration</dt><dd>21/22 → 4</dd></div>
+                <div class="fig"><dt>customer-window rows</dt><dd>47,170</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/customer-segmentation-drift.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/customer-segmentation-drift.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 07 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">07</span>
-                <span class="work-kind">Agentic AI · verified execution</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">07</span>
+                <span class="fc-kind">Agentic AI · verified execution</span>
+              </header>
+              <div class="fc-body">
+                <h3>AgentForge</h3>
+                <p class="fc-short">A coding agent that has to prove its patch works before it can finish.</p>
               </div>
-              <h3>AgentForge</h3>
-              <p class="wc-short">A coding agent that has to prove its patch works before it can finish.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-07">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-07">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">07</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-07" aria-label="AgentForge — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>07</span>
-              </button>
-              <p class="wc-detail">Writes a failing acceptance test first, patches, then verifies through deterministic gates: digest-checked tests, static checks before any model review, bounded repair, enforced budgets.</p>
-              <div class="work-figs">
-                <span><b>206</b> automated tests passing</span>
+            <div class="fc-face fc-back" id="fc-back-07" aria-label="AgentForge — details and results">
+              <header class="fc-head">
+                <span class="fc-index">07</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Writes a failing acceptance test first, patches, then verifies through deterministic gates: digest-checked tests, static checks before any model review, bounded repair, enforced budgets.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>automated tests passing</dt><dd>206</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/agentforge.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/agentforge.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 08 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">08</span>
-                <span class="work-kind">Streaming MLOps · Azure</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">08</span>
+                <span class="fc-kind">Streaming MLOps · Azure</span>
+              </header>
+              <div class="fc-body">
+                <h3>Real-Time Crypto Anomaly Detection</h3>
+                <p class="fc-short">Live anomaly scoring for three assets on a streaming feature store.</p>
               </div>
-              <h3>Real-Time Crypto Anomaly Detection</h3>
-              <p class="wc-short">Live anomaly scoring for three assets on a streaming feature store.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-08">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-08">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">08</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-08" aria-label="Real-Time Crypto Anomaly Detection — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>08</span>
-              </button>
-              <p class="wc-detail">Coinbase WebSocket to Event Hubs, a stateful feature engine, a Redis feature store, and an Isolation-Forest plus autoencoder ensemble. One feature definition serves training and serving.</p>
-              <div class="work-figs">
-                <span><b>&lt;5 ms</b> feature-store reads</span>
-                <span><b>Weekly</b> retrain, register, redeploy</span>
+            <div class="fc-face fc-back" id="fc-back-08" aria-label="Real-Time Crypto Anomaly Detection — details and results">
+              <header class="fc-head">
+                <span class="fc-index">08</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Coinbase WebSocket to Event Hubs, a stateful feature engine, a Redis feature store, and an Isolation-Forest plus autoencoder ensemble. One feature definition serves training and serving.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>feature-store reads</dt><dd>&lt;5 ms</dd></div>
+                <div class="fig"><dt>retrain, register, redeploy</dt><dd>Weekly</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/crypto-anomaly-mlops.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/crypto-anomaly-mlops.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 09 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">09</span>
-                <span class="work-kind">Data product · QLoRA · GCP</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">09</span>
+                <span class="fc-kind">Data product · QLoRA · GCP</span>
+              </header>
+              <div class="fc-body">
+                <h3>Job Market Intelligence</h3>
+                <p class="fc-short">Job postings turned into a queryable company and tech-stack signal.</p>
               </div>
-              <h3>Job Market Intelligence</h3>
-              <p class="wc-short">Job postings turned into a queryable company and tech-stack signal.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-09">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-09">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">09</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-09" aria-label="Job Market Intelligence — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>09</span>
-              </button>
-              <p class="wc-detail">Scraping, rule-based labeling, a QLoRA-tuned extractor served on vLLM, a DuckDB warehouse, and a Marimo dashboard on Cloud Run.</p>
-              <div class="work-figs">
-                <span><b>10,000</b> instruction examples</span>
+            <div class="fc-face fc-back" id="fc-back-09" aria-label="Job Market Intelligence — details and results">
+              <header class="fc-head">
+                <span class="fc-index">09</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">Scraping, rule-based labeling, a QLoRA-tuned extractor served on vLLM, a DuckDB warehouse, and a Marimo dashboard on Cloud Run.</p>
+              <dl class="fc-figs">
+                <div class="fig"><dt>instruction examples</dt><dd>10,000</dd></div>
+              </dl>
               </div>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/job-market-intelligence.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/job-market-intelligence" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
-              </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/job-market-intelligence.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/job-market-intelligence" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>
         </article>
 
         <!-- 10 -->
-        <article class="work-card reveal" data-card>
-          <div class="wc-inner">
+        <article class="flashcard reveal" data-card>
+          <div class="fc-inner">
 
-            <div class="wc-face wc-front">
-              <div class="wc-top">
-                <span class="work-num">10</span>
-                <span class="work-kind">NLP · LangChain</span>
+            <div class="fc-face fc-front">
+              <header class="fc-head">
+                <span class="fc-index">10</span>
+                <span class="fc-kind">NLP · LangChain</span>
+              </header>
+              <div class="fc-body">
+                <h3>AI Study Notes Generator</h3>
+                <p class="fc-short">PDF chapters into summaries, flashcards, a glossary, and topic clusters.</p>
               </div>
-              <h3>AI Study Notes Generator</h3>
-              <p class="wc-short">PDF chapters into summaries, flashcards, a glossary, and topic clusters.</p>
-              <button class="wc-toggle" type="button" aria-expanded="false" aria-controls="wc-back-10">
-                Details
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <button class="fc-flip" type="button" aria-expanded="false" aria-controls="fc-back-10">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg>
+                <span>Flip for results</span>
               </button>
+              <span class="fc-ghost" aria-hidden="true">10</span>
             </div>
 
-            <div class="wc-face wc-back" id="wc-back-10" aria-label="AI Study Notes Generator — details">
-              <button class="wc-close" type="button" aria-label="Back to summary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-                <span>10</span>
-              </button>
-              <p class="wc-detail">gpt-4o-mini paired with classical NLP — KeyBERT and spaCy for terms, UMAP + HDBSCAN for clusters — and graded with ROUGE against ground truth.</p>
-              <div class="wc-links">
-                <a class="wc-cta" href="projects/ai-study-notes.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="work-src" href="https://github.com/SwayamDesai/AI-Study-Notes-Generator" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-                  Source
-                </a>
+            <div class="fc-face fc-back" id="fc-back-10" aria-label="AI Study Notes Generator — details and results">
+              <header class="fc-head">
+                <span class="fc-index">10</span>
+                <button class="fc-return" type="button" aria-label="Back to the summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 0 1 5-5h9"/><path d="M14 1l3 2-3 2"/><path d="M21 16a5 5 0 0 1-5 5H7"/><path d="M10 23l-3-2 3-2"/></svg> <span>Back</span></button>
+              </header>
+              <div class="fc-body">
+                <p class="fc-detail">gpt-4o-mini paired with classical NLP — KeyBERT and spaCy for terms, UMAP + HDBSCAN for clusters — and graded with ROUGE against ground truth.</p>
               </div>
+              <footer class="fc-foot">
+                <a class="fc-cta" href="projects/ai-study-notes.html">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="fc-src" href="https://github.com/SwayamDesai/AI-Study-Notes-Generator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg> Source</a>
+              </footer>
             </div>
 
           </div>

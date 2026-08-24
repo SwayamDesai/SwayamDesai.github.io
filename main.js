@@ -28,40 +28,36 @@
     });
   }
 
-  /* 3. Project cards: click flips to the detail face.
-        Front and back are both in the DOM, so the text is indexable and
-        selectable; only the hidden face is taken out of the a11y tree. */
-  var cards = document.querySelectorAll("[data-card]");
-  cards.forEach(function (card) {
-    var front = card.querySelector(".wc-front");
-    var back = card.querySelector(".wc-back");
-    var toggle = card.querySelector(".wc-toggle");
-    var close = card.querySelector(".wc-close");
-    if (!front || !back || !toggle) return;
+  /* 3. Flashcards: front is the claim, back is the evidence.
+        Both faces stay in the DOM so the text is selectable and indexable;
+        only the hidden one leaves the a11y tree and the tab order. */
+  document.querySelectorAll("[data-card]").forEach(function (card) {
+    var front = card.querySelector(".fc-front");
+    var back = card.querySelector(".fc-back");
+    var flip = card.querySelector(".fc-flip");
+    var ret = card.querySelector(".fc-return");
+    if (!front || !back || !flip) return;
 
     var sync = function (open) {
       card.classList.toggle("flipped", open);
-      toggle.setAttribute("aria-expanded", String(open));
+      flip.setAttribute("aria-expanded", String(open));
       back.setAttribute("aria-hidden", String(!open));
       front.setAttribute("aria-hidden", String(open));
-      // keep hidden faces off the tab order
-      back.querySelectorAll("a, button").forEach(function (el) {
-        el.tabIndex = open ? 0 : -1;
-      });
-      toggle.tabIndex = open ? -1 : 0;
+      back.querySelectorAll("a, button").forEach(function (el) { el.tabIndex = open ? 0 : -1; });
+      flip.tabIndex = open ? -1 : 0;
     };
     sync(false);
 
-    var open = function () { sync(true); var l = back.querySelector("a, button"); if (l) l.focus(); };
-    var shut = function (refocus) { sync(false); if (refocus) toggle.focus(); };
+    var open = function () { sync(true); var f = back.querySelector("a, button"); if (f) f.focus(); };
+    var shut = function (refocus) { sync(false); if (refocus) flip.focus(); };
 
-    // the whole front is a target, but a real link inside it still wins.
-    // On small screens the detail expands in place, so tapping again closes it.
+    // the whole front is the target; a real link inside it still wins.
+    // On phones the evidence opens in place, so tapping again closes it.
     front.addEventListener("click", function (e) {
       if (e.target.closest("a")) return;
       if (card.classList.contains("flipped")) shut(false); else open();
     });
-    if (close) close.addEventListener("click", function (e) { e.stopPropagation(); shut(true); });
+    if (ret) ret.addEventListener("click", function (e) { e.stopPropagation(); shut(true); });
 
     card.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && card.classList.contains("flipped")) shut(true);
