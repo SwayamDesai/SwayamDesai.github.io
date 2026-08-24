@@ -1,19 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Swayam Desai — Data Scientist & AI Engineer</title>
-<meta name="description" content="Swayam Desai — Data Scientist and AI Engineer. Applied data science and production AI systems: forecasting and experimentation, graph and hybrid RAG, LLM fine-tuning, multi-agent orchestration, large-scale data pipelines, and real-time MLOps across AWS, GCP, and Azure." />
+<meta name="description" content="Swayam Desai — data scientist and AI engineer. Forecasting and experimentation, graph and hybrid RAG, LLM fine-tuning and serving, multi-agent systems, data pipelines at 70M+ rows, and real-time MLOps on AWS, GCP and Azure." />
 <meta name="author" content="Swayam Desai" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Swayam Desai — Data Scientist & AI Engineer" />
-<meta property="og:description" content="Applied data science and production AI systems: forecasting, experimentation, graph and hybrid RAG, LLM fine-tuning, multi-agent orchestration, data pipelines at 70M+ rows, and real-time MLOps." />
+<meta property="og:description" content="Ten end-to-end projects: forecasting and experimentation, graph and hybrid RAG, LLM fine-tuning, multi-agent systems, 70M-row data pipelines, and real-time MLOps." />
+<meta property="og:url" content="https://swayamdesai.github.io/" />
+<meta name="twitter:card" content="summary" />
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="canonical" href="https://swayamdesai.github.io/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
 <!-- ============================ NAV ============================ -->
 <header class="nav" id="nav">
@@ -24,13 +31,13 @@
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="#work">Work</a>
-      <a href="#skills">Skills</a>
+      <a href="#capabilities">Toolkit</a>
       <a href="#about">About</a>
       <a href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
       <a class="nav-cta" href="#contact">Get in touch</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </div>
 </header>
@@ -38,434 +45,331 @@
 <main id="top">
 
   <!-- ============================ HERO ============================ -->
-  <section class="hero section" style="padding-bottom:0">
+  <section class="hero section">
     <div class="wrap">
-      <span class="status"><span class="pulse"></span> Open to Data Scientist &amp; AI Engineer roles</span>
-      <h1>Data science &amp; AI engineering,<br class="hero-br" /> <span class="grad">from research to production.</span></h1>
-      <p class="lede">
-        I'm Swayam. I work two closely related sides of the same problem: the
-        <strong>data science</strong> — framing the question, running the experiments and modeling —
-        and the <strong>AI engineering</strong> — building the LLM and ML systems that put the
-        result into production. I try to lead with evidence: careful evaluation, cost-aware
-        decisions, and results that hold up.
-      </p>
-      <div class="roles">
-        <span class="role-chip"><b>▹</b> Data Scientist</span>
-        <span class="role-chip"><b>▹</b> AI Engineer</span>
+      <span class="eyebrow" style="margin-bottom:26px">Data scientist &amp; AI engineer</span>
+      <h1>I build models that survive contact with production.</h1>
+      <div class="hero-sub">
+        <p>I work two sides of the same problem: the <strong>data science</strong> — framing the question, designing the experiment, doing the modeling — and the <strong>AI engineering</strong> that puts the answer somewhere it can be used, monitored, and paid for.</p>
+        <p>What I care about is whether a result holds. So my projects carry baselines they could lose to, pre-registered decision rules, confidence intervals, and cost per request — and when a model didn't earn its launch, the write-up says so.</p>
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#work">
-          View projects
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Selected work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn btn-ghost" href="https://github.com/SwayamDesai" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-          GitHub
-        </a>
-        <a class="btn btn-ghost" href="mailto:desaiswayam71@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          Email
-        </a>
-        <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>
-          Résumé
-        </a>
+        <div class="link-list">
+          <a href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+          <a href="https://github.com/SwayamDesai" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/swayam-desai/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:desaiswayam71@gmail.com">Email</a>
+        </div>
       </div>
-
-      <!-- Metric strip -->
-      <div class="metrics reveal">
-        <div class="metric">
-          <div class="num" data-count="11"><span class="sym"></span>11</div>
-          <div class="lbl">end&#8209;to&#8209;end data science &amp; AI projects</div>
-        </div>
-        <div class="metric">
-          <div class="num"><span class="sym">−</span><span data-count="14.1" data-dec="1">14.1</span><span class="sym">%</span></div>
-          <div class="lbl">inventory cost, A/B&#8209;validated on 30K series</div>
-        </div>
-        <div class="metric">
-          <div class="num"><span data-count="72.9" data-dec="1">72.9</span><span class="sym">M</span></div>
-          <div class="lbl">flight records through Spark → Snowflake → dbt</div>
-        </div>
-        <div class="metric">
-          <div class="num">3<span class="sym">×</span></div>
-          <div class="lbl">clouds shipped on — AWS · GCP · Azure</div>
-        </div>
+      <div class="availability">
+        <span><b>Open</b> to Data Scientist &amp; AI Engineer roles</span>
+        <span><b>10</b> end-to-end projects, all source public</span>
+        <span>Shipped on <b>AWS · GCP · Azure</b></span>
       </div>
     </div>
   </section>
 
   <!-- ============================ WORK ============================ -->
-  <section class="section" id="work">
+  <section class="section" id="work" style="padding-top:0">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Selected work</span>
-        <h2>Recent projects.</h2>
-        <p>A mix of applied data science, ML engineering, and data engineering. Each one goes from raw data through modeling and honest evaluation to a deployed, monitored service — and the full source is on GitHub. Where a result didn't hold up, the project says so.</p>
+        <h2>Ten projects, each carried to a decision.</h2>
+        <p>Applied data science, ML engineering, and data engineering. Every one runs on real data, states what was measured and what wasn't, and links to its full source.</p>
       </div>
 
-      <div class="projects-grid">
-        <!-- FEATURED: ICD-10 RAG -->
-        <article class="card featured reveal">
-          <div class="card-top">
-            <span class="card-tag">Healthcare · RAG · LLM Serving</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/icd10-rag" target="_blank" rel="noopener" aria-label="ICD-10 RAG source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+      <div class="work-list">
+
+        <!-- 01 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/icd10-rag.html" aria-label="Open the ICD-10 Clinical Coding RAG case study"></a>
+          <div class="work-num">01</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>ICD-10 Clinical Coding RAG</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Maps free-text clinical notes to ICD-10-CM diagnosis codes through a full production retrieval stack: hybrid sparse + dense search over 72,750 codes, cross-encoder reranking, and a QLoRA-tuned Llama-3.2 served on AWS behind a semantic cache.</p>
           </div>
-          <a class="card-cover" href="projects/icd10-rag.html" aria-label="Open the ICD-10 Clinical Coding RAG case study"></a>
-          <h3>ICD-10 Clinical Coding RAG</h3>
-          <p class="desc">Maps free-text clinical notes to ICD-10-CM diagnosis codes through a full production retrieval stack — hybrid sparse+dense search, cross-encoder reranking, and a fine-tuned LLM, served on AWS with a semantic cache.</p>
-          <div class="card-body">
-            <div>
-              <div class="stat-row">
-                <div class="stat"><div class="v">72,750</div><div class="k">codes indexed</div></div>
-                <div class="stat"><div class="v">50→<span class="u">64%</span></div><div class="k">recall@5 lift</div></div>
-                <div class="stat"><div class="v">&lt;50<span class="u">ms</span></div><div class="k">cache hit latency</div></div>
-              </div>
-              <div class="tags">
-                <span class="tag">Milvus / Zilliz</span><span class="tag">BM25 + MedCPT</span>
-                <span class="tag">Cross-encoder rerank</span><span class="tag">QLoRA · Llama-3.2-3B</span>
-                <span class="tag">vLLM</span><span class="tag">Redis HNSW cache</span>
-                <span class="tag">FastAPI</span><span class="tag">AWS EC2 (T4)</span>
-              </div>
+          <div class="work-meta">
+            <span class="work-kind">Healthcare · RAG · LLM serving</span>
+            <div class="work-figs">
+              <span><b>50 → 64%</b> recall@5</span>
+              <span><b>&lt;50 ms</b> cache-hit latency</span>
             </div>
-            <div class="pipeline" aria-hidden="true">
-Clinical note
-  <span class="arrow">→</span> extract diagnosis
-  <span class="arrow">→</span> <span class="node">MedCPT encode</span>
-  <span class="arrow">→</span> <span class="node">Redis cache?</span> <span class="arrow">→</span> hit &lt;50ms
-  <span class="arrow">↓</span> miss
-  <span class="node">Milvus hybrid</span> (BM25+dense)
-  <span class="arrow">→</span> rerank top-5
-  <span class="arrow">→</span> <span class="node">Llama-3.2 (QLoRA)</span>
-  <span class="arrow">→</span> ICD-10 code + confidence
-            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/icd10-rag" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Arbiter — regulated dispute triage -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">RegTech · Grounded RAG</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/arbiter-dispute-triage" target="_blank" rel="noopener" aria-label="Arbiter dispute triage source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+
+        <!-- 02 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/graphscout.html" aria-label="Open the GraphScout case study"></a>
+          <div class="work-num">02</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>GraphScout</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">A multi-hop research assistant built as a measurement study: three retrieval arms over one 30k-passage corpus, scored with bootstrap confidence intervals by a versioned eval harness and a calibrated LLM judge, traced per request, and gated in CI.</p>
           </div>
-          <a class="card-cover" href="projects/arbiter-dispute-triage.html" aria-label="Open the Arbiter regulated dispute triage case study"></a>
-          <h3>Arbiter — Regulated Dispute Triage</h3>
-          <p class="desc">Reads a consumer complaint, finds the regulation that governs it, drafts a cited response, verifies its own claims against the cited text, and decides whether a person must look at it — on 8,240 real CFPB complaints and 3,827 chunks of CFR text.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">61.5<span class="u">%</span></div><div class="k">measured automation ceiling</div></div><div class="stat"><div class="v">0.702</div><div class="k">product macro-F1 vs 0.659 TF-IDF</div></div><div class="stat"><div class="v">22</div><div class="k">escalation rules audited in CI</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">Hybrid retrieval + rerank</span><span class="tag">Claim-level verification</span><span class="tag">Deterministic safety rules</span><span class="tag">Calibration (ECE)</span><span class="tag">Temporal split</span><span class="tag">FastAPI</span>
+          <div class="work-meta">
+            <span class="work-kind">Graph RAG · evaluation</span>
+            <div class="work-figs">
+              <span><b>0.454 → 0.506</b> recall@8</span>
+              <span><b>$0 / ~$30</b> infra / total LLM spend</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- GraphScout -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Graph RAG · Evaluation</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/graphscout" target="_blank" rel="noopener" aria-label="GraphScout source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 03 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/airline-otp-pipeline.html" aria-label="Open the airline on-time performance pipeline case study"></a>
+          <div class="work-num">03</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>Airline On-Time Performance Pipeline</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Every month of US BTS flight data since 2015 — cleaned by Spark into partitioned Parquet, modeled in Snowflake with dbt, gated by 36 dbt tests and a Great Expectations checkpoint, and kept current by a monthly Airflow DAG that ingested a new month unattended.</p>
           </div>
-          <a class="card-cover" href="projects/graphscout.html" aria-label="Open the GraphScout case study"></a>
-          <h3>GraphScout</h3>
-          <p class="desc">Multi-hop research assistant built as a measurement study: three retrieval arms over one 30k-passage corpus, scored with bootstrap confidence intervals by a versioned eval harness, a calibrated LLM judge, and a CI gate that blocks quality regressions.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">0.454→<span class="u">0.506</span></div><div class="k">recall@8, dense vs hybrid+graph</div></div><div class="stat"><div class="v">0.68→<span class="u">0.77</span></div><div class="k">MRR — a ranking win, not coverage</div></div><div class="stat"><div class="v">$0 / ~$30</div><div class="k">infra / total LLM spend</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">pgvector + BM25 + RRF</span><span class="tag">Neo4j + Leiden</span><span class="tag">Agentic tool routing</span><span class="tag">LLM-as-judge</span><span class="tag">Langfuse tracing</span><span class="tag">CI eval gate</span>
+          <div class="work-meta">
+            <span class="work-kind">Data engineering · Spark · Snowflake</span>
+            <div class="work-figs">
+              <span><b>72.9M</b> rows across 137 files</span>
+              <span><b>94%</b> smaller on disk after cleaning</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Airline OTP pipeline -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Data Engineering · Spark · Snowflake</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/airline-otp-pipeline" target="_blank" rel="noopener" aria-label="Airline OTP pipeline source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 04 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/demand-forecasting.html" aria-label="Open the demand forecasting A/B testing case study"></a>
+          <div class="work-num">04</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>Demand Forecasting, Cost-Aware A/B Tested</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">The complete Walmart M5 panel carried past the leaderboard to the question a team actually has to answer: does the better model save money? Two iterations said HOLD. Ordering the cost-optimal quantile instead of the mean forecast is what earned the launch.</p>
           </div>
-          <a class="card-cover" href="projects/airline-otp-pipeline.html" aria-label="Open the Airline On-Time Performance Pipeline case study"></a>
-          <h3>Airline On-Time Performance Pipeline</h3>
-          <p class="desc">Every month of US BTS flight data since 2015 — cleaned by Spark into partitioned Parquet, modeled in Snowflake with dbt, gated by dbt tests and Great Expectations, and kept current by a monthly Airflow DAG that ingested a new month autonomously.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">72.9<span class="u">M</span></div><div class="k">rows across 137 monthly files</div></div><div class="stat"><div class="v">94<span class="u">%</span></div><div class="k">smaller: 30GB CSV → 1.8GB Parquet</div></div><div class="stat"><div class="v">36/36</div><div class="k">dbt tests + 16 GE expectations</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">PySpark 4.x</span><span class="tag">Snowflake + dbt</span><span class="tag">Great Expectations</span><span class="tag">Airflow</span><span class="tag">Terraform (AWS + Snowflake)</span><span class="tag">Power BI REST</span>
+          <div class="work-meta">
+            <span class="work-kind">Forecasting · experimentation</span>
+            <div class="work-figs">
+              <span><b>−14.1%</b> inventory cost, CI [−15.3, −12.9]</span>
+              <span><b>30,474</b> paired series in the test</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/demand-forecasting-ab-testing" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Demand forecasting -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Forecasting · A/B Testing</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/demand-forecasting-ab-testing" target="_blank" rel="noopener" aria-label="Demand forecasting source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 05 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/agentic-trip-planner.html" aria-label="Open the Atlas agentic trip planner case study"></a>
+          <div class="work-num">05</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>Atlas — Agentic Trip Planner</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Six agents research live flights, real hotel rates, weather and attractions, then reconcile the plan against a budget. Every price is checked against the payload it came from, the arithmetic is Python, and uncertainty is labelled instead of smoothed over.</p>
           </div>
-          <a class="card-cover" href="projects/demand-forecasting.html" aria-label="Open the Demand Forecasting case study"></a>
-          <h3>Demand Forecasting with Cost-Aware A/B Testing</h3>
-          <p class="desc">The full Walmart M5 panel carried past the leaderboard to the real question: does the better model save money, and should it ship? Pre-registered A/B test, newsvendor cost simulation, honest sensitivity analysis.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">−<span class="u">14.1%</span></div><div class="k">cost (p≈10⁻¹¹⁰)</div></div>
-            <div class="stat"><div class="v">30,490</div><div class="k">store-SKU series</div></div>
-            <div class="stat"><div class="v">10/10</div><div class="k">stores save</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">LightGBM (pinball)</span><span class="tag">AutoETS</span>
-            <span class="tag">Newsvendor sim</span><span class="tag">Pre-registered A/B</span>
-            <span class="tag">Rolling backtest</span>
+          <div class="work-meta">
+            <span class="work-kind">Multi-agent · guardrails</span>
+            <div class="work-figs">
+              <span><b>608</b> tests + a 12-case eval set</span>
+              <span><b>Free-tier</b> APIs only, by design</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Atlas — agentic trip planner -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Multi-Agent · Guardrails</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/agentic-trip-planner" target="_blank" rel="noopener" aria-label="Atlas trip planner source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 06 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/customer-segmentation-drift.html" aria-label="Open the customer segmentation drift case study"></a>
+          <div class="work-num">06</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>Customer Segmentation, Monitored</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Segmentation with a lifecycle instead of a one-off notebook: rolling monthly windows over ~1.1M transactions, a six-algorithm bakeoff, drift thresholds calibrated on the data's own variation, and champion/challenger retraining behind a feature store.</p>
           </div>
-          <a class="card-cover" href="projects/agentic-trip-planner.html" aria-label="Open the Atlas agentic trip planner case study"></a>
-          <h3>Atlas — Agentic Trip Planner</h3>
-          <p class="desc">Six agents research live flights, real hotel rates, weather and attractions, then reconcile against a budget. Every number traces to a tool call, arithmetic is Python, and uncertainty is labelled — built entirely on free-tier APIs.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">608</div><div class="k">offline tests + a 12-case eval set</div></div><div class="stat"><div class="v">6</div><div class="k">agents — 4 in parallel</div></div><div class="stat"><div class="v">87.2s→<span class="u">1.4s</span></div><div class="k">cold vs resumed run</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">Two-phase tool loop</span><span class="tag">Provenance checking</span><span class="tag">JSON Schema in / Pydantic out</span><span class="tag">Key rotation on 429</span><span class="tag">FastAPI + SSE</span><span class="tag">Deterministic scorers</span>
+          <div class="work-meta">
+            <span class="work-kind">MLOps · drift · feature store</span>
+            <div class="work-figs">
+              <span><b>21/22 → 4</b> drift alerts after calibration</span>
+              <span><b>47,170</b> customer-window rows</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Customer segmentation as a monitored model -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">MLOps · Drift · Feature Store</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/customer-segmentation-drift" target="_blank" rel="noopener" aria-label="Customer segmentation drift source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 07 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/agentforge.html" aria-label="Open the AgentForge case study"></a>
+          <div class="work-num">07</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>AgentForge</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">A repository-level coding agent that writes a failing acceptance test first, patches, then verifies with deterministic gates — digest-checked tests, static checks before any model review, bounded repair, and enforced wall-clock and model-call budgets.</p>
           </div>
-          <a class="card-cover" href="projects/customer-segmentation-drift.html" aria-label="Open the Customer Segmentation as a Monitored Model case study"></a>
-          <h3>Customer Segmentation, Monitored</h3>
-          <p class="desc">Segmentation with a lifecycle instead of a one-off notebook: rolling monthly windows over ~1.1M transactions, a six-algorithm bakeoff, calibrated drift detection, and champion/challenger retraining behind a feature store — all running locally.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">21/22→<span class="u">4</span></div><div class="k">drift alerts after calibration</div></div><div class="stat"><div class="v">47,170</div><div class="k">customer-window feature rows</div></div><div class="stat"><div class="v">6</div><div class="k">clustering algorithms benchmarked</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">MLflow registry</span><span class="tag">Feast (point-in-time)</span><span class="tag">Dagster assets</span><span class="tag">PSI · ARI · migration</span><span class="tag">Pandera contracts</span><span class="tag">FastAPI · Streamlit</span>
+          <div class="work-meta">
+            <span class="work-kind">Agentic AI · verified execution</span>
+            <div class="work-figs">
+              <span><b>206</b> automated tests passing</span>
+              <span><b>4</b> scoped memory layers</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- AgentForge -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Agentic AI · Verified Execution</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/AgentForge" target="_blank" rel="noopener" aria-label="AgentForge source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 08 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/crypto-anomaly-mlops.html" aria-label="Open the real-time crypto anomaly detection case study"></a>
+          <div class="work-num">08</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>Real-Time Crypto Anomaly Detection</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Live anomaly scoring for BTC, ETH and SOL: Coinbase WebSocket into Event Hubs, a stateful feature engine, a Redis feature store, and an Isolation-Forest plus autoencoder ensemble — retrained, registered and redeployed weekly without anyone touching it.</p>
           </div>
-          <a class="card-cover" href="projects/agentforge.html" aria-label="Open the AgentForge case study"></a>
-          <h3>AgentForge</h3>
-          <p class="desc">A repository-level coding agent that plans changes, edits an isolated Git worktree, reviews the observed diff, runs tests in a locked-down Docker container, and repairs failures through a bounded LangGraph loop.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v"><span class="u">206</span></div><div class="k">automated tests passing</div></div>
-            <div class="stat"><div class="v">4</div><div class="k">scoped memory layers</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">LangGraph</span><span class="tag">MCP (GitHub · Playwright)</span>
-            <span class="tag">Groq model routing</span><span class="tag">Qdrant hybrid RAG</span>
-            <span class="tag">Docker sandbox</span><span class="tag">Redis · PostgreSQL</span>
+          <div class="work-meta">
+            <span class="work-kind">Streaming MLOps · Azure</span>
+            <div class="work-figs">
+              <span><b>&lt;5 ms</b> feature-store reads</span>
+              <span><b>One</b> feature definition, both paths</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Crypto anomaly MLOps -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Real-Time MLOps · Azure</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/crypto-anomaly-mlops" target="_blank" rel="noopener" aria-label="Crypto anomaly MLOps source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 09 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/job-market-intelligence.html" aria-label="Open the job market intelligence case study"></a>
+          <div class="work-num">09</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>Job Market Intelligence</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Raw job postings turned into structured company and tech-stack signals, mirroring a B2B go-to-market data product: scraping, rule-based labeling, a QLoRA-tuned extractor served on vLLM, an analytical warehouse, and a live dashboard.</p>
           </div>
-          <a class="card-cover" href="projects/crypto-anomaly-mlops.html" aria-label="Open the Real-Time Crypto Anomaly Detection case study"></a>
-          <h3>Real-Time Crypto Anomaly Detection</h3>
-          <p class="desc">Live anomaly scoring for BTC / ETH / SOL on a streaming pipeline — Coinbase WebSocket → Kafka → rolling features → Redis feature store → scoring endpoint, with weekly auto-retrain and full observability.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">&lt;5<span class="u">ms</span></div><div class="k">feature reads</div></div>
-            <div class="stat"><div class="v">Weekly</div><div class="k">auto-retrain on push</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">Kafka / Event Hubs</span><span class="tag">Isolation Forest + AE</span>
-            <span class="tag">Redis feature store</span><span class="tag">Azure ML registry</span>
-            <span class="tag">ACI · CI/CD</span><span class="tag">App Insights alerts</span>
+          <div class="work-meta">
+            <span class="work-kind">Data product · QLoRA · GCP</span>
+            <div class="work-figs">
+              <span><b>10,000</b> instruction examples</span>
+              <span><b>Live</b> dashboard on Cloud Run</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/job-market-intelligence" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- Job market intelligence -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">Data Product · QLoRA · GCP</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://job-market-dashboard-382820901717.us-central1.run.app" target="_blank" rel="noopener" aria-label="Live dashboard">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
-              <a class="icon-link" href="https://github.com/SwayamDesai/job-market-intelligence" target="_blank" rel="noopener" aria-label="Job market intelligence source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
+        <!-- 10 -->
+        <article class="work-row reveal">
+          <a class="work-cover" href="projects/ai-study-notes.html" aria-label="Open the AI study notes generator case study"></a>
+          <div class="work-num">10</div>
+          <div class="work-main">
+            <div class="work-title">
+              <h3>AI Study Notes Generator</h3>
+              <span class="arrow" aria-hidden="true">→</span>
             </div>
+            <p class="work-desc">Upload a PDF chapter, get summaries, flashcards, a glossary and topic clusters — an LLM pipeline combined with classical NLP, with ROUGE and glossary-accuracy evaluation built in rather than bolted on.</p>
           </div>
-          <a class="card-cover" href="projects/job-market-intelligence.html" aria-label="Open the Job Market Intelligence case study"></a>
-          <h3>Job Market Intelligence Pipeline</h3>
-          <p class="desc">Raw job postings → structured company &amp; tech-stack signals, mirroring a B2B go-to-market data product. Scraping, rule-based labeling, a fine-tuned LLM extractor, an analytical warehouse, and a live dashboard.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">10,000</div><div class="k">instruction examples</div></div>
-            <div class="stat"><div class="v"><span class="u">Live</span></div><div class="k">dashboard on Cloud Run</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">QLoRA · Gemma-2B</span><span class="tag">vLLM</span>
-            <span class="tag">spaCy labeling</span><span class="tag">FAISS dedup</span>
-            <span class="tag">DuckDB</span><span class="tag">Marimo · Plotly</span>
-            <span class="tag">GCP Cloud Run · SkyPilot</span>
+          <div class="work-meta">
+            <span class="work-kind">NLP · LangChain</span>
+            <div class="work-figs">
+              <span><b>4-in-1</b> summary, cards, glossary, clusters</span>
+              <span><b>ROUGE</b> evaluated against ground truth</span>
+            </div>
+            <a class="work-src" href="https://github.com/SwayamDesai/AI-Study-Notes-Generator" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+              Source
+            </a>
           </div>
         </article>
 
-        <!-- AI Study Notes -->
-        <article class="card reveal">
-          <div class="card-top">
-            <span class="card-tag">NLP · gpt-4o-mini · LangChain</span>
-            <div class="card-links">
-              <a class="icon-link" href="https://github.com/SwayamDesai/AI-Study-Notes-Generator" target="_blank" rel="noopener" aria-label="AI Study Notes Generator source code">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-              </a>
-            </div>
-          </div>
-          <a class="card-cover" href="projects/ai-study-notes.html" aria-label="Open the AI Study Notes Generator case study"></a>
-          <h3>AI Study Notes Generator</h3>
-          <p class="desc">Upload a PDF chapter, get summaries, flashcards, a glossary, and topic clusters. A Streamlit NLP app combining gpt-4o-mini with classical NLP — plus ROUGE and glossary-accuracy evaluation baked in.</p>
-          <div class="stat-row">
-            <div class="stat"><div class="v">4-in-1</div><div class="k">summary · cards · glossary · clusters</div></div>
-            <div class="stat"><div class="v">ROUGE</div><div class="k">evaluated vs ground truth</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">gpt-4o-mini · LangChain</span><span class="tag">FAISS</span>
-            <span class="tag">KeyBERT · spaCy</span><span class="tag">UMAP + HDBSCAN</span>
-            <span class="tag">Streamlit</span>
-          </div>
-        </article>
       </div>
     </div>
   </section>
 
-  <!-- ============================ SKILLS ============================ -->
-  <section class="section" id="skills" style="padding-top:0">
+  <!-- ============================ CAPABILITIES ============================ -->
+  <section class="section" id="capabilities" style="padding-top:0">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Toolkit</span>
         <h2>What I reach for.</h2>
-        <p>The stack behind the work above — chosen for what ships and holds up in production.</p>
+        <p>Tools I've used to ship something on this page — not a list of everything I've read about.</p>
       </div>
-      <div class="skills-grid">
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0 0 8v1a4 4 0 0 0 8 0v-1a4 4 0 0 0 0-8V6a4 4 0 0 0-4-4Z"/></svg>
-            LLM &amp; GenAI
-          </h4>
-          <div class="skill-list">
-            <span>Hybrid RAG</span><span>QLoRA / PEFT</span><span>LangGraph</span>
-            <span>Multi-agent</span><span>MCP</span><span>vLLM serving</span>
-            <span>LangChain</span><span>Semantic caching</span><span>Cross-encoder rerank</span>
-          </div>
-        </div>
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg>
-            ML &amp; Statistical Modeling
-          </h4>
-          <div class="skill-list">
-            <span>Regression &amp; GLMs</span><span>LightGBM</span><span>Time-series forecasting</span>
-            <span>Feature engineering</span><span>Anomaly detection</span><span>Clustering (UMAP/HDBSCAN)</span>
-            <span>PyTorch</span><span>HuggingFace</span>
-          </div>
-        </div>
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
-            Data &amp; Retrieval
-          </h4>
-          <div class="skill-list">
-            <span>DuckDB</span><span>Milvus / Zilliz</span><span>Qdrant</span>
-            <span>pgvector</span><span>Neo4j</span><span>Redis</span>
-            <span>Kafka / Event Hubs</span><span>PostgreSQL</span><span>Snowflake</span>
-            <span>BM25 + RRF</span>
-          </div>
-        </div>
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0 0-9h-1.3A7 7 0 1 0 4 15.3"/><path d="M12 12v9M8 17l4 4 4-4"/></svg>
-            MLOps &amp; Cloud
-          </h4>
-          <div class="skill-list">
-            <span>AWS EC2</span><span>GCP Cloud Run</span><span>Azure ML / ACI</span>
-            <span>Docker</span><span>CI/CD</span><span>Terraform</span>
-            <span>MLflow</span><span>Feast</span><span>SkyPilot</span>
-            <span>Celery</span><span>Monitoring / alerts</span>
-          </div>
-        </div>
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="8" cy="5" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="11" cy="19" r="1.6"/></svg>
-            Data Engineering
-          </h4>
-          <div class="skill-list">
-            <span>PySpark</span><span>dbt</span><span>Airflow</span>
-            <span>Dagster</span><span>Great Expectations</span><span>Parquet / medallion</span>
-            <span>Data contracts (Pandera)</span><span>DVC</span>
-          </div>
-        </div>
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-4 6 4 6M16 6l4 6-4 6"/></svg>
-            Languages &amp; APIs
-          </h4>
-          <div class="skill-list">
-            <span>Python</span><span>SQL</span><span>FastAPI</span>
-            <span>Streamlit</span><span>Pydantic</span><span>REST / WebSocket</span>
-          </div>
-        </div>
-        <div class="skill-cluster reveal">
-          <h4>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><path d="m8 12 3 3 5-6"/></svg>
-            Experimentation &amp; Rigor
-          </h4>
-          <div class="skill-list">
-            <span>Experiment design</span><span>A/B testing</span><span>Hypothesis testing</span>
-            <span>Pre-registered gates</span><span>Bootstrap confidence intervals</span><span>Causal inference</span>
-            <span>Rolling-origin backtests</span><span>LLM-as-judge calibration</span><span>Cost-aware evaluation</span>
-            <span>Reproducible pipelines</span>
-          </div>
-        </div>
+      <div class="cap-grid reveal">
+        <dl class="cap-row">
+          <dt>LLM &amp; GenAI</dt>
+          <dd>Hybrid and graph RAG, QLoRA / PEFT fine-tuning, vLLM serving, LangGraph, MCP, multi-agent orchestration, cross-encoder reranking, semantic caching, LLM-as-judge calibration</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>ML &amp; statistics</dt>
+          <dd>LightGBM, PyTorch, scikit-learn, time-series forecasting, anomaly detection, clustering, quantile / pinball loss, rolling-origin backtesting, bootstrap intervals, calibration</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>Experimentation</dt>
+          <dd>Experiment design, pre-registered decision rules and guardrails, paired and A/B tests, power analysis, causal inference, cost-aware evaluation, honest negative results</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>Data engineering</dt>
+          <dd>PySpark, dbt, Snowflake, Airflow, Dagster, Great Expectations, Pandera contracts, DuckDB, Parquet medallion layouts, DVC</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>Retrieval &amp; storage</dt>
+          <dd>pgvector, Milvus / Zilliz, Qdrant, FAISS, Neo4j, BM25 + RRF fusion, PostgreSQL, Redis, Kafka / Event Hubs</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>MLOps &amp; cloud</dt>
+          <dd>AWS EC2, GCP Cloud Run, Azure ML and ACI, Docker, Terraform, MLflow, Feast, GitHub Actions, Langfuse, monitoring and alerting, SkyPilot</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>Languages &amp; APIs</dt>
+          <dd>Python, SQL, FastAPI, Pydantic, Streamlit, REST and WebSocket, server-sent events</dd>
+        </dl>
+        <dl class="cap-row">
+          <dt>Analytics &amp; BI</dt>
+          <dd>Power BI (including REST push refresh), Tableau, Marimo, Plotly, matplotlib</dd>
+        </dl>
       </div>
     </div>
   </section>
@@ -473,24 +377,22 @@ Clinical note
   <!-- ============================ ABOUT ============================ -->
   <section class="section" id="about" style="padding-top:0">
     <div class="wrap">
-      <div class="about-grid">
-        <div class="reveal">
-          <div class="section-head" style="margin-bottom:28px">
-            <span class="eyebrow">About</span>
-            <h2>Careful analysis,<br />engineering that follows through.</h2>
-          </div>
-          <div class="about-body">
-            <p>A model that does well in validation is only the start. The questions I find most interesting come after: does it hold up on data it hasn't seen, does it change a real decision, and is it worth the cost of running?</p>
-            <p>That thinking shows up across my projects — a <span class="accent-text">pre-registered A/B test</span> to decide whether a forecasting model is worth shipping, a <span class="accent-text">semantic cache and reranker</span> to make a clinical retrieval system fast and accurate enough to trust, and <span class="accent-text">evidence-backed completion gates</span> so an agent cannot claim success without an observed patch, independent review, and containerized tests.</p>
-            <p>I'm comfortable across the full workflow — framing the problem and running the analysis, moving the data (Spark, dbt, Airflow), building and tuning the model, wiring the serving layer, and setting up the monitoring that flags drift — on <strong>AWS, GCP, and Azure</strong>.</p>
-            <p>I also try to report what didn't work. One of my projects concludes that a <span class="accent-text">TF-IDF baseline beats the language model</span> on the harder half of its classification task, and says so in the same table as the win; another spent two rounds on a forecasting model that was more accurate and still lost money before the third one earned a launch. Baselines you discard when they win aren't baselines.</p>
-          </div>
+      <div class="section-head reveal">
+        <span class="eyebrow">About</span>
+        <h2>Careful analysis, engineering that follows through.</h2>
+      </div>
+      <div class="about-grid" style="margin-top:38px">
+        <div class="about-body reveal">
+          <p>A model that does well in validation is only the start. The questions I find more interesting come after it: does this hold on data it hasn't seen, does it change a decision anyone is actually making, and is it worth what it costs to run?</p>
+          <p>That shows up throughout my work. A pre-registered A/B test decides whether a forecasting model is worth shipping — and said no twice before it said yes. A semantic cache and a reranker make a clinical retrieval system fast and accurate enough to trust. Evidence-backed completion gates stop an agent from claiming success without an observed patch and containerized tests that passed.</p>
+          <p>I also report what didn't work. One project <span class="accent-text">retracts its own earlier retrieval finding</span> once the ablation was run properly — the corrected result is indistinguishable from zero, and it's in the README next to the wins. Another spent two full iterations on a forecasting model that was more accurate and still lost money before the third one earned its launch. A result you'd bury when it disagrees with you isn't a measurement.</p>
+          <p>I'm comfortable across the whole workflow — framing the problem, moving the data with Spark, dbt and Airflow, building and tuning the model, wiring the serving layer, and setting up the monitoring that catches drift — on AWS, GCP and Azure.</p>
         </div>
-        <aside class="about-side reveal">
+        <aside class="facts reveal">
           <div class="fact"><div class="k">Focus</div><div class="v">Applied data science · AI engineering</div></div>
           <div class="fact"><div class="k">Depth</div><div class="v">Forecasting · experimentation · RAG · MLOps</div></div>
           <div class="fact"><div class="k">Clouds</div><div class="v">AWS · GCP · Azure</div></div>
-          <div class="fact"><div class="k">Core language</div><div class="v">Python (+ SQL)</div></div>
+          <div class="fact"><div class="k">Core language</div><div class="v">Python, with SQL</div></div>
           <div class="fact"><div class="k">Status</div><div class="v">Open to new roles</div></div>
         </aside>
       </div>
@@ -498,29 +400,22 @@ Clinical note
   </section>
 
   <!-- ============================ CONTACT ============================ -->
-  <section class="section contact" id="contact" style="padding-top:0">
+  <section class="section" id="contact" style="padding-top:0">
     <div class="wrap">
-      <div class="contact-card reveal">
-        <span class="eyebrow" style="justify-content:center">Contact</span>
-        <h2>Let's talk.</h2>
-        <p>I'm looking for Data Scientist and AI Engineer roles. If my work looks relevant to what your team is building, I'd be glad to hear from you.</p>
+      <div class="contact-block reveal">
+        <span class="eyebrow" style="margin-bottom:16px">Contact</span>
+        <h2>If this looks relevant to what your team is building, I'd like to hear from you.</h2>
+        <p>I'm looking for Data Scientist and AI Engineer roles. The fastest way to reach me is email.</p>
         <div class="contact-actions">
           <a class="btn btn-primary" href="mailto:desaiswayam71@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             desaiswayam71@gmail.com
           </a>
-          <a class="btn btn-ghost" href="https://github.com/SwayamDesai" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-            github.com/SwayamDesai
-          </a>
-          <a class="btn btn-ghost" id="linkedinBtn" href="https://www.linkedin.com/in/swayam-desai/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.34 9.5H5.67V18h2.67V9.5ZM7 5.88A1.54 1.54 0 1 0 7 8.96a1.54 1.54 0 0 0 0-3.08ZM18.33 18v-4.66c0-2.49-1.33-3.65-3.1-3.65a2.68 2.68 0 0 0-2.42 1.33h-.04V9.5h-2.56V18h2.66v-4.2c0-1.11.21-2.18 1.58-2.18 1.35 0 1.37 1.26 1.37 2.25V18h2.61Z"/></svg>
-            LinkedIn
-          </a>
-          <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>
-            Résumé
-          </a>
+          <div class="link-list">
+            <a href="https://github.com/SwayamDesai" target="_blank" rel="noopener">github.com/SwayamDesai</a>
+            <a href="https://www.linkedin.com/in/swayam-desai/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+          </div>
         </div>
       </div>
     </div>
@@ -528,22 +423,13 @@ Clinical note
 
 </main>
 
-<!-- ============================ FOOTER ============================ -->
 <footer class="footer">
   <div class="wrap footer-inner">
-    <span class="muted">© <span id="year">2026</span> Swayam Desai — built from scratch, no template.</span>
-    <div class="footer-socials">
-      <a class="icon-link" href="https://github.com/SwayamDesai" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-      </a>
-      <a class="icon-link" href="https://www.linkedin.com/in/swayam-desai/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.34 9.5H5.67V18h2.67V9.5ZM7 5.88A1.54 1.54 0 1 0 7 8.96a1.54 1.54 0 0 0 0-3.08ZM18.33 18v-4.66c0-2.49-1.33-3.65-3.1-3.65a2.68 2.68 0 0 0-2.42 1.33h-.04V9.5h-2.56V18h2.66v-4.2c0-1.11.21-2.18 1.58-2.18 1.35 0 1.37 1.26 1.37 2.25V18h2.61Z"/></svg>
-      </a>
-      <a class="icon-link" href="mailto:desaiswayam71@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-      </a>
-    </div>
+    <span>© <span id="year">2026</span> Swayam Desai</span>
+    <a href="https://github.com/SwayamDesai/SwayamDesai.github.io" target="_blank" rel="noopener">Source of this site</a>
   </div>
 </footer>
 
 <script src="main.js"></script>
+</body>
+</html>
