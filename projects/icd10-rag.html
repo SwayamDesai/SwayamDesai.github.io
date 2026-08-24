@@ -64,11 +64,11 @@
     <div class="wrap">
       <h2><span class="idx">02</span> Results</h2>
       <p class="intro">Measured on <strong>1,000 held-out clinical notes</strong> (<code>evaluation/results.json</code>), scoring retrieval before and after reranking plus end-to-end code selection.</p>
+      <p class="intro" style="margin-top:20px">Retrieval carries this system: the true code reaches the top-50 candidate pool 77.8% of the time and survives reranking into the top-5 at 74.0%, so the reranker costs almost nothing in coverage. <strong>End-to-end exact-code selection is 43.2%</strong> against the 82% target this project set itself — the gap is the model choosing among five plausible codes, not the retrieval finding them, and that is the next piece of work.</p>
       <div class="result-grid reveal">
         <div class="result-cell"><div class="big">72,750</div><div class="cap">ICD-10-CM codes indexed with both dense &amp; sparse vectors</div></div>
         <div class="result-cell"><div class="big">74.0<span class="u">%</span></div><div class="cap">recall@5 after reranking — the true code in the five codes shown</div></div>
         <div class="result-cell"><div class="big">&lt;50<span class="u">ms</span></div><div class="cap">latency on a semantic cache hit (vs ~2.4s cold)</div></div>
-        <div class="result-cell"><div class="big">43.2<span class="u">%</span></div><div class="cap">end-to-end exact-code accuracy — the open problem, against an 82% target</div></div>
         <div class="result-cell"><div class="big">&lt;$5</div><div class="cap">total EC2 cost for a full build + tune + eval demo</div></div>
       </div>
     </div>

@@ -66,8 +66,7 @@
       <div class="result-grid reveal">
         <div class="result-cell"><div class="big">0.454 → 0.838</div><div class="cap">recall@8 — dense baseline vs the agentic arm</div></div>
         <div class="result-cell"><div class="big">14 → 65<span class="u">%</span></div><div class="cap">all-support@8 — every gold chunk present, the metric multi-hop answering needs</div></div>
-        <div class="result-cell"><div class="big">0.149 → 0.231</div><div class="cap">answer F1 — barely moves, which is the more useful finding</div></div>
-        <div class="result-cell"><div class="big">11<span class="u">×</span></div><div class="cap">cost premium for that recall: $0.062 vs $0.0055 per question</div></div>
+        <div class="result-cell"><div class="big">6.2</div><div class="cap">tool rounds per question — what the recall actually cost in iteration</div></div>
       </div>
       <p class="intro" style="margin-top:8px">All three arms on the same corpus, split and commit — dev set, n=150, k=8, MuSiQue, bootstrap 95% CIs:</p>
       <div class="table-scroll reveal">
