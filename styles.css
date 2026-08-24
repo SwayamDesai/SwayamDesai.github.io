@@ -355,105 +355,184 @@ code {
   margin: 0;
 }
 
-/* ---------- Work index ---------- */
+/* ---------- Work cards (flip) ----------
+   Both faces occupy the same grid cell, so the card sizes itself to the taller
+   face and nothing is ever clipped. Flip is 3D on capable browsers, a cross-fade
+   under reduced motion, and an in-place expansion on small screens.
+   -------------------------------------- */
 
-.work-list { display: block; }
-
-.work-list {
-  border-top: 1px solid var(--rule-hard);
-  margin-top: 6px;
-}
-
-.work-row {
+.work-grid {
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr) 15.5rem;
-  gap: 8px 32px;
-  align-items: start;
-  padding: 40px calc(var(--gutter) / 2);
-  margin: 0 calc(var(--gutter) / -2);
-  border-bottom: 1px solid var(--rule);
-  position: relative;
-  transition: background 0.22s var(--ease);
+  grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
+  gap: 22px;
+  margin-top: 40px;
 }
-.work-row:hover { background: var(--paper-2); }
+
+.work-card { perspective: 1600px; }
+
+.wc-inner {
+  display: grid;
+  grid-template-areas: "face";
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.62s var(--ease);
+}
+.work-card.flipped .wc-inner { transform: rotateY(180deg); }
+
+.wc-face {
+  grid-area: face;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 28px 24px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: border-color 0.22s var(--ease);
+}
+.wc-back { transform: rotateY(180deg); }
+
+.work-card:hover .wc-front { border-color: var(--rule-hard); }
+.work-card.flipped .wc-front { pointer-events: none; }
+.work-card:not(.flipped) .wc-back { pointer-events: none; }
+
+/* front */
+
+.wc-top {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--rule-soft);
+}
 
 .work-num {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  padding-top: 9px;
   transition: color 0.22s var(--ease);
 }
-.work-row:hover .work-num { color: var(--accent); }
+.work-card:hover .work-num { color: var(--accent); }
 
-.work-main { min-width: 0; }
-
-.work-title {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.work-title h3 {
-  font-size: clamp(21px, 2.3vw, 26px);
-  letter-spacing: -0.012em;
-}
-.work-row:hover .work-title h3 { color: var(--accent); }
-
-.work-title .arrow {
-  font-family: var(--sans);
-  font-size: 15px;
+.work-kind {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--muted);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  line-height: 1.5;
 }
-.work-row:hover .work-title .arrow { opacity: 1; transform: none; }
 
-.work-desc {
-  margin-top: 9px;
-  max-width: 60ch;
-  font-size: 16px;
+/* auto margins on both the heading and the toggle split the leftover space,
+   which centres the title + summary between the rule and the footer */
+.work-card h3 {
+  margin-top: auto;
+  font-size: clamp(20px, 1.7vw, 23px);
+  line-height: 1.24;
+  letter-spacing: -0.014em;
+  transition: color 0.22s var(--ease);
+}
+.work-card:hover h3 { color: var(--accent); }
+
+.wc-short {
+  margin: 12px 0 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.wc-toggle {
+  margin-top: auto;
+  padding: 18px 0 0;
+  background: none;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  width: max-content;
+  transition: color 0.2s var(--ease), gap 0.2s var(--ease);
+}
+.wc-toggle svg { width: 14px; height: 14px; transition: transform 0.25s var(--ease); }
+.work-card.flipped .wc-toggle svg { transform: rotate(90deg); }
+.work-card:hover .wc-toggle { color: var(--accent); gap: 11px; }
+
+/* back */
+
+.wc-close {
+  align-self: flex-start;
+  margin: 0 0 14px;
+  padding: 0;
+  background: none;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease);
+}
+.wc-close:hover { color: var(--ink); }
+.wc-close svg { width: 14px; height: 14px; }
+
+.wc-detail {
+  margin: 0;
+  font-size: 15px;
   line-height: 1.62;
   color: var(--ink-2);
 }
 
-.work-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  padding: 6px 0 0 28px;
-  border-left: 1px solid var(--rule-soft);
-  align-self: stretch;
-}
-
-.work-kind {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 .work-figs {
   display: grid;
-  gap: 6px;
+  gap: 5px;
+  margin-top: 16px;
   font-size: 13.5px;
   color: var(--ink-3);
 }
-.work-figs span { display: block; }
 .work-figs b {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--ink);
   letter-spacing: -0.01em;
 }
 
+.wc-links {
+  margin-top: auto;
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.wc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent-line);
+  padding-bottom: 3px;
+  transition: color 0.2s var(--ease), gap 0.2s var(--ease);
+}
+.wc-cta:hover { color: var(--accent); gap: 11px; }
+.wc-cta svg { width: 15px; height: 15px; }
+
 .work-src {
-  position: relative;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -461,40 +540,53 @@ code {
   font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--muted);
-  width: max-content;
+  white-space: nowrap;
 }
 .work-src:hover { color: var(--ink); }
 .work-src svg { width: 14px; height: 14px; }
 
-/* full-row link target */
-.work-cover {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+/* Reduced motion: cross-fade instead of rotating */
+@media (prefers-reduced-motion: reduce) {
+  .wc-inner, .work-card.flipped .wc-inner { transform: none; transition: none; }
+  .wc-face { backface-visibility: visible; -webkit-backface-visibility: visible; }
+  .wc-back { transform: none; opacity: 0; visibility: hidden; }
+  .work-card.flipped .wc-front { opacity: 0; visibility: hidden; }
+  .work-card.flipped .wc-back { opacity: 1; visibility: visible; }
 }
 
-@media (max-width: 860px) {
-  .work-row {
-    grid-template-columns: 2.4rem minmax(0, 1fr);
-    gap: 6px 18px;
-    padding: 26px 0;
+/* Small screens: expand in place. Flipping a full-width card is worse than
+   simply showing the detail underneath the summary. */
+@media (max-width: 760px) {
+  .work-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 30px; }
+  .work-card { perspective: none; }
+  .work-card h3 { margin-top: 0; }
+  .wc-inner {
+    grid-template-areas: "front" "back";
+    transform: none !important;
+    transform-style: flat;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
   }
-  .work-title .arrow { display: none; }
-  .work-desc { margin-top: 7px; }
-  .work-meta {
-    grid-column: 2;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 14px 0 0 0;
-    border-left: 0;
-    border-top: 1px solid var(--rule-soft);
-    width: 100%;
+  .wc-face {
+    border: 0;
+    border-radius: 0;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none !important;
+    padding: 22px 22px 20px;
   }
-  .work-figs { grid-auto-flow: column; grid-auto-columns: max-content; gap: 20px; }
-}
-@media (max-width: 620px) {
-  .work-figs { grid-auto-flow: row; gap: 4px; }
+  .wc-front { grid-area: front; }
+  .wc-back {
+    grid-area: back;
+    display: none;
+    padding-top: 0;
+  }
+  .work-card.flipped .wc-back { display: flex; }
+  .work-card.flipped .wc-front { pointer-events: auto; }
+  .work-card:not(.flipped) .wc-back { pointer-events: auto; }
+  .wc-close { display: none; }
+  .wc-detail { padding-top: 18px; border-top: 1px solid var(--rule-soft); }
 }
 
 /* ---------- Capabilities ---------- */
